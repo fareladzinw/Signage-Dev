@@ -22,7 +22,7 @@ class CreateKomisiTable extends Migration
             $table->integer('nominal');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

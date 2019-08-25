@@ -29,38 +29,83 @@
       </head>
 <body class="hold-transition register-page">
     <div class="register-box">
-        <div class="register-logo">
+        <div class="register-logo" style="margin-top: -20%;">
             <a href="../../index2.html"><b>Signage</b>DEV</a>
         </div>
         
         <div class="register-box-body">
             <p class="login-box-msg">Register a new membership</p>
         
-            <form action={{url('/aktivasi')}}>
+            <form action="{{ route('postRegister') }}" method="post">
+            {{ csrf_field() }}
+            {{ method_field('POST') }}
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Full name">
+                <input type="text" class="form-control" placeholder="Full name" name="name"> 
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                @if($errors->has('name'))
+                <div class="text-danger">
+                    {{ $errors->first('name')}}
+                </div>
+                @endif
             </div>
             <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" class="form-control" placeholder="Alamat" name="alamat">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                </div>
+                    @if($errors->has('alamat'))
+                    <div class="text-danger">
+                        {{ $errors->first('alamat')}}
+                    </div>
+                    @endif
+            </div>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="Nomer Hp" name="hp">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    @if($errors->has('hp'))
+                    <div class="text-danger">
+                        {{ $errors->first('hp')}}
+                    </div>
+                    @endif
+            </div>
+            <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Username" name="username">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    @if($errors->has('username'))
+                    <div class="text-danger">
+                        {{ $errors->first('username')}}
+                    </div>
+                    @endif
+            </div>
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email" name="email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Retype password">
-                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Kode Afiliasi">
-                    <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                @if($errors->has('email'))
+                <div class="text-danger">
+                    {{ $errors->first('email')}}
                 </div>
+                @endif
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                @if($errors->has('password'))
+                <div class="text-danger">
+                    {{ $errors->first('password')}}
+                </div>
+                @endif
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Retype password" name="repassword">
+                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                @if($errors->has('repassword'))
+                <div class="text-danger">
+                    {{ $errors->first('repassword')}}
+                </div>
+                @endif
+            </div>
+            <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Kode Afiliasi" name="linkAfiliasi">
+                    <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
             <div class="row">
                 <div class="col-xs-8">
                 <div class="checkbox icheck">
@@ -76,7 +121,7 @@
                 <!-- /.col -->
             </div>
             </form>        
-            <a href={{url("/")}} class="text-center">I already have a membership</a>
+            <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
         </div>
         <!-- /.form-box -->
         </div>

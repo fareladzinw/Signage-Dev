@@ -28,7 +28,7 @@ class CreateFileTable extends Migration
 
             $table->foreign('paket_id')->references('id')->on('paket');
             $table->foreign('pesanan_id')->references('id')->on('pesanan');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

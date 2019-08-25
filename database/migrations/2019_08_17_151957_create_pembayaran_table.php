@@ -24,7 +24,7 @@ class CreatePembayaranTable extends Migration
             $table->timestamps();
 
             $table->foreign('pesanan_id')->references('id')->on('pesanan');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

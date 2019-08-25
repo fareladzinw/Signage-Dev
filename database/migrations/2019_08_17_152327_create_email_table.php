@@ -24,7 +24,7 @@ class CreateEmailTable extends Migration
             $table->date('tanggalKirim');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('invoice_id')->references('id')->on('invoice');
         });
     }
