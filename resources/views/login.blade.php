@@ -46,6 +46,12 @@
       <div>{{Session::get('alert-fail')}}</div>
     </div>
     @endif
+    @if (\Session::has('alert-success'))
+    <div class="alert alert-success">
+      <a href="{{ route('login') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+      <div>{{Session::get('alert-success')}}</div>
+    </div>
+    @endif
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form action="{{ route('checkLogin') }}" method="POST">

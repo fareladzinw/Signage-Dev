@@ -16,6 +16,8 @@ Route::post('/login', 'AuthController@checkLogin')->name('checkLogin');
 Route::get('/register', 'AuthController@indexRegister')->name('register');
 Route::post('/register', 'AuthController@postRegister')->name('postRegister');
 Route::get('/activation', 'AuthController@indexActivation')->name('activation');
+Route::post('/activation', 'AuthController@checkActivation')->name('checkActivation');
+Route::get('/logout', 'AuthController@logout')->name('logout');
 
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
@@ -23,7 +25,10 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/client/list-client', 'pageController@listClient');
 });
 
-Route::get('/user', 'pageController@indexUser');
+Route::prefix('user')->middleware('auth')->group(function() {
+    Route::get('/', 'pageController@indexUser');
+});
+
 
 
 

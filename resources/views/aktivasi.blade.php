@@ -36,10 +36,23 @@
   <div class="login-box-body">
     <p class="login-box-msg"><b>Terimakasih!</b></p>
     <p class="login-box-msg">Kami telah mengirimkan kode ke email anda. Silahkan masukkan kode unik untuk konfirmasi</p>
-    <form action={{url('/')}}>
+    @if (\Session::has('alert-fail'))
+    <div class="alert alert-danger">
+      <a href="{{ route('activation') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+      <div>{{Session::get('alert-fail')}}</div>
+    </div>
+    @endif
+    <form action="{{ route('checkActivation') }}" method="post">
+    {{ csrf_field() }}
+    {{ method_field('POST') }}
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Email">
+        <input type="text" class="form-control" placeholder="Kode Aktivasi" name="kode">
         <span class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
+        @if($errors->has('kode'))
+          <div class="text-danger">
+              {{ $errors->first('kode')}}
+          </div>
+        @endif
       </div>
       <div class="row">
         <!-- /.col -->

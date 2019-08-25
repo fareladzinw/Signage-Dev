@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\Aktivasi;
 use Carbon\Carbon;
+use App\Mail\UserActivation;
 
 class AuthController extends Controller
 {
@@ -94,7 +96,8 @@ class AuthController extends Controller
         $aktivasi->kode = str_random(10);
         $aktivasi->status = 0;
         $aktivasi->save();
-
+        
+        Mail::to($data->email)->send(new UserActivation($data, $aktivasi)); 
         return redirect('activation');
     }
 
@@ -110,9 +113,39 @@ class AuthController extends Controller
     /**
      * Activate the user
      * @return App\Http\Controllers\AuthController->indexLogin
-     */
-    public function checkActivation()
+    */
+    public function checkActivation(Request $request)
     {
+        $this->validate($request, [
+            'kode' => 'required',
+        ]);
 
+        $aktivasi = Aktivasi::where('kode', $request->kode)->first();
+        if(empty($aktivasi)) {
+            return redirect('activation')->with('alert-fail', 'Masukan kode yang benar!');
+        } else {
+            if($aktivasi->status == 1) {
+                return redirect('activation')->with('alert-fail', 'Akun ini sudah diaktivasi sebelumnya!');
+            } else {
+                if($request->kode == $aktivasi->kode) {
+                    $aktivasi->status = 1;
+                    $aktivasi->save();
+                    
+                    return redirect('login')->with('alert-success', 'Akun berhasil di aktivasi');
+                } else {
+                    return redirect('activation')->with('alert-fail', 'Masukan kode yang benar!');
+                }   
+            }
+        }
+    }
+
+    /**
+     * Destroy user session
+     * @return App\Http\Controllers\AuthController->indexLogin
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('login')->with('alert-logout','Berhasil Logout!');
     }
 }
