@@ -33,18 +33,19 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-        $userId = Auth::user()->id;
-        $status = Aktivasi::where('user_id', $userId)->select('status')->get();
 
         if (Auth::attempt($credentials)) {
-            if ($status[0]->status == 1) {
+            $userId = Auth::user()->id;
+            $status = Aktivasi::where('user_id', $userId)->select('status')->get();
+
+            if ($status[0]->status == true) {
                 if (Auth::user()->tipeClient == 'user') {
                     return redirect('/user');
                 } else if (Auth::user()->tipeClient == 'admin') {
                     return redirect('/admin');
                 }
             } else {
-                return redirect('/login')->with('alert-fail','Tolong aktivasi akun!');
+                return redirect('/login')->with ('alert-fail','Tolong aktivasi akun!');
             }
         } else {
             return redirect('/login')->with('alert-fail','Email atau password salah!');
@@ -81,6 +82,7 @@ class AuthController extends Controller
         $data->username = $request->username;
         $data->alamat = $request->alamat;
         $data->hp = $request->hp;
+        $data->tipeClient = 1;
         $data->dateTime = Carbon::now();
         $data->email = $request->email;
         $data->password = bcrypt($request->password);

@@ -29,7 +29,7 @@
       </head>
 <body class="hold-transition register-page">
     <div class="register-box">
-        <div class="register-logo">
+        <div class="register-logo" style="margin-top: -20%;">
             <a href="../../index2.html"><b>Signage</b>DEV</a>
         </div>
         
