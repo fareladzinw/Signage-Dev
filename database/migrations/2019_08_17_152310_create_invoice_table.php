@@ -23,7 +23,7 @@ class CreateInvoiceTable extends Migration
             $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('transaksi_id')->references('id')->on('transaksi');
         });
     }

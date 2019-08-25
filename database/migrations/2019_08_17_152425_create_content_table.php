@@ -31,7 +31,7 @@ class CreateContentTable extends Migration
             $table->foreign('transaksi_id')->references('id')->on('transaksi');
             $table->foreign('paket_id')->references('id')->on('paket');
             $table->foreign('playlist_id')->references('id')->on('playlist');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

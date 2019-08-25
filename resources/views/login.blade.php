@@ -34,15 +34,29 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
+    @if (\Session::has('alert-logout'))
+    <div class="alert alert-danger">
+      <a href="{{ route('login') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+      <div>{{Session::get('alert-logout')}}</div>
+    </div>
+    @endif
+    @if (\Session::has('alert-fail'))
+    <div class="alert alert-danger">
+      <a href="{{ route('login') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+      <div>{{Session::get('alert-fail')}}</div>
+    </div>
+    @endif
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action={{url('/admin')}}>
+    <form action="{{ route('checkLogin') }}" method="POST">
+    {{ csrf_field() }}
+    {{ method_field('POST') }}
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" placeholder="Email" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -71,7 +85,7 @@
     <!-- /.social-auth-links --> --}}
 
     <a href="#">Forgot password?</a><br>
-    <a href={{url('/sign-up')}} class="text-center">Sign Up</a>
+    <a href="{{ route('register') }}" class="text-center">Sign Up</a>
 
   </div>
   <!-- /.login-box-body -->
