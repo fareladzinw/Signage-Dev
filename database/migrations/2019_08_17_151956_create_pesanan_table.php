@@ -24,7 +24,7 @@ class CreatePesananTable extends Migration
             $table->timestamps();
 
             $table->foreign('paket_id')->references('id')->on('paket');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
