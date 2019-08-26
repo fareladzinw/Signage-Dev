@@ -5,35 +5,30 @@
     <div class="col-xs-12">
     <div class="box box-info">
         <div class="box-body">
-          <table id="paket-status" class="table table-bordered table-hover">
+          <table id="riwayat-afiliasi" class="table table-bordered table-hover">
             <thead>
             <tr>
-              <th>Nama Paket</th>
-              <th>Tanggal Pesan</th>
-              <th>Tanggal Selesai</th>
-              <th>Region Siaran</th>
-              <th>Status</th>
+              <th>Status Afiliasi</th>
+              <th>Tanggal</th>
+              <th>Jumlah</th>
+              <th>Total Afiliasi</th>
             </tr>
             </thead>
             <tbody>
               @for ($i = 0; $i < 4; $i++)
-              <tr>
-                  <td>Paket Mahasiswa</td>
-                  <td>17 Agustus 2019</td>
-                  <td>29 September 2019</td>
-                  <td>Jawa Timur</td>
-                  <td>Aktif</td>
+                <tr>
+                  <td>Kode afiliasi digunakan</td>
+                  <td>17 Maret 2019</td>
+                  <td>+ Rp.5.000</td>
+                  <td>Rp. 500.000</td>
                 </tr>
               @endfor
-              @for ($i = 0; $i < 4; $i++)
-              <tr>
-                  <td>Paket Mahasiswa</td>
-                  <td>17 Agustus 2019</td>
-                  <td>29 September 2019</td>
-                  <td>Jawa Timur</td>
-                  <td>Kadaluarsa</td>
+                <tr>
+                    <td>Withdraw Afiliasi</td>
+                    <td>20 Maret 2019</td>
+                    <td>- Rp.500.000</td>
+                    <td>Rp. 10.000</td>
                 </tr>
-              @endfor
         </tbody>
       </table>
     </div>
@@ -46,7 +41,7 @@
 @section('js')
 <script>
     $(function () {
-      $('#paket-status').DataTable({
+      $('#riwayat-afiliasi').DataTable({
         'paging'      : true,
         'lengthChange': true,
         'searching'   : false,

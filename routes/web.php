@@ -19,4 +19,8 @@ Route::get('/admin/player/master-player/add-data', 'pageController@addDataMaster
 Route::get('/admin/client/list-client', 'pageController@listClient');
 Route::get('/user', 'pageController@indexUser');
 Route::get('/user/paket-aktif', 'pageController@paketAktif');
+Route::get('/user/afiliasi/list-afiliasi', 'pageController@listAfiliasi');
+Route::get('/user/afiliasi/withdraw-afiliasi', 'pageController@withdraw');
+Route::get('/user/afiliasi/riwayat-afiliasi', 'pageController@riwayat');
+
 

@@ -20,6 +20,8 @@
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{asset('bower_components/admin-lte/dist/css/skins/skin-blue.min.css')}}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{asset('bower_components/admin-lte/plugins/iCheck/square/blue.css')}}">
   <!-- CSS -->
   <link rel="stylesheet" href="{{asset('css/main.css')}}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -51,12 +53,12 @@
           <ul class="nav navbar-nav">
             <li class="{{ (request()->is('user')) ? 'active' : '' }}"><a href="{{url ('/user')}}">Home<span class="sr-only">(current)</span></a></li>
             <li class="{{ (request()->is('user/paket-aktif')) ? 'active' : '' }}"><a href="{{url ('/user/paket-aktif')}}">Paket Aktif</a></li>
-            <li class="dropdown">
+            <li class="{{ (request()->is('user/afiliasi/*')) ? 'active dropdown' : 'dropdown' }}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Afiliasi<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">List Afiliasi</a></li>
-                <li><a href="#">Withdraw</a></li>
-                <li><a href="#">Riwayat Withdraw</a></li>
+                <li class="{{ (request()->is('user/afiliasi/list-afiliasi')) ? 'active' : '' }}" ><a href="{{url ('/user/afiliasi/list-afiliasi')}}">List Afiliasi</a></li>
+                <li class="{{ (request()->is('user/afiliasi/withdraw-afiliasi')) ? 'active' : '' }}"><a href="{{url ('/user/afiliasi/withdraw-afiliasi')}}">Withdraw</a></li>
+                <li class="{{ (request()->is('user/afiliasi/riwayat-withdraw')) ? 'active' : '' }}"><a href="{{url ('/user/afiliasi/riwayat-afiliasi')}}">Riwayat Withdraw</a></li>
                 {{-- <li class="divider"></li>
                 <li><a href="#">Separated link</a></li>
                 <li class="divider"></li>
@@ -94,7 +96,7 @@
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div> --}}
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{url ('/')}}" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -154,6 +156,8 @@
 <script src="{{asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('bower_components/admin-lte/dist/js/adminlte.min.js')}}"></script>
+<!-- iCheck -->
+<script src="{{asset('bower_components/admin-lte/plugins/iCheck/icheck.min.js')}}"></script>
 @yield('js')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -4,7 +4,6 @@
 @section('judul', 'Dasboard')
 @section('deskripsi', 'Silahkan pilih paket iklan')
 @section('content')
-
      @for ($i = 0; $i < 10; $i++)
      <div class="card">
      <div class="box box-info">
@@ -26,5 +25,4 @@
           </div>
         </div>
      @endfor  
-
 @endsection
