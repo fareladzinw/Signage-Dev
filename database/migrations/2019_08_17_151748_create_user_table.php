@@ -13,7 +13,7 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('email');
@@ -28,6 +28,7 @@ class CreateUserTable extends Migration
             $table->string('namaBank')->nullable();
             $table->string('nomorRekening')->nullable();
             $table->string('namaRekening')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

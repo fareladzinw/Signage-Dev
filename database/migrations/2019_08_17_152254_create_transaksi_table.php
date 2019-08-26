@@ -26,7 +26,7 @@ class CreateTransaksiTable extends Migration
             $table->boolean('statusTayang');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('paket_id')->references('id')->on('paket');
         });
     }

@@ -10,13 +10,25 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'pageController@login');
-Route::get('/sign-up', 'pageController@signUp');
-Route::get('/aktivasi', 'pageController@aktivasi');
-Route::get('/admin', 'pageController@indexAdmin');
-Route::get('/admin/player/master-player', 'pageController@masterPlayer');
-Route::get('/admin/player/master-player/add-data', 'pageController@addDataMaster');
-Route::get('/admin/client/list-client', 'pageController@listClient');
-Route::get('/user', 'pageController@indexUser');
-Route::get('/user/paket-aktif', 'pageController@paketAktif');
+
+Route::get('/login', 'AuthController@indexLogin')->name('login');
+Route::post('/login', 'AuthController@checkLogin')->name('checkLogin');
+Route::get('/register', 'AuthController@indexRegister')->name('register');
+Route::post('/register', 'AuthController@postRegister')->name('postRegister');
+Route::get('/activation', 'AuthController@indexActivation')->name('activation');
+Route::post('/activation', 'AuthController@checkActivation')->name('checkActivation');
+Route::get('/logout', 'AuthController@logout')->name('logout');
+
+Route::prefix('admin')->middleware('auth')->group(function() {
+    Route::get('/', 'pageController@indexAdmin');
+    Route::get('/player/master-player', 'pageController@masterPlayer');
+    Route::get('/client/list-client', 'pageController@listClient');
+    Route::get('/player/master-player/add-data', 'pageController@addDataMaster');
+});
+
+Route::prefix('user')->middleware('auth')->group(function() {
+    Route::get('/', 'pageController@indexUser');
+    Route::get('/paket-aktif', 'pageController@paketAktif');
+});
+
 
