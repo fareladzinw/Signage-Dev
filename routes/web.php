@@ -15,6 +15,8 @@ Route::get('/sign-up', 'pageController@signUp');
 Route::get('/aktivasi', 'pageController@aktivasi');
 Route::get('/admin', 'pageController@indexAdmin');
 Route::get('/admin/player/master-player', 'pageController@masterPlayer');
+Route::get('/admin/player/master-player/add-data', 'pageController@addDataMaster');
 Route::get('/admin/client/list-client', 'pageController@listClient');
 Route::get('/user', 'pageController@indexUser');
+Route::get('/user/paket-aktif', 'pageController@paketAktif');
 
