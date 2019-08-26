@@ -25,6 +25,12 @@ class pageController extends Controller
         return view('admin.pages.listClient');
     } 
     public function indexUser(){
-        return view('user.master');
-    } 
+        return view('user.pages.home');
+    }
+    public function paketAktif(){
+        return view('user.pages.paketAktif');
+    }
+    public function addDataMaster(){
+        return view('admin.pages.formMaster');
+    }  
 }

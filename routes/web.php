@@ -23,12 +23,12 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
     Route::get('/player/master-player', 'pageController@masterPlayer');
     Route::get('/client/list-client', 'pageController@listClient');
+    Route::get('/player/master-player/add-data', 'pageController@addDataMaster');
 });
 
 Route::prefix('user')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexUser');
+    Route::get('/paket-aktif', 'pageController@paketAktif');
 });
-
-
 
 
