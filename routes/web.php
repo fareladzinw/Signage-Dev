@@ -27,8 +27,8 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 });
 
 Route::prefix('user')->middleware('auth')->group(function() {
-    Route::get('/', 'pageController@indexUser');
-    Route::get('/paket-aktif', 'pageController@paketAktif');
+    Route::get('/', 'UserController@homepage');
+    Route::get('/paket-aktif', 'UserController@paketAktif');
 });
 
 
