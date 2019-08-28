@@ -1,7 +1,7 @@
 @extends('admin.master')
 
-@section('judul','Master Player')
-@section('deskripsi','Table data Player')
+@section('judul','Master Kategori')
+@section('deskripsi','Table data Kategori')
 
 @section('content')
 <div class="row">
@@ -12,8 +12,8 @@
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
-                    Master Player
-                  <small>Table data Player</small>
+                    Master Kategori
+                  <small>Table data Kategori</small>
                 </h1>
               </section>
         </div>

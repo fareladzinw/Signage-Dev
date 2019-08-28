@@ -22,13 +22,22 @@ Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
     Route::get('/player/master-player', 'pageController@masterPlayer');
+    Route::get('/player/master-layout', 'pageController@masterLayout');
+    Route::get('/player/master-media', 'pageController@masterMedia');
+    Route::get('/player/master-kategori', 'pageController@masterKategori');
     Route::get('/client/list-client', 'pageController@listClient');
+    Route::get('/player/master-player/add-data', 'pageController@addDataMaster');
 });
 
 Route::prefix('user')->middleware('auth')->group(function() {
-    Route::get('/', 'pageController@indexUser');
+
+    Route::get('/', 'UserController@homepage');
+    Route::get('/paket-aktif', 'UserController@paketAktif');
+    Route::get('/afiliasi/list-afiliasi', 'pageController@listAfiliasi');
+    Route::get('/afiliasi/withdraw-afiliasi', 'pageController@withdraw');
+    Route::get('/afiliasi/riwayat-afiliasi', 'pageController@riwayat');
+    Route::get('/pesan', 'pageController@pesan');
+    Route::get('/paket-aktif/upload', 'pageController@upload');
 });
-
-
 
 

@@ -23,7 +23,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{asset('bower_components/admin-lte/dist/css/skins/skin-red.min.css')}}">
-
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{asset('css/main.css')}}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -108,10 +109,10 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-          <li class="{{ (request()->is('admin/player/master-player')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-player')}}"><i class="fa fa-link"></i> <span>Master Player</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Master Layout</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>File Manager</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Master Kategori Player</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-player')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-player')}}"><i class="fa fa-link"></i> <span>Master Player</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-layout')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-layout')}}"><i class="fa fa-link"></i> <span>Master Layout</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-media')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-media')}}"><i class="fa fa-link"></i> <span>File Manager</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-kategori')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-kategori')}}"><i class="fa fa-link"></i> <span>Master Kategori Player</span></a></li>
           </ul>
         </li>
         <li class="{{ (request()->is('admin/client/*')) ? 'treeview active' : 'treeview' }}">
@@ -141,6 +142,9 @@ desired effect
         </li>
       </ul>
       <!-- /.sidebar-menu -->
+      <ul class="logout">
+        <li><a href={{url ('/')}}><i class="fa fa-sign-out"></i>&emsp;<span>Log out</span></a></li>
+      </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
