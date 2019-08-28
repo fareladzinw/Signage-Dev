@@ -4,12 +4,14 @@
 @section('judul', 'Dasboard')
 @section('deskripsi', 'Silahkan pilih paket iklan')
 @section('content')
-     @for ($i = 0; $i < 10; $i++)
+
+
+     @foreach($pakets as $p)
      <div class="card">
      <div class="box box-info">
             <div class="box-header">
                 <h3 style="margin : 0;">
-                    Iklan Ipsum
+                    {{ $p->nama }}
                 </h3>
             </div>
             <div class="box-body">
@@ -24,5 +26,5 @@
           </div>
           </div>
         </div>
-     @endfor  
+     @endforeach
 @endsection

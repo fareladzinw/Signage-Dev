@@ -11,15 +11,17 @@ class PesananSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pesanan')->insert([
-            [
-                'paket_id' => 1,
-                'user_id' => 1,
-                'tanggal' => Carbon\Carbon::now(),
-                'status' => 0,
-                'startShow' => Carbon\Carbon::now(),
-                'endShow' => Carbon\Carbon::now(),
-            ]
-        ]);
+        for($i = 1; $i < 11; $i++) {
+            DB::table('pesanan')->insert([
+                [
+                    'paket_id' => $i,
+                    'user_id' => 1,
+                    'tanggal' => Carbon\Carbon::now(),
+                    'status' => 0,
+                    'startShow' => Carbon\Carbon::now(),
+                    'endShow' => Carbon\Carbon::now(),
+                ]
+            ]);
+        }
     }
 }

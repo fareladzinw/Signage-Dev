@@ -11,18 +11,20 @@ class PaketSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('paket')->insert([
-            [
-                'nama' => 'dummy',
-                'harga' => 1000000,
-                'durasi' => 50,
-                'jumlahPlayer' => 1,
-                'jenisContent' => 1,
-                'startShow' => Carbon\Carbon::now(),
-                'endShow' => Carbon\Carbon::now(),
-                'jumlahFile' => 10,
-                'status' => 0,
-            ]
-        ]);
+        for($i = 1; $i < 13; $i++) {
+            DB::table('paket')->insert([
+                [
+                    'nama' => 'dummy'.$i,
+                    'harga' => 1000000,
+                    'durasi' => 50,
+                    'jumlahPlayer' => 1,
+                    'jenisContent' => 1,
+                    'startShow' => Carbon\Carbon::now(),
+                    'endShow' => Carbon\Carbon::now(),
+                    'jumlahFile' => 10,
+                    'status' => 0,
+                ]
+            ]);
+        }
     }
 }

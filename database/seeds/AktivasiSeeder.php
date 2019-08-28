@@ -17,7 +17,13 @@ class AktivasiSeeder extends Seeder
                 'tanggal' => Carbon\Carbon::now(),
                 'kode' => 'ABSKDLMZS',
                 'status' => 1,
-            ]
+            ],
+            [
+                'user_id' => 2,
+                'tanggal' => Carbon\Carbon::now(),
+                'kode' => 'ABS1DLMZS',
+                'status' => 1,
+            ],
         ]);
     }
 }
