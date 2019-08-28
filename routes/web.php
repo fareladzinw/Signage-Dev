@@ -21,8 +21,8 @@ Route::get('/logout', 'AuthController@logout')->name('logout');
 
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
-    Route::get('/player/master-player', 'pageController@masterPlayer');
-    Route::get('/client/list-client', 'pageController@listClient');
+    Route::get('/player/master-player', 'adminController@masterPlayer');
+    Route::get('/client/list-client', 'adminController@listClient');
 });
 
 Route::prefix('user')->middleware('auth')->group(function() {

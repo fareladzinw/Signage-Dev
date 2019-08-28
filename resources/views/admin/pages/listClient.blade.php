@@ -15,21 +15,22 @@
       <table id="list-user" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>Edit</th>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Alamat</th>
+          <th>No. HP</th>
+          <th>Link Afiliasi</th>
+          <th>Aksi</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($client as $c)
         <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 4.0
-          </td>
-          <td>Win 95+</td>
-          <td> 4</td>
+          <td>{{$c->nama}}</td>
+          <td>{{$c->email}}</td>
+          <td>{{$c->alamat}}</td>
+          <td>{{$c->hp}}</td>
+          <td>{{$c->linkAfiliasi}}</td>
           <td>
               <div class="column">
                   <div class="col-md-6"><button type="button" class="btn btn-block btn-success">Edit</button></div>
@@ -37,18 +38,7 @@
               </div>
           </td>
         </tr>
-        <tr>
-            <td>Gecko</td>
-            <td>Netscape Browser 8</td>
-            <td>Win 98SE+</td>
-            <td>1.7</td>
-            <td>
-                    <div class="column">
-                        <div class="col-md-6"><button type="button" class="btn btn-block btn-success">Edit</button></div>
-                        <div class="col-md-6"><button type="button" class="btn btn-block btn-danger">Hapus</button></div>
-                    </div>
-                </td>
-          </tr>
+        @endforeach
     </tbody>
   </table>
 </div>
