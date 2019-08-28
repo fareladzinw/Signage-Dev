@@ -39,6 +39,12 @@ class pageController extends Controller
     public function riwayat(){
         return view('user.pages.rekapAfiliasi');
     }
+    public function pesan(){
+        return view('user.pages.pesan');
+    }
+    public function upload(){
+        return view('user.pages.uploadContent');
+    }
     public function addDataMaster(){
         return view('admin.pages.formMaster');
     }  
