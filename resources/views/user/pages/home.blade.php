@@ -5,6 +5,7 @@
 @section('deskripsi', 'Silahkan pilih paket iklan')
 @section('content')
 
+
      @foreach($pakets as $p)
      <div class="card">
      <div class="box box-info">
@@ -26,5 +27,4 @@
           </div>
         </div>
      @endforeach
-
 @endsection
