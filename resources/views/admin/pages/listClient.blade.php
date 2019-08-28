@@ -33,8 +33,8 @@
               <td>Akubucin123</td>
               <td>
                   <div class="column">
-                      <div class="col-md-6"><button type="button" class="btn btn-block btn-success">Edit</button></div>
-                      <div class="col-md-6"><button type="button" class="btn btn-block btn-danger">Hapus</button></div>
+                      <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
+                      <div class="col-md-6"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
                   </div>
               </td>
             </tr>

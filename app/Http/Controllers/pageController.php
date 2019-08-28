@@ -18,6 +18,15 @@ class pageController extends Controller
     public function indexAdmin (){
         return view('admin.pages.landing');
     } 
+    public function masterLayout (){
+        return view('admin.pages.masterLayout');
+    }
+    public function masterKategori (){
+        return view('admin.pages.masterKategori');
+    }
+    public function masterMedia (){
+        return view('admin.pages.masterMedia');
+    }
     public function masterPlayer (){
         return view('admin.pages.masterPlayer');
     }

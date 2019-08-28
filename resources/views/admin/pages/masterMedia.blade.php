@@ -1,7 +1,7 @@
 @extends('admin.master')
 
-@section('judul','Master Player')
-@section('deskripsi','Table data Player')
+@section('judul','Master Media')
+@section('deskripsi','Media yang akan ditampilkan')
 
 @section('content')
 <div class="row">
@@ -12,12 +12,11 @@
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
-                    Master Player
-                  <small>Table data Player</small>
+                    Master Media
+                  <small>Media yang akan ditampilkan</small>
                 </h1>
               </section>
         </div>
-      <div class="col-md-2"><a href="{{url('/admin/player/master-player/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
       </div>
     </div>
     <!-- /.box-header -->
@@ -43,9 +42,8 @@
               <td>skuyparah123</td>
               <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
-                  </div>
+                      <div class="col-md-12"><a href="" class="btn btn-block btn-primary">Download</a></div>
+                 </div>
               </td>
             </tr>
           @endfor
