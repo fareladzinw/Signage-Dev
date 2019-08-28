@@ -31,9 +31,7 @@
                   @if($w->status === 0)
                   <td>Pending</td>
                   @endif
-                  @for($i = 0; $i <= $key; $i++)
-                  <td>{{ $balance[$i] }}</td>
-                  @endfor
+                  <td>{{ $balance[$jmlWithdraw] }}</td>
                 </tr>
               @endforeach
         </tbody>
@@ -54,7 +52,7 @@
         'searching'   : false,
         'ordering'    : false,
         'info'        : true,
-        'autoWidth'   : true
+        'autoWidth'   : true,
       })
     })
   </script>

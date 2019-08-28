@@ -110,7 +110,7 @@ class UserController extends Controller
      */   
     public function withdrawHistory() 
     {   
-        $komisi = Komisi::where('afiliasiFrom', Auth::user()->id)->get();
+        $komisi = Komisi::where('afiliasiFrom', Auth::user()->id)->orderBy('id', 'DESC')->get();
         $nilaiKomisi = 0;
         foreach($komisi as $k) {
             $nilaiKomisi += $k->nominal;
@@ -122,8 +122,9 @@ class UserController extends Controller
             $nilaiWithdraw += $w->nominal;
             $balance[] = $nilaiKomisi - $nilaiWithdraw;
         }
+        $jmlWithdraw = count($withdraw) - 1;
 
-        return view('user.pages.rekapAfiliasi')->with(['withdraw' => $withdraw, 'balance' => $balance]);
+        return view('user.pages.rekapAfiliasi')->with(['withdraw' => $withdraw, 'balance' => $balance, 'jmlWithdraw' => $jmlWithdraw]);
     }
     
 }
