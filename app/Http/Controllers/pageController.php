@@ -30,6 +30,15 @@ class pageController extends Controller
     public function paketAktif(){
         return view('user.pages.paketAktif');
     }
+    public function listAfiliasi(){
+        return view('user.pages.listAfiliasi');
+    }
+    public function withdraw(){
+        return view('user.pages.withdrawAmount');
+    }
+    public function riwayat(){
+        return view('user.pages.rekapAfiliasi');
+    }
     public function addDataMaster(){
         return view('admin.pages.formMaster');
     }  

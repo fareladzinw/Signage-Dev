@@ -2,7 +2,6 @@
 @section('judul', 'Paket Aktif')
 @section('deskripsi', 'Informasi Status Paket Anda')
 @section('content')
-<div class="row">
     <div class="col-xs-12">
     <div class="box box-info">
         <div class="box-body">
@@ -41,7 +40,6 @@
     <!-- /.box-body -->
     </div>
     <!-- /.box -->
-    </div>
     </div>
 @endsection
 

@@ -60,7 +60,18 @@ class AuthController extends Controller
      */   
     public function indexRegister() 
     {
-        return view('signUp');
+        $user = [];
+        return view('signUp')->with(['user' => $user]);
+    }
+
+    /**
+     * Load register page with afiliasi
+     * @return Resource\Views\signUp.blade.php
+     */   
+    public function indexRegisterWithAfiliasi($afiliasi) 
+    {
+        $user = User::where('linkAfiliasi', $afiliasi)->get();
+        return view('signUp')->with(['user' => $user]);
     }
 
     /**
@@ -87,6 +98,7 @@ class AuthController extends Controller
         $data->tipeClient = 1;
         $data->dateTime = Carbon::now();
         $data->email = $request->email;
+        $data->linkAfiliasi = str_random(10);
         $data->password = bcrypt($request->password);
         $data->save();
 
@@ -96,9 +108,17 @@ class AuthController extends Controller
         $aktivasi->kode = str_random(10);
         $aktivasi->status = 0;
         $aktivasi->save();
+
+        $linkAfiliasi = $request->linkAfiliasi;
         
         Mail::to($data->email)->send(new UserActivation($data, $aktivasi)); 
-        return redirect('activation');
+
+        if(!$linkAfiliasi === null) {
+            return redirect('activation/'.$linkAfiliasi);
+        } else {
+            return redirect('activation');
+        }
+        
     }
 
     /**
@@ -107,7 +127,18 @@ class AuthController extends Controller
      */
     public function indexActivation()
     {
-        return view('aktivasi');
+        $user = [];
+        return view('aktivasi')->with(['user' => $user]);
+    }
+
+    /**
+     * View page activation
+     * @return Resource\Views\aktivasi.blade.php
+     */
+    public function indexActivationWithAfiliasi($afiliasi)
+    {
+        $user = User::where('linkAfiliasi', $afiliasi)->get();  
+        return view('aktivasi')->with(['user' => $user]);
     }
     
     /**
@@ -120,7 +151,7 @@ class AuthController extends Controller
             'kode' => 'required',
         ]);
 
-        $aktivasi = Aktivasi::where('kode', $request->kode)->first();
+        $aktivasi = Aktivasi::where('kode', $request->kode)->with('user')->first();
         if(empty($aktivasi)) {
             return redirect('activation')->with('alert-fail', 'Masukan kode yang benar!');
         } else {
@@ -128,9 +159,16 @@ class AuthController extends Controller
                 return redirect('activation')->with('alert-fail', 'Akun ini sudah diaktivasi sebelumnya!');
             } else {
                 if($request->kode == $aktivasi->kode) {
-                    $aktivasi->status = 1;
-                    $aktivasi->save();
-                    
+                    if(!empty($request->linkAfiliasi)) {
+                        $afiliasi = User::where('linkAfiliasi', $request->linkAfiliasi)->first();
+                        $afiliasi->jumlahAfiliasi += 1;   
+                        $afiliasi->save();
+
+                        $aktivasi->status = 1;
+                        $aktivasi->user->afiliasiFrom = $afiliasi->id;
+                        $aktivasi->user->save();
+                        $aktivasi->save();
+                    }
                     return redirect('login')->with('alert-success', 'Akun berhasil di aktivasi');
                 } else {
                     return redirect('activation')->with('alert-fail', 'Masukan kode yang benar!');
