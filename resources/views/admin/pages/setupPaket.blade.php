@@ -1,5 +1,7 @@
 @extends('admin.master')
-@section('titlePage','Master Layout')
+
+@section('titlePage','Setup Paket')
+
 @section('content')
 <div class="row">
 <div class="col-xs-12">
@@ -9,8 +11,8 @@
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
-                    Master Layout
-                  <small>Table data Layout</small>
+                    Setup Paket
+                  <small>Table data paket penayangan iklan</small>
                 </h1>
               </section>
         </div>

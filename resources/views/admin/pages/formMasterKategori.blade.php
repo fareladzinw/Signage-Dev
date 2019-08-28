@@ -1,8 +1,5 @@
 @extends('admin.master')
 
-@section('judul','Add Master Player')
-@section('deskripsi','Form Add Data')
-
 @section('content')
 <div class="row">
 <div class="col-xs-12">

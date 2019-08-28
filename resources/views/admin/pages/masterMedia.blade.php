@@ -1,8 +1,5 @@
 @extends('admin.master')
-
-@section('judul','Master Media')
-@section('deskripsi','Media yang akan ditampilkan')
-
+@section('titlePage','Master Media')
 @section('content')
 <div class="row">
 <div class="col-xs-12">
