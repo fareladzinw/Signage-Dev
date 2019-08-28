@@ -1,8 +1,5 @@
 @extends('admin.master')
-
-@section('judul','Master Kategori')
-@section('deskripsi','Table data Kategori')
-
+@section('titlePage','Master Kategori')
 @section('content')
 <div class="row">
 <div class="col-xs-12">

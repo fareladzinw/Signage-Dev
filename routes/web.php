@@ -25,7 +25,13 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/player/master-layout', 'pageController@masterLayout');
     Route::get('/player/master-media', 'pageController@masterMedia');
     Route::get('/player/master-kategori', 'pageController@masterKategori');
+    Route::get('/client/master-afiliasi', 'pageController@masterAfiliasi');
     Route::get('/client/list-client', 'pageController@listClient');
+    Route::get('/client/setup-playlist', 'pageController@setupPlaylist');
+    Route::get('/client/setup-paket', 'pageController@setupPaket');
+    Route::get('/invoice/pesanan-tayang', 'pageController@pesananTayang');
+    Route::get('/invoice/konfirmasi-pembayaran', 'pageController@konfirmasiPemabayaran');
+    Route::get('/invoice/konfirmasi-withdraw', 'pageController@konfirmasiWithdraw');
     Route::get('/player/master-player/add-data', 'pageController@addDataMaster');
 });
 

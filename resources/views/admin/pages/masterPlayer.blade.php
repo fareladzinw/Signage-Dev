@@ -1,7 +1,6 @@
 @extends('admin.master')
 
-@section('judul','Master Player')
-@section('deskripsi','Table data Player')
+@section('titlePage','Master Player')
 
 @section('content')
 <div class="row">
