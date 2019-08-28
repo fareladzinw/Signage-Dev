@@ -17,7 +17,7 @@ class pageController extends Controller
     }
     //admin controller
     public function addDataMaster(){
-        return view('admin.pages.formMaster');
+        return view('admin.pages.formMasterPlayer');
     }  
     public function indexAdmin (){
         return view('admin.pages.landing');
@@ -77,5 +77,8 @@ class pageController extends Controller
     }
     public function upload(){
         return view('user.pages.uploadContent');
+    }
+    public function uploadBP(){
+        return view('user.pages.uploadBP');
     }
 }

@@ -44,6 +44,7 @@ Route::prefix('user')->middleware('auth')->group(function() {
     Route::get('/afiliasi/riwayat-afiliasi', 'pageController@riwayat');
     Route::get('/pesan', 'pageController@pesan');
     Route::get('/paket-aktif/upload', 'pageController@upload');
+    Route::get('/paket-aktif/upload-bukti-pembayaran', 'pageController@uploadBP');
 });
 
 

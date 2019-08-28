@@ -32,8 +32,8 @@
                     <td>Aktif</td>
                   @endif
                   <td>
-                    <a href="" class="btn btn-primary">Upload</a>
-                    <a href="" class="btn btn-success">Konfirmasi</a>
+                    <a href="{{url('user/paket-aktif/upload')}}" class="btn btn-primary">Upload</a>
+                    <a href="{{url('user/paket-aktif/upload-bukti-pembayaran')}}" class="btn btn-success">Konfirmasi</a>
                   </td>
                 </tr>
               @endforeach
