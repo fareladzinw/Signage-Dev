@@ -7,17 +7,27 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="bower_components/admin-lte/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="bower_components/admin-lte/dist/css/skins/_all-skins.min.css">
-
+  <link rel="stylesheet" href="{{asset('bower_components/admin-lte/dist/css/AdminLTE.min.css')}}">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+  <link rel="stylesheet" href="{{asset('bower_components/admin-lte/dist/css/skins/skin-blue.min.css')}}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{asset('bower_components/admin-lte/plugins/iCheck/square/blue.css')}}">
+   <!-- daterange picker -->
+   <link rel="stylesheet" href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+   <!-- CSS -->
+  <link rel="stylesheet" href="{{asset('css/main.css')}}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -45,18 +55,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+            <li class="{{ (request()->is('user')) ? 'active' : '' }}"><a href="{{url ('/user')}}">Home<span class="sr-only">(current)</span></a></li>
+            <li class="{{ (request()->is('user/paket-aktif')) ? 'active' : '' }}"><a href="{{url ('/user/paket-aktif')}}">Paket Aktif</a></li>
+            <li class="{{ (request()->is('user/afiliasi/*')) ? 'active dropdown' : 'dropdown' }}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Afiliasi<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
+                <li class="{{ (request()->is('user/afiliasi/list-afiliasi')) ? 'active' : '' }}" ><a href="{{url ('/user/afiliasi/list-afiliasi')}}">List Afiliasi</a></li>
+                <li class="{{ (request()->is('user/afiliasi/withdraw-afiliasi')) ? 'active' : '' }}"><a href="{{url ('/user/afiliasi/withdraw-afiliasi')}}">Withdraw</a></li>
+                <li class="{{ (request()->is('user/afiliasi/riwayat-withdraw')) ? 'active' : '' }}"><a href="{{url ('/user/afiliasi/riwayat-afiliasi')}}">Riwayat Withdraw</a></li>
+                {{-- <li class="divider"></li>
                 <li><a href="#">Separated link</a></li>
                 <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a href="#">One more separated link</a></li> --}}
               </ul>
             </li>
           </ul>
@@ -65,90 +75,30 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <!-- Notifications Menu -->
-            <li class="dropdown notifications-menu">
-              <!-- Menu toggle button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">10</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 10 notifications</li>
-                <li>
-                  <!-- Inner Menu: contains the notifications -->
-                  <ul class="menu">
-                    <li><!-- start notification -->
-                      <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                      </a>
-                    </li>
-                    <!-- end notification -->
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">View all</a></li>
-              </ul>
-            </li>
-            <!-- Tasks Menu -->
-            <li class="dropdown tasks-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-flag-o"></i>
-                <span class="label label-danger">9</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 9 tasks</li>
-                <li>
-                  <!-- Inner menu: contains the tasks -->
-                  <ul class="menu">
-                    <li><!-- Task item -->
-                      <a href="#">
-                        <!-- Task title and progress text -->
-                        <h3>
-                          Design some buttons
-                          <small class="pull-right">20%</small>
-                        </h3>
-                        <!-- The progress bar -->
-                        <div class="progress xs">
-                          <!-- Change the css width attribute to simulate progress -->
-                          <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                            <span class="sr-only">20% Complete</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <!-- end task item -->
-                  </ul>
-                </li>
-                <li class="footer">
-                  <a href="#">View all tasks</a>
-                </li>
-              </ul>
-            </li>
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="bower_components/admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="{{asset('bower_components/admin-lte/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Alexander Pierce</span>
+                <span class="hidden-xs">Fareladzin Wibi</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="bower_components/admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
+                  <img src="{{asset('bower_components/admin-lte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2012</small>
+                      Fareladzin Wibi - Premium User
+                    <small>Langganan sejak 1992</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="pull-left">
+                  {{-- <div class="pull-left">
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  </div>
+                  </div> --}}
                   <div class="pull-right">
                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                   </div>
@@ -168,41 +118,15 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Dasbaoard
-          <small>Silahkan pilih paket iklan</small>
+          @yield('judul')
+          <small>@yield('deskripsi')</small>
         </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-          {{-- <li><a href="#">Layout</a></li>
-          <li class="active">Top Navigation</li> --}}
-        </ol>
       </section>
 
       <!-- Main content -->
       <section class="content">
-        {{-- <div class="callout callout-info">
-          <h4>Tip!</h4>
-
-          <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-            sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
-            links instead.</p>
-        </div>
-        <div class="callout callout-danger">
-          <h4>Warning!</h4>
-
-          <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
-            and the content will slightly differ than that of the normal layout.</p>
-        </div> --}}
-        {{-- <div class="box box-default">
-          <div class="box-header with-border">
-            <h3 class="box-title">Blank Box</h3>
-          </div>
-          <div class="box-body">
-            The great content goes here
-          </div>
-          <!-- /.box-body -->
-        </div> --}}
-        <!-- /.box -->
+        @yield('content')
+        <div class="card" style="width: 25rem;">
       </section>
       <!-- /.content -->
     </div>
@@ -221,16 +145,26 @@
   </footer>
 </div>
 <!-- ./wrapper -->
+<!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- DataTables -->
+<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- SlimScroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="{{asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="bower_components/admin-lte/dist/js/adminlte.min.js"></script>
+<script src="{{asset('bower_components/admin-lte/dist/js/adminlte.min.js')}}"></script>
+<!-- iCheck -->
+<script src="{{asset('bower_components/admin-lte/plugins/iCheck/icheck.min.js')}}"></script>
+@yield('js')
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
 </html>

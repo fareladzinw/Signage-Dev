@@ -1,0 +1,46 @@
+/* dasboard user */
+.card {
+    width: 25rem;
+    display: inline-block;
+    margin-right: 20px;
+}
+/* dasboard admin */
+.logout{
+    font-size: 16px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    bottom: 0;
+    list-style-type: none;
+}
+
+/* withdraw afiliasi */
+.withdraw {
+    text-align: center;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.header {
+    font-family: sans-serif;
+    padding: 0;
+}
+.afiliasi {
+    color: darkgrey;
+    font-family: sans-serif;
+}
+.label {
+    display: block;
+    color: black;
+    font-family: sans-serif;
+}
+.field-penarikan{
+    margin: 10px;
+}
+.syarat {
+    font-style: italic;
+    color: gray;
+    
+}

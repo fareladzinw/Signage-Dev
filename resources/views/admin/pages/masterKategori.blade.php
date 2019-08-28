@@ -1,7 +1,7 @@
 @extends('admin.master')
 
-@section('judul','Master Player')
-@section('deskripsi','Table data Player')
+@section('judul','Master Kategori')
+@section('deskripsi','Table data Kategori')
 
 @section('content')
 <div class="row">
@@ -12,12 +12,12 @@
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
-                    Master Player
-                  <small>Table data Player</small>
+                    Master Kategori
+                  <small>Table data Kategori</small>
                 </h1>
               </section>
         </div>
-      <div class="col-md-2"><a href="{{url('/admin/player/master-player/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
+      <div class="col-md-2"><a><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
       </div>
     </div>
     <!-- /.box-header -->
@@ -25,23 +25,24 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>Nama Player</th>
-          <th>Lokasi</th>
-          <th>KEYPLAYER</th>
-          <th>Password</th>
-          <th>Spesifikasi</th>
+          <th>Kategori</th>
+          <th>Keterangan Kategori</th>
+          <th style="width: 25%;">Action</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($player as $p)
-        <tr>
-          <td>{{$p->nama}}</td>
-          <td>{{$p->lokasi}}</td>
-          <td>{{$p->KEYPLAYER}}</td>
-          <td>{{$p->PASSWORD}}</td>
-          <td>{{$p->spesifikasi}}</td>
-        </tr>
-        @endforeach
+          @foreach($kategori as $k)
+           <tr>
+              <td>{{$k->nama}}</td>
+              <td>{{$k->keterangan}}</td>
+              <td>
+                  <div class="column">
+                      <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
+                      <div class="col-md-6"><a href="/admin/player/delete/master-kategori/{{$k->id}}" class="btn btn-block btn-danger">Hapus</a></div>
+                  </div>
+              </td>
+            </tr>
+          @endforeach
     </tbody>
   </table>
 </div>
