@@ -122,28 +122,28 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-link"></i> <span>Master Afiliasi Client</span></a></li>
+            <li class="{{ (request()->is('admin/client/master-afiliasi')) ? 'active' : '' }}"><a href="{{url ('admin/client/master-afiliasi')}}"><i class="fa fa-link"></i> <span>Master Afiliasi Client</span></a></li>
             <li class="{{ (request()->is('admin/client/list-client')) ? 'active' : '' }}"><a href="{{url ('admin/client/list-client')}}"><i class="fa fa-link"></i> <span>List Client</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Setup Playlist</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Setup Paket Signage</span></a></li>
+            <li class="{{ (request()->is('admin/client/setup-playlist')) ? 'active' : '' }}"><a href="{{url ('admin/client/setup-playlist')}}"><i class="fa fa-link"></i> <span>Setup Playlist</span></a></li>
+            <li class="{{ (request()->is('admin/client/setup-paket')) ? 'active' : '' }}"><a href="{{url ('admin/client/setup-paket')}}"><i class="fa fa-link"></i> <span>Setup Paket Signage</span></a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="{{ (request()->is('admin/invoice/*')) ? 'treeview active' : 'treeview' }}">
           <a href="#"><i class="fa fa-link"></i> <span>Invoice</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-link"></i> <span>Daftar Pesanan Tayang</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Daftar Invoice</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Withdraw Afiliasi</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/konfirmasi-withdraw')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/konfirmasi-withdraw')}}"><i class="fa fa-link"></i> <span>Withdraw Afiliasi</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/konfirmasi-pembayaran')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/konfirmasi-pembayaran')}}"><i class="fa fa-link"></i> <span>Konfirmasi Pembayaran</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/pesanan-tayang')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/pesanan-tayang')}}"><i class="fa fa-link"></i> <span>Daftar Pesanan Tayang</span></a></li>
           </ul>
         </li>
       </ul>
       <!-- /.sidebar-menu -->
       <ul class="logout">
-        <li><a href={{url ('/')}}><i class="fa fa-sign-out"></i>&emsp;<span>Log out</span></a></li>
+        <li><a href={{url ('/login')}}><i class="fa fa-sign-out"></i>&emsp;<span>Log out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

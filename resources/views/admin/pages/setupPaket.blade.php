@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('titlePage','Master Player')
+@section('titlePage','Setup Paket')
 
 @section('content')
 <div class="row">
@@ -11,8 +11,8 @@
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
-                    Master Player
-                  <small>Table data Player</small>
+                    Setup Paket
+                  <small>Table data paket penayangan iklan</small>
                 </h1>
               </section>
         </div>
@@ -24,23 +24,30 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>Nama Player</th>
-          <th>Lokasi</th>
-          <th>KEYPLAYER</th>
-          <th>Password</th>
-          <th>Spesifikasi</th>
+          <th>Nama Paket</th>
+          <th>Harga</th>
+          <th>Durasi Tayang</th>
+          <th>Jumlah Player</th>
+          <th>Jenis Content</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($player as $p)
-        <tr>
-          <td>{{$p->nama}}</td>
-          <td>{{$p->lokasi}}</td>
-          <td>{{$p->KEYPLAYER}}</td>
-          <td>{{$p->PASSWORD}}</td>
-          <td>{{$p->spesifikasi}}</td>
-        </tr>
-        @endforeach
+          @foreach ($paket as $p)
+           <tr>
+              <td>{{$p->nama}}</td>
+              <td>{{$p->harga}}</td>
+              <td>{{$p->durasi}}</td>
+              <td>{{$p->jumlahPlayer}}</td>
+              <td>{{$p->jenisContent}}</td>
+              <td>
+                  <div class="column">
+                      <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
+                      <div class="col-md-6"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
+                  </div>
+              </td>
+            </tr>
+          @endforeach
     </tbody>
   </table>
 </div>

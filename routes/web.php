@@ -22,11 +22,17 @@ Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
     Route::get('/player/master-player', 'adminController@masterPlayer');
-    Route::get('/client/list-client', 'adminController@listClient');
     Route::get('/player/master-layout', 'adminController@masterLayout');
     Route::get('/player/master-media', 'adminController@masterMedia');
     Route::get('/player/master-kategori', 'adminController@masterKategori');
-    Route::get('/player/master-player/add-data', 'pageController@addDataMaster');
+    Route::get('/client/list-client', 'adminController@listClient');
+    Route::get('/client/master-afiliasi', 'adminController@masterAfiliasi');
+    Route::get('/client/setup-playlist', 'adminController@setupPlaylist');
+    Route::get('/client/setup-paket', 'adminController@setupPaket');
+    Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang');
+    Route::get('/invoice/konfirmasi-pembayaran', 'adminController@konfirmasiPemabayaran');
+    Route::get('/invoice/konfirmasi-withdraw', 'adminController@konfirmasiWithdraw');
+    Route::get('/player/master-player/add-data', 'adminController@addDataMaster');
     Route::get('/player/delete/master-layout/{id}', 'adminController@deleteLayout');
     Route::get('/player/delete/master-kategori/{id}', 'adminController@deleteKategori');
 });
@@ -40,6 +46,7 @@ Route::prefix('user')->middleware('auth')->group(function() {
     Route::get('/afiliasi/riwayat-afiliasi', 'pageController@riwayat');
     Route::get('/pesan', 'pageController@pesan');
     Route::get('/paket-aktif/upload', 'pageController@upload');
+    Route::get('/paket-aktif/upload-bukti-pembayaran', 'pageController@uploadBP');
 });
 
 

@@ -7,10 +7,19 @@
 <div class="row">
 <div class="col-xs-12">
 <div class="box">
-    {{-- <div class="box-header">
-      <h3 class="box-title">Hover Data Table</h3>
-    </div> --}}
-    <!-- /.box-header -->
+    <div class="box-header">
+        <div class="column">
+            <div class="col-md-10">
+                <section class="content-header" style="padding : 0;">
+                    <h1>
+                        Daftar Client
+                    <small>Info Client</small>
+                    </h1>
+                </section>
+            </div>
+       </div>
+</div>
+<!-- /.box-header -->
     <div class="box-body">
       <table id="list-user" class="table table-bordered table-hover">
         <thead>

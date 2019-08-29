@@ -15,6 +15,10 @@ class pageController extends Controller
     public function aktivasi (){
         return view('aktivasi');
     }
+    //admin controller
+    public function addDataMaster(){
+        return view('admin.pages.formMasterPlayer');
+    }  
     public function indexAdmin (){
         return view('admin.pages.landing');
     }
@@ -30,9 +34,29 @@ class pageController extends Controller
     public function masterPlayer (){
         return view('admin.pages.masterPlayer');
     }
+    public function masterAfiliasi (){
+        return view('admin.pages.masterAfiliasi');
+    }
     public function listClient (){
         return view('admin.pages.listClient');
     } 
+    public function setupPaket (){
+        return view('admin.pages.setupPaket');
+    } 
+    public function setupPlaylist (){
+        return view('admin.pages.setupPlaylist');
+    }
+    public function pesananTayang (){
+        return view('admin.pages.pesananTayang');
+    } 
+    public function konfirmasiPemabayaran (){
+        return view('admin.pages.konfirmasiPemabayaran');
+    } 
+    public function konfirmasiWithdraw (){
+        return view('admin.pages.konfirmasiWithdraw');
+    }  
+    
+    //usercontroller
     public function indexUser(){
         return view('user.pages.home');
     }
@@ -54,7 +78,7 @@ class pageController extends Controller
     public function upload(){
         return view('user.pages.uploadContent');
     }
-    public function addDataMaster(){
-        return view('admin.pages.formMaster');
-    }  
+    public function uploadBP(){
+        return view('user.pages.uploadBP');
+    }
 }
