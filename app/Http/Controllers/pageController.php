@@ -18,7 +18,10 @@ class pageController extends Controller
     //admin controller
     public function addDataMaster(){
         return view('admin.pages.formMasterPlayer');
-    }  
+    } 
+    public function editDataMaster($id){
+        return view('admin.pages.formMasterPlayer',['nama'=> 'Yusuf_Wibisono', 'id'=>$id]);
+    }   
     public function indexAdmin (){
         return view('admin.pages.landing');
     } 
@@ -54,6 +57,12 @@ class pageController extends Controller
     } 
     public function konfirmasiWithdraw (){
         return view('admin.pages.konfirmasiWithdraw');
+    } 
+    public function daftarRequestPlayer (){
+        return view('admin.pages.daftarRequestPlayer');
+    } 
+    public function riwayatPesanan (){
+        return view('admin.pages.riwayatTransaksiPesanan');
     }  
     
     //usercontroller
