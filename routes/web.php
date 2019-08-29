@@ -32,7 +32,11 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/invoice/pesanan-tayang', 'pageController@pesananTayang');
     Route::get('/invoice/konfirmasi-pembayaran', 'pageController@konfirmasiPemabayaran');
     Route::get('/invoice/konfirmasi-withdraw', 'pageController@konfirmasiWithdraw');
+    Route::get('/invoice/request-player', 'pageController@daftarRequestPlayer');
+    Route::get('/invoice/riwayat-pesanan', 'pageController@riwayatPesanan');
     Route::get('/player/master-player/add-data', 'pageController@addDataMaster');
+    Route::get('/player/master-player/edit-data/{id}', 'pageController@editDataMaster');
+    
 });
 
 Route::prefix('user')->middleware('auth')->group(function() {
