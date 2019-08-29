@@ -23,7 +23,7 @@
                   <td>{{ $af->username }}</td>
                   <td>{{ $k->persentase }}</td>
                   <td>{{ $k->nominal }}</td>
-                  <td>{{ $af->created_at }}</td>
+                  <td>{{ Carbon\Carbon::parse($k->updated_at)->format('d-m-Y') }}</td>
               </tr>
               @endforeach
               @endforeach
@@ -45,7 +45,8 @@
         'searching'   : false,
         'ordering'    : true,
         'info'        : true,
-        'autoWidth'   : true
+        'autoWidth'   : true,
+        'order'       : [[ 4, 'DESC']],
       })
     })
   </script>

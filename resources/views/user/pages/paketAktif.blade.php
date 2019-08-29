@@ -22,9 +22,9 @@
               @foreach ($pesanans as $p)
               <tr>
                   <td>{{ $p->paket->nama }}</td>
-                  <td>{{ $p->tanggal }}</td>
-                  <td>{{ $p->startShow }}</td>
-                  <td>{{ $p->endShow }}</td>
+                  <td>{{ Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</td>
+                  <td>{{ Carbon\Carbon::parse($p->startShow)->format('d-m-Y') }}</td>
+                  <td>{{ Carbon\Carbon::parse($p->endShow)->format('d-m-Y') }}</td>
                   <td>Jawa Timur</td>
                   @if ($p->status == 0) 
                     <td>Kadaluarsa</td> 

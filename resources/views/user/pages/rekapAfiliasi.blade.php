@@ -12,26 +12,27 @@
     <div class="box box-info">
         <div class="box-body">
           <table id="riwayat-afiliasi" class="table table-bordered table-hover">
+          <style>th, td{text-align:center;}</style>
             <thead>
             <tr>
+              <th>No</th>
               <th>Jumlah</th>
-              <th>Tanggal</th>
               <th>Status</th>
-              <th>Balance</th>
+              <th>Tanggal</th>
             </tr>
             </thead>
             <tbody>
               @foreach($withdraw as $key => $w)
                 <tr>
+                  <td>{{ $key+1 }}</td>
                   <td>{{ $w->nominal }}</td>
-                  <td>{{ $w->tanggal }}</td>
                   @if($w->status === 1)
                   <td>Success</td>
                   @endif
                   @if($w->status === 0)
                   <td>Pending</td>
                   @endif
-                  <td>{{ $balance[$jmlWithdraw] }}</td>
+                  <td>{{ Carbon\Carbon::parse($w->tanggal)->format('d-m-Y') }}</td>
                 </tr>
               @endforeach
         </tbody>
