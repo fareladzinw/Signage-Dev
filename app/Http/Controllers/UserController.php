@@ -20,7 +20,21 @@ class UserController extends Controller
     public function homepage() 
     {
         $pakets = Paket::all();
-        return view('user.pages.home')->with(['pakets' => $pakets]);
+        $komisi = Komisi::where('afiliasiFrom', Auth::user()->id)->get();
+        $nilaiKomisi = 0;
+        foreach($komisi as $k) {
+            $nilaiKomisi += $k->nominal;
+        }
+        $withdraw = Withdraw::where('user_id', Auth::user()->id)->get();
+        $nilaiWithdraw = 0;
+        foreach($withdraw as $w) {
+            if($w->status === 1){
+                $nilaiWithdraw += $w->nominal;
+            }
+        }
+        
+        $balance = $nilaiKomisi - $nilaiWithdraw;
+        return view('user.pages.home')->with(['pakets' => $pakets, 'balance' => $balance]);
     }
 
     /**
@@ -30,10 +44,22 @@ class UserController extends Controller
     public function paketAktif() 
     {
         $user     = User::where('id', Auth::user()->id)->get();
-        if($user[0]->tipeClient == 'user') {
-            $pesanans = Pesanan::where('user_id', $user[0]->id)->get();
-            return view('user.pages.paketAKtif')->with(['pesanans' => $pesanans]);
+        $pesanans = Pesanan::where('user_id', $user[0]->id)->get();
+        $komisi = Komisi::where('afiliasiFrom', Auth::user()->id)->get();
+        $nilaiKomisi = 0;
+        foreach($komisi as $k) {
+            $nilaiKomisi += $k->nominal;
         }
+        $withdraw = Withdraw::where('user_id', Auth::user()->id)->get();
+        $nilaiWithdraw = 0;
+        foreach($withdraw as $w) {
+            if($w->status === 1){
+                $nilaiWithdraw += $w->nominal;
+            }
+        }
+        
+        $balance = $nilaiKomisi - $nilaiWithdraw;
+        return view('user.pages.paketAKtif')->with(['pesanans' => $pesanans, 'balance' => $balance]);
     }
 
     /**
@@ -44,7 +70,20 @@ class UserController extends Controller
     {
         $afiliasi = User::where('afiliasiFrom', Auth::user()->id)->get();
         $komisi = Komisi::where('afiliasiFrom', Auth::user()->id)->get();
-        return view('user.pages.listAfiliasi')->with(['afiliasi' => $afiliasi, 'komisi' => $komisi]);
+        $nilaiKomisi = 0;
+        foreach($komisi as $k) {
+            $nilaiKomisi += $k->nominal;
+        }
+        
+        $withdraw = Withdraw::where('user_id', Auth::user()->id)->get();
+        $nilaiWithdraw = 0;
+        foreach($withdraw as $w) {
+            if($w->status === 1){
+                $nilaiWithdraw += $w->nominal;
+            }
+        }
+        $balance = $nilaiKomisi - $nilaiWithdraw;
+        return view('user.pages.listAfiliasi')->with(['afiliasi' => $afiliasi, 'komisi' => $komisi, 'balance' => $balance]);
     }
 
     /**
@@ -115,16 +154,18 @@ class UserController extends Controller
         foreach($komisi as $k) {
             $nilaiKomisi += $k->nominal;
         }
-
-        $withdraw = Withdraw::where('user_id', Auth::user()->id)->get();
+        
+        $withdraw = Withdraw::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         $nilaiWithdraw = 0;
-        foreach($withdraw as $key => $w) {
-            $nilaiWithdraw += $w->nominal;
-            $balance[] = $nilaiKomisi - $nilaiWithdraw;
+        foreach($withdraw as $w) {
+            if($w->status === 1){
+                $nilaiWithdraw += $w->nominal;
+            }
         }
-        $jmlWithdraw = count($withdraw) - 1;
+        
+        $balance = $nilaiKomisi - $nilaiWithdraw;
 
-        return view('user.pages.rekapAfiliasi')->with(['withdraw' => $withdraw]);
+        return view('user.pages.rekapAfiliasi')->with(['withdraw' => $withdraw, 'balance' => $balance]);
     }
     
 }

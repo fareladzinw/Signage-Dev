@@ -29,7 +29,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 });
 
 Route::prefix('user')->middleware('auth')->group(function() {
-    Route::get('/', 'UserController@homepage');
+    Route::get('/', 'UserController@homepage')->name('homepage');
     Route::get('/paket-aktif', 'UserController@paketAktif');
     Route::get('/afiliasi/list-afiliasi', 'UserController@listAfiliasi');
     Route::get('/afiliasi/withdraw-afiliasi', 'UserController@withdrawPage');
