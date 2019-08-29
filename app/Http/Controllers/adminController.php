@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Paket;
 use App\Player;
@@ -15,14 +16,55 @@ use App\Playlist;
 use App\Komisi;
 use App\Withdraw;
 use App\Konfirmasi;
+use App\Requests;
+
 
 class adminController extends Controller
 {
+
+    // CONTROLLER PLAYER
     public function masterPlayer (){
         $player = Player::get();
 
         return view('admin.pages.masterPlayer',['player'=>$player]);
     }
+
+    public function addDataMasterPlayer(){
+        return view('admin.pages.formMasterPlayer');
+    }
+
+    public function storeDataMasterPlayer(Requests $request){
+        Player::insert([
+            'nama' => $request->nama,
+            'lokasi' => $request->lokasi,
+            'KEYPLAYER' => $request->keyplayer,
+            'PASSWORD' => $request->password,
+            'spesifikasi' => $request->spesifikasi
+        ]);
+
+        return redirect('/admin/player/master-player');
+    }
+
+    public function editDataMasterPlayer($id){
+        $player = Player::where('id',$id)
+            ->get();
+
+        return view('admin.pages.formMasterPlayer',['player'=> $player, 'id'=>$id]);
+    }
+
+    public function deletePlayer ($id){
+        $check = Playlist::where('player_id',$id)->first();
+        $check2 = Requests::where('player_id',$id)->first();
+
+        if($check === null && $check2 === null) {
+            Player::where('id', $id)->delete();
+            return redirect()->back()->with('alert-success','Player berhasil dihapus');
+        }
+        else{
+            return redirect()->back()->with('alert-fail','Player gagal dihapus,karena Player sedang digunakan');
+        }
+    }
+    //======================
 
     public function listClient (){
         $client = User::orderBy('tipeClient','asc')->get();
@@ -119,6 +161,14 @@ class adminController extends Controller
             ->get(['users.id','users.nama','withdraw.tanggal','withdraw.nominal','withdraw.status','users.namaBank','users.nomorRekening']);
 
         return view('admin.pages.konfirmasiWithdraw',['withdraw'=>$withdraw]);
+    }
+
+    public function daftarRequestPlayer (){
+        return view('admin.pages.daftarRequestPlayer');
+    }
+
+    public function riwayatPesanan (){
+        return view('admin.pages.riwayatTransaksiPesanan');
     }
 
 }

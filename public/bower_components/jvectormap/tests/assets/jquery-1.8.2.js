@@ -7437,7 +7437,7 @@ jQuery.fn.load = function( url, params, callback ) {
 		type = "POST";
 	}
 
-	// Request the remote document
+	// Requests the remote document
 	jQuery.ajax({
 		url: url,
 

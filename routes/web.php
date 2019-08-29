@@ -22,6 +22,10 @@ Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
     Route::get('/player/master-player', 'adminController@masterPlayer');
+    Route::get('/player/master-player/add-data', 'adminController@addDataMasterPlayer');
+    Route::post('/player/master-player/store', 'adminController@storeDataMasterPlayer')->name('storePlayer');
+    Route::get('/player/master-player/edit-data/{id}', 'adminController@editDataMasterPlayer');
+    Route::get('/player/master-player/delete/{id}', 'adminController@deletePlayer');
     Route::get('/player/master-layout', 'adminController@masterLayout');
     Route::get('/player/master-media', 'adminController@masterMedia');
     Route::get('/player/master-kategori', 'adminController@masterKategori');
@@ -32,7 +36,8 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang');
     Route::get('/invoice/konfirmasi-pembayaran', 'adminController@konfirmasiPemabayaran');
     Route::get('/invoice/konfirmasi-withdraw', 'adminController@konfirmasiWithdraw');
-    Route::get('/player/master-player/add-data', 'adminController@addDataMaster');
+    Route::get('/invoice/request-player', 'adminController@daftarRequestPlayer');
+    Route::get('/invoice/riwayat-pesanan', 'adminController@riwayatPesanan');
     Route::get('/player/delete/master-layout/{id}', 'adminController@deleteLayout');
     Route::get('/player/delete/master-kategori/{id}', 'adminController@deleteKategori');
 });

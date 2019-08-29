@@ -8,6 +8,18 @@
 <div class="box ">
     <div class="box-header">
       <div class="column">
+          @if (\Session::has('alert-fail'))
+              <div class="alert alert-danger">
+                  <button type="button" class="close">x</button>
+                  <div>{{Session::get('alert-fail')}}</div>
+              </div>
+          @endif
+          @if (\Session::has('alert-success'))
+              <div class="alert alert-danger">
+                  <button type="button" class="close">x</button>
+                  <div>{{Session::get('alert-success')}}</div>
+              </div>
+          @endif
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
@@ -29,6 +41,7 @@
           <th>KEYPLAYER</th>
           <th>Password</th>
           <th>Spesifikasi</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -39,6 +52,12 @@
           <td>{{$p->KEYPLAYER}}</td>
           <td>{{$p->PASSWORD}}</td>
           <td>{{$p->spesifikasi}}</td>
+            <td>
+                <div class="column">
+                    <div class="col-md-6"><a href="{{url('/admin/player/master-player/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
+                    <div class="col-md-6"><a href="/admin/player/master-player/delete/{{$p->id}}" class="btn btn-block btn-danger">Hapus</a></div>
+                </div>
+            </td>
         </tr>
         @endforeach
     </tbody>
