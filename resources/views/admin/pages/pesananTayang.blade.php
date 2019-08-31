@@ -23,29 +23,41 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>ID Player</th>
-          <th>Name</th>
-          <th>Region</th>
-          <th>Username</th>
-          <th>Password</th>
+          <th>ID Trans.</th>
+          <th>Nama Paket</th>
+          <th>ID Playlist</th>
+          <th>Nama User</th>
+          <th>Status Tayang</th>
+          <th>Start Tayang</th>
+          <th>End Tayang</th>
+          <th>Number File</th>
+          <th>Type File</th>
+          <th>Url File</th>
+          <th>Order File</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 5; $i++)
+          @foreach ($pesanan as $p)
            <tr>
-              <td>14N67</td>
-              <td>Rasberry Pie</td>
-              <td>JABODETABEK</td>
-              <td>AmanSlurd</td>
-              <td>skuyparah123</td>
-              <td>
+              <td>{{$p->idtrans}}</td>
+              <td>{{$p->namapaket}}</td>
+              <td>{{$p->idplaylist}}</td>
+              <td>{{$p->namauser}}</td>
+              <td>{{$p->status}}</td>
+               <td>{{$p->startTayang}}</td>
+               <td>{{$p->endTayang}}</td>
+               <td>{{$p->numberFile}}</td>
+               <td>{{$p->typeFile}}</td>
+               <td>{{$p->urlFile}}</td>
+               <td>{{$p->orderFile}}</td>
+               <td>
                   <div class="column">
                       <div class="col-md-12"><a href="" class="btn btn-block btn-warning">Tanyangkan</a></div>
                   </div>
               </td>
             </tr>
-          @endfor
+          @endforeach
     </tbody>
   </table>
 </div>

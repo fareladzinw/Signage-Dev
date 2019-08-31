@@ -24,7 +24,7 @@ class pageController extends Controller
     }   
     public function indexAdmin (){
         return view('admin.pages.landing');
-    } 
+    }
     public function masterLayout (){
         return view('admin.pages.masterLayout');
     }

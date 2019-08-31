@@ -22,23 +22,27 @@
       <table id="list-user" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Telp</th>
-          <th>Role</th>
-          <th>Username</th>
-          <th>Password</th>
+          <th>Persentase</th>
+          <th>Tanggal Afiliasi</th>
+          <th>Nama Bank</th>
+          <th>Nomor Rekening</th>
+          <th>Nama Rekening</th>
+          <th>Afiliasi From</th>
+          <th>Link Afiliasi</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 4; $i++)
+          @foreach($afiliasi as $a)
           <tr>
-              <td>Adam GV</td>
-              <td>081222344564</td>
-              <td>Premium</td>
-              <td>Bucin</td>
-              <td>Akubucin123</td>
+              <td>{{$a->persentase}}</td>
+              <td>{{$a->tanggal}}</td>
+              <td>{{$a->namaBank}}</td>
+              <td>{{$a->nomorRekening}}</td>
+              <td>{{$a->namaRekening}}</td>
+              <td>{{$a->afiliasiFrom}}</td>
+              <td>{{$a->linkAfiliasi}}</td>
             </tr>
-          @endfor
+          @endforeach
     </tbody>
   </table>
 </div>

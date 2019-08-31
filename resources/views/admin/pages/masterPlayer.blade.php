@@ -9,6 +9,19 @@
     <div class="box-header">
       <div class="column">
         <div class="col-md-8">
+          @if (\Session::has('alert-fail'))
+              <div class="alert alert-danger">
+                  <button type="button" class="close">x</button>
+                  <div>{{Session::get('alert-fail')}}</div>
+              </div>
+          @endif
+          @if (\Session::has('alert-success'))
+              <div class="alert alert-danger">
+                  <button type="button" class="close">x</button>
+                  <div>{{Session::get('alert-success')}}</div>
+              </div>
+          @endif
+        <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
                     Master Player
@@ -25,30 +38,30 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>ID Player</th>
-          <th>Name</th>
-          <th>Region</th>
-          <th>Username</th>
+          <th>Nama Player</th>
+          <th>Lokasi</th>
+          <th>KEYPLAYER</th>
           <th>Password</th>
+          <th>Spesifikasi</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 1; $i < 5; $i++)
-           <tr>
-              <td>14N67</td>
-              <td>Rasberry Pie</td>
-              <td>JABODETABEK</td>
-              <td>AmanSlurd</td>
-              <td>skuyparah123</td>
-              <td>
-                  <div class="column">
-                      <div class="col-md-6"><a href="{{url('/admin/player/master-player/edit-data/'.$i)}}" class="btn btn-block btn-success">Edit</a></div>
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
-                  </div>
-              </td>
-            </tr>
-          @endfor
+        @foreach($player as $p)
+        <tr>
+          <td>{{$p->nama}}</td>
+          <td>{{$p->lokasi}}</td>
+          <td>{{$p->KEYPLAYER}}</td>
+          <td>{{$p->PASSWORD}}</td>
+          <td>{{$p->spesifikasi}}</td>
+            <td>
+                <div class="column">
+                    <div class="col-md-6"><a href="{{url('/admin/player/master-player/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
+                    <div class="col-md-6"><a href="/admin/player/master-player/delete/{{$p->id}}" class="btn btn-block btn-danger">Hapus</a></div>
+                </div>
+            </td>
+        </tr>
+        @endforeach
     </tbody>
   </table>
 </div>

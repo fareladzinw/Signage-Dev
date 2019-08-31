@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('judul','Daftar Request Player')
+@section('judul','Requests')
 
 @section('content')
 <div class="row">

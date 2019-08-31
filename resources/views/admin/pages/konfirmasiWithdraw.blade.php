@@ -23,29 +23,33 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>ID Player</th>
-          <th>Name</th>
-          <th>Region</th>
-          <th>Username</th>
-          <th>Password</th>
+          <th>ID User</th>
+          <th>Nama User</th>
+          <th>Tanggal</th>
+          <th>Nominal</th>
+          <th>StatusWithdraw</th>
+            <th>Nama Bank</th>
+            <th>Nomor Rekening</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 5; $i++)
+          @foreach ($withdraw as $w)
            <tr>
-              <td>14N67</td>
-              <td>Rasberry Pie</td>
-              <td>JABODETABEK</td>
-              <td>AmanSlurd</td>
-              <td>skuyparah123</td>
+              <td>{{$w->id}}</td>
+              <td>{{$w->nama}}</td>
+              <td>{{$w->tanggal}}</td>
+              <td>{{$w->nominal}}</td>
+              <td>{{$w->status}}</td>
+               <td>{{$w->namaBank}}</td>
+               <td>{{$w->nomorRekening}}</td>
               <td>
                   <div class="column">
                       <div class="col-md-12"><a href="" class="btn btn-block btn-info">Konfirmasi</a></div>
                   </div>
               </td>
             </tr>
-          @endfor
+          @endforeach
     </tbody>
   </table>
 </div>

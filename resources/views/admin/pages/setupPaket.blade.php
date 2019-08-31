@@ -24,22 +24,22 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>ID Player</th>
-          <th>Name</th>
-          <th>Region</th>
-          <th>Username</th>
-          <th>Password</th>
+          <th>Nama Paket</th>
+          <th>Harga</th>
+          <th>Durasi Tayang</th>
+          <th>Jumlah Player</th>
+          <th>Jenis Content</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 5; $i++)
+          @foreach ($paket as $p)
            <tr>
-              <td>14N67</td>
-              <td>Rasberry Pie</td>
-              <td>JABODETABEK</td>
-              <td>AmanSlurd</td>
-              <td>skuyparah123</td>
+              <td>{{$p->nama}}</td>
+              <td>{{$p->harga}}</td>
+              <td>{{$p->durasi}}</td>
+              <td>{{$p->jumlahPlayer}}</td>
+              <td>{{$p->jenisContent}}</td>
               <td>
                   <div class="column">
                       <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
@@ -47,7 +47,7 @@
                   </div>
               </td>
             </tr>
-          @endfor
+          @endforeach
     </tbody>
   </table>
 </div>

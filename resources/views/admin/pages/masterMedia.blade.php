@@ -21,29 +21,33 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>ID Player</th>
-          <th>Name</th>
-          <th>Region</th>
-          <th>Username</th>
-          <th>Password</th>
+          <th>File Nama</th>
+          <th>Durasi</th>
+          <th>Type File</th>
+          <th>Kapasitas File</th>
+          <th>Status File</th>
+          <th>Url File</th>
+          <th>Status Download</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 5; $i++)
+          @foreach($media as $m)
            <tr>
-              <td>14N67</td>
-              <td>Rasberry Pie</td>
-              <td>JABODETABEK</td>
-              <td>AmanSlurd</td>
-              <td>skuyparah123</td>
+              <td>{{$m->nama}}</td>
+              <td>{{$m->duration}}</td>
+              <td>{{$m->type}}</td>
+              <td>{{$m->size}}</td>
+              <td>{{$m->status}}</td>
+              <td>{{$m->url}}</td>
+              <td>{{$m->statusDownload}}</td>
               <td>
                   <div class="column">
                       <div class="col-md-12"><a href="" class="btn btn-block btn-primary">Download</a></div>
                  </div>
               </td>
             </tr>
-          @endfor
+          @endforeach
     </tbody>
   </table>
 </div>

@@ -24,30 +24,38 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>ID Player</th>
-          <th>Name</th>
-          <th>Region</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Action</th>
+          <th>ID</th>
+          <th>Player</th>
+          <th>File Media</th>
+          <th>Duration</th>
+          <th>Layout</th>
+          <th>Status Loop</th>
+          <th>Status Media</th>
+          <th>Kategori</th>
+          <th>Paket</th>
+          <th style="width: 20%;">Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 5; $i++)
+          @foreach ($playlist as $p)
            <tr>
-              <td>14N67</td>
-              <td>Rasberry Pie</td>
-              <td>JABODETABEK</td>
-              <td>AmanSlurd</td>
-              <td>skuyparah123</td>
-              <td>
+              <td>{{$p->id}}</td>
+              <td>{{$p->namaplayer}}</td>
+              <td>{{$p->namafile}}</td>
+              <td>{{$p->duration}}</td>
+              <td>{{$p->namalayout}}</td>
+              <td>{{$p->statusLoop}}</td>
+              <td>{{$p->statusMedia}}</td>
+              <td>{{$p->namakategori}}</td>
+              <td>{{$p->namapaket}}</td>
+               <td>
                   <div class="column">
                       <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
                       <div class="col-md-6"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
                   </div>
               </td>
             </tr>
-          @endfor
+          @endforeach
     </tbody>
   </table>
 </div>

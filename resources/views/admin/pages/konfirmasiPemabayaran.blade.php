@@ -23,30 +23,40 @@
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>ID Player</th>
-          <th>Name</th>
-          <th>Region</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Action</th>
+          <th>Type Konfirmasi</th>
+          <th>Konfirmasi Dari</th>
+          <th>Tanggal Konfirmasi</th>
+          <th>ID Transaksi</th>
+          <th>Nama Bank</th>
+          <th>Nama Rekening</th>
+            <th>Nominal</th>
+            <th>Status Konfirmai</th>
+            <th>Validasi</th>
+            <th>Data Bulb</th>
+            <th style="width: 50%">Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 5; $i++)
+          @foreach ($konfirmasi as $k)
            <tr>
-              <td>14N67</td>
-              <td>Rasberry Pie</td>
-              <td>JABODETABEK</td>
-              <td>AmanSlurd</td>
-              <td>skuyparah123</td>
-              <td>
+              <td>{{$k->type}}</td>
+              <td>{{$k->konfirmasiDari}}</td>
+              <td>{{$k->tanggal}}</td>
+              <td>{{$k->id}}</td>
+              <td>{{$k->namaBank}}</td>
+               <td>{{$k->namaRekening}}</td>
+               <td>{{$k->nominal}}</td>
+               <td>{{$k->status}}</td>
+               <td>{{$k->validasi}}</td>
+               <td>{{$k->dataBulb}}</td>
+               <td>
                   <div class="column">
                       <div class="col-md-6"><a href="" class="btn btn-block btn-primary">Download</a></div>
                       <div class="col-md-6"><a href="" class="btn btn-block btn-warning">Konfirmasi</a></div>
                     </div>
               </td>
             </tr>
-          @endfor
+          @endforeach
     </tbody>
   </table>
 </div>
