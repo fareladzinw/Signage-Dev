@@ -25,9 +25,16 @@
         <label for="player">Kode player</label>
         <input type="text" class="form-control" placeholder="Kode Player">
         </div>
+        <!-- select -->
         <div class="form-group">
-            <label for="player">Kode player</label>
-            <input type="text" class="form-control" placeholder="Kode Player">
+          <label>Tipe PLayer</label>
+          <select class="form-control">
+            <option>option 1</option>
+            <option>option 2</option>
+            <option>option 3</option>
+            <option>option 4</option>
+            <option>option 5</option>
+          </select>
         </div>
         <div class="form-group">
             <label for="player">Kode player</label>
