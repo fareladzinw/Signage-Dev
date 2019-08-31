@@ -145,7 +145,7 @@ desired effect
       </ul>
       <!-- /.sidebar-menu -->
       <ul class="logout">
-        <li><a href={{url ('/login')}}><i class="fa fa-sign-out"></i>&emsp;<span>Log out</span></a></li>
+        <li><a href={{ route('logout') }}><i class="fa fa-sign-out"></i>&emsp;<span>Log out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

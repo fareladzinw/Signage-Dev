@@ -26,7 +26,7 @@
                 </h1>
               </section>
         </div>
-      <div class="col-md-2"><a><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
+      <div class="col-md-2"><a href="{{url('/admin/player/master-layout/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
       </div>
     </div>
     <!-- /.box-header -->
@@ -52,7 +52,7 @@
               <td>{{$l->orientation}}</td>
               <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
+                      <div class="col-md-6"><a href="{{url('/admin/player/master-layout/edit-data/'.$l->id)}}" class="btn btn-block btn-success">Edit</a></div>
                       <div class="col-md-6"><a href="/admin/player/delete/master-layout/{{$l->id}}" class="btn btn-block btn-danger">Hapus</a></div>
                   </div>
               </td>

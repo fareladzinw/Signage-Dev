@@ -22,23 +22,31 @@
       <table id="list-user" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Telp</th>
-          <th>Role</th>
-          <th>Username</th>
-          <th>Password</th>
+          <th>Nama User</th>
+          <th>Nama Paket</th>
+          <th>Jumlah Pesanan</th>
+          <th>Tanggal Transaksi</th>
+          <th>Nominal Pembayaran</th>
+            <th>Discount</th>
+            <th>Total Pembayaran</th>
+            <th>Status Upload</th>
+            <th>Status Tayang</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 4; $i++)
+          @foreach ($transaksi as $t)
           <tr>
-              <td>Adam GV</td>
-              <td>081222344564</td>
-              <td>Premium</td>
-              <td>Bucin</td>
-              <td>Akubucin123</td>
-            </tr>
-          @endfor
+              <td>{{$t->namauser}}</td>
+              <td>{{$t->namapaket}}</td>
+              <td>{{$t->jumlahPesanan}}</td>
+              <td>{{$t->tanggal}}</td>
+              <td>{{$t->nominal}}</td>
+              <td>{{$t->discount}}</td>
+              <td>{{$t->total}}</td>
+              <td>{{$t->statusUpload}}</td>
+              <td>{{$t->statusTayang}}</td>
+          </tr>
+          @endforeach
     </tbody>
   </table>
 </div>
