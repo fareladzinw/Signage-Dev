@@ -38,11 +38,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="player">Status Fullscreen</label>
-                                <input name="statusFullscreen" type="text" class="form-control" placeholder="Status Fullscreen">
+                                //<input name="statusFullscreen" type="text" class="form-control" placeholder="Status Fullscreen">
+                                <select class="form-control">
+                                  <option>option 1</option>
+                                  <option>option 2</option>
+                                  <option>option 3</option>
+                                  <option>option 4</option>
+                                  <option>option 5</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="player">Orientation</label>
-                                <input name="orientation" type="text" class="form-control" placeholder="Orientation">
+                                //<input name="orientation" type="text" class="form-control" placeholder="Orientation">
+                                <select class="form-control">
+                                  <option>option 1</option>
+                                  <option>option 2</option>
+                                  <option>option 3</option>
+                                  <option>option 4</option>
+                                  <option>option 5</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block btn-flat">Tambah Data</button>
