@@ -45,7 +45,7 @@
                 <input name="spesifikasi" type="text" class="form-control" placeholder="Spesifikasi">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Tambah Data</button>
+                <button type="submit" class="btn btn-danger btn-block btn-flat">Tambah Data</button>
             </div>
         </form>
     </div>

@@ -60,7 +60,7 @@ class UserController extends Controller
         }
         
         $balance = $nilaiKomisi - $nilaiWithdraw;
-        return view('user.pages.paketAKtif')->with(['pesanans' => $pesanans, 'balance' => $balance]);
+        return view('user.pages.paketAktif')->with(['pesanans' => $pesanans, 'balance' => $balance]);
     }
 
     /**

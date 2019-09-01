@@ -33,7 +33,7 @@
                                 <input name="keterangan" type="text" class="form-control" placeholder="Keterangan">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Tambah Data</button>
+                                <button type="submit" class="btn btn-danger btn-block btn-flat">Tambah Data</button>
                             </div>
                         </form>
                     </div>
