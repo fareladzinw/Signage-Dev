@@ -8,7 +8,6 @@
 <div class="box ">
     <div class="box-header">
       <div class="column">
-        <div class="col-md-8">
           @if (\Session::has('alert-fail'))
               <div class="alert alert-danger">
                   <button type="button" class="close">x</button>
@@ -21,7 +20,7 @@
                   <div>{{Session::get('alert-success')}}</div>
               </div>
           @endif
-        <div class="col-md-10">
+        <div class="col-md-8">
             <section class="content-header" style="padding : 0;">
                 <h1>
                     Master Player

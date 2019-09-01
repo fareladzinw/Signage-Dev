@@ -30,6 +30,7 @@ class CreateUserTable extends Migration
             $table->string('namaRekening')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

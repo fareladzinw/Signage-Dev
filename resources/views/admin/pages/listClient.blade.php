@@ -42,8 +42,8 @@
           <td>{{$c->linkAfiliasi}}</td>
           <td>
               <div class="column">
-                  <div class="col-md-6"><button type="button" class="btn btn-block btn-success">Edit</button></div>
-                  <div class="col-md-6"><button type="button" class="btn btn-block btn-danger">Hapus</button></div>
+                  <div class="col-md-6"><a href={{url('/admin/client/master-client/edit-data/'.$c->id)}}><button type="button" class="btn btn-block btn-success">Edit</button></a></div>
+                  <div class="col-md-6"><a href="{{url('/admin/client/delete/master-client/'.$c->id)}}"><button type="button" class="btn btn-block btn-danger">Hapus</button></a></div>
               </div>
           </td>
         </tr>

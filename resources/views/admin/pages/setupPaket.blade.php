@@ -16,7 +16,7 @@
                 </h1>
               </section>
         </div>
-      <div class="col-md-2"><a href="{{url('/admin/player/master-player/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
+      <div class="col-md-2"><a href="{{url('/admin/client/master-paket/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
       </div>
     </div>
     <!-- /.box-header -->
@@ -42,8 +42,8 @@
               <td>{{$p->jenisContent}}</td>
               <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-success">Edit</a></div>
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
+                      <div class="col-md-6"><a href="{{url('/admin/client/master-paket/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
+                      <div class="col-md-6"><a href="{{url('/admin/client/delete/master-paket/'.$p->id)}}" class="btn btn-block btn-danger">Hapus</a></div>
                   </div>
               </td>
             </tr>

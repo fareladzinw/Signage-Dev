@@ -38,24 +38,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="player">Status Fullscreen</label>
-                                //<input name="statusFullscreen" type="text" class="form-control" placeholder="Status Fullscreen">
-                                <select class="form-control">
-                                  <option>option 1</option>
-                                  <option>option 2</option>
-                                  <option>option 3</option>
-                                  <option>option 4</option>
-                                  <option>option 5</option>
+                                {{--<input name="statusFullscreen" type="text" class="form-control" placeholder="Status Fullscreen">--}}
+                                <select class="form-control" name="statusFullscreen">
+                                  <option value="1">1</option>
+                                  <option value="0">0</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="player">Orientation</label>
-                                //<input name="orientation" type="text" class="form-control" placeholder="Orientation">
-                                <select class="form-control">
-                                  <option>option 1</option>
-                                  <option>option 2</option>
-                                  <option>option 3</option>
-                                  <option>option 4</option>
-                                  <option>option 5</option>
+                                {{--<input name="orientation" type="text" class="form-control" placeholder="Orientation">--}}
+                                <select class="form-control" name="orientation">
+                                  <option value="landscape">Landscape</option>
+                                  <option value="potrait">Potrait</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -107,11 +101,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Status Fullscreen</label>
-                                    <input type="text" class="form-control" name="statusFullscreen" value={{$l->statusFullscreen}}>
+                                    {{--<input type="text" class="form-control" name="statusFullscreen" value={{$l->statusFullscreen}}>--}}
+                                    <select class="form-control" name="statusFullscreen">
+                                        <option value="1">1</option>
+                                        <option value="0">0</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Orientation</label>
-                                    <input type="text" class="form-control" name="orientation" value={{$l->orientation}}>
+                                    {{--<input type="text" class="form-control" name="orientation" value={{$l->orientation}}>--}}
+                                    <select class="form-control" name="orientation">
+                                        <option value="landscape">Landscape</option>
+                                        <option value="potrait">Potrait</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <button  type="submit" class="btn btn-block btn-danger">Edit Data</button>

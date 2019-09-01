@@ -49,13 +49,30 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     //ROUTE MEDIA / FILE MANAGER
     Route::get('/player/master-media', 'adminController@masterMedia');
 
+    //ROUTE CLIENT
     Route::get('/client/list-client', 'adminController@listClient');
+    Route::get('/client/master-client/edit-data/{id}', 'adminController@getEditDataMasterClient');
+    Route::post('/client/master-client/edit-data/{id}', 'adminController@editDataMasterClient')->name('editClient');
+    Route::get('/client/delete/master-client/{id}', 'adminController@deleteClient');
 
+    //ROUTE AFILIASI
     Route::get('/client/master-afiliasi', 'adminController@masterAfiliasi');
 
+    //ROUTE PLAYLIST
     Route::get('/client/setup-playlist', 'adminController@setupPlaylist');
+    Route::get('/client/master-playlist/add-data', 'adminController@addDataMasterPlaylist');
+    Route::post('/client/master-playlist/add-data', 'adminController@storeDataMasterPlaylist')->name('storePlaylist');
+    Route::get('/client/master-playlist/edit-data/{id}', 'adminController@getEditDataMasterPlaylist');
+    Route::post('/client/master-playlist/edit-data/{id}', 'adminController@editDataMasterPlaylist')->name('editPlaylist');
+    Route::get('/client/delete/master-playlist/{id}', 'adminController@deletePlaylist');
 
+    //ROUTE PAKET
     Route::get('/client/setup-paket', 'adminController@setupPaket');
+    Route::get('/client/master-paket/add-data', 'adminController@addDataMasterPaket');
+    Route::post('/client/master-paket/add-data', 'adminController@storeDataMasterPaket')->name('storePaket');
+    Route::get('/client/master-paket/edit-data/{id}', 'adminController@getEditDataMasterPaket');
+    Route::post('/client/master-paket/edit-data/{id}', 'adminController@editDataMasterPaket')->name('editPaket');
+    Route::get('/client/delete/master-paket/{id}', 'adminController@deletePaket');
 
     Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang');
 
