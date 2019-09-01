@@ -11,6 +11,7 @@ use App\User;
 use App\Komisi;
 use App\Withdraw;
 use App\File;
+use App\Pembayaran;
 
 class UserController extends Controller
 {
@@ -198,6 +199,14 @@ class UserController extends Controller
         $pesanan->startShow = Carbon::parse($request->startShow)->format('Y-m-d');
         $pesanan->endShow   = Carbon::parse($request->endShow)->format('Y-m-d');
         $pesanan->save();
+        
+        $pembayaran             = new Pembayaran;
+        $pembayaran->pesanan_id = $pesanan->id;
+        $pembayaran->user_id    = Auth::user()->id;
+        $pembayaran->tanggal    = Carbon::now();
+        $pembayaran->status     = 0;
+        $pembayaran->harga      = $request->harga;
+        $pembayaran->save();
 
         return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
     }
@@ -232,6 +241,8 @@ class UserController extends Controller
         $file->status       = 0;
         $file->url          = "http://aksesdatautama.com/arba_signage/public/". $file->nama;
         $file->save();
+
+
         
         $image = $request->file('file');
         $target = '/public/images';
@@ -256,10 +267,10 @@ class UserController extends Controller
      */   
     public function buktiStore(Request $request, $id) 
     {   
-        $pesanan = Pesanan::find($id);
+        $pembayaran = Pembayaran::where('pesanan_id', $id)->first();
 
-        $pesanan->buktiPembayaran = $request->buktiPembayaran->getClientOriginalName();
-        $pesanan->save();
+        $pembayaran->urlFile = $request->buktiPembayaran->getClientOriginalName();
+        $pembayaran->save();
 
         $image = $request->file('buktiPembayaran');
         $target = '/public/images';

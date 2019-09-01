@@ -20,7 +20,7 @@ class CreatePembayaranTable extends Migration
             $table->date('tanggal');
             $table->integer('harga');
             $table->boolean('status');
-            $table->string('urlFile');
+            $table->string('urlFile')->nullable();
             $table->timestamps();
 
             $table->foreign('pesanan_id')->references('id')->on('pesanan');
