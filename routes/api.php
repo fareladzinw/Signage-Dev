@@ -20,5 +20,5 @@ Route::get('download_content/{idPlayer}/{keyPlayer}', 'ApiController@getContentI
 Route::get('afiliasi/{idUser}', 'ApiController@getDaftarAfiliasiClient');
 Route::post('withdraw/{idUser}', 'ApiController@postWithdrawAfiliasi');
 Route::get('rekap_afiliasi/{idUser}/{tanggal}', 'ApiController@getRekapAfiliasi');
-Route::post('set_afiliasi/{idUser}', 'ApiController@postRegAfiliasi');
+Route::post('set_afiliasi/{kodeAfiliasi}', 'ApiController@postRegAfiliasi');
 
