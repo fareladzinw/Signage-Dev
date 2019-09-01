@@ -3,28 +3,37 @@
 @section('deskripsi', 'Tarik Komisi Afiliasi Anda')
 @section('content')
     <div class="box box-info withdraw">
+    <form action="{{ route('withdrawApproval') }}" method="post">
+    {{ csrf_field() }}
+    {{ method_field('POST') }}
         <div class="box-body">
             <div class="header-afiliasi">
-                <h4 class="header">Jumlah Afiliasi</h4>
-                <h1 class="afiliasi">Rp.1.000.000</h1>
+                <h4 class="header">Jumlah Balance Anda</h4>
+                <h1 class="afiliasi">Rp.{{ $balance }}</h1>
             </div>
             <div class="field-penarikan">
                 <label class="label">Jumlah penarikan</label>
-                <input type="text" name="amount" />
+                <input type="text" name="amount"/>
+                @if($errors->has('amount'))
+                <div class="text-danger">
+                    {{ $errors->first('amount')}}
+                </div>
+                @endif
             </div>
             <div class="field-penarikan">
                 <p class="syarat">*syarat ketentuan berlaku</p>
                   <div class="col-md-6">
                       <div class="checkbox icheck">
                         <label>
-                          <input type="checkbox"> Saya setuju dengan ketentuan yang berlaku
+                          <input type="checkbox" required> Saya setuju dengan ketentuan yang berlaku
                         </label>
                       </div>
                     </div>
-                  <div class="col-md-6"><button type="button" class="btn btn-block btn-success">Withdraw</button></div>
+                  <div class="col-md-6"><button type="submit" class="btn btn-block btn-success">Withdraw</button></div>
                 </div>
     </div>
     <!-- /.box-body -->
+    </form>
     </div>
     <!-- /.box -->
 @endsection

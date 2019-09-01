@@ -4,33 +4,44 @@
   <div class=" col-md-6 col-xs-12">
     <div class="box box-info">
     <div class="box-header">
-      <h3 class="box-title">Paket Ipsum</h3>
+      <h3  class="box-title">{{ $paket->nama }}</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-            <div class="durasi">10 Bulan Penayangan</div>
+            <div class="durasi">{{ $paket->durasi }} hari</div>
             <div class="desc">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Deserunt id dolorum sit dolores, ducimus dolor nemo pariatur 
-                reprehenderit fuga beatae voluptate cumque dicta fugiat quis 
-                consectetur eos accusantium libero magni!
+                Paket Start {{ \Carbon\Carbon::parse($paket->starShow)->format('d-m-Y') }}<br>
+                Paket End {{ \Carbon\Carbon::parse($paket->endShow)->format('d-m-Y') }}<br>
+                Harga Paket {{ $paket->harga }}
             </div>
-            <form action="">
+            <form action="{{ route('pesanStore', $paket->id) }}" method="post">
+            {{ csrf_field() }}
+            {{ method_field('POST') }}
             <div class="form-group">
                 <label>Mulai penayangan</label>
                 <div class="input-group">
                     <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="datepicker">
+                    <input type="text" class="form-control pull-right" id="datepicker" name="startShow" autocomplete="off">
                 </div>
+                @if($errors->has('startShow'))
+                <div class="text-danger">
+                    {{ $errors->first('startShow')}}
+                </div>
+                @endif
                 <label>Akhir penayangan</label>
                 <div class="input-group">
                     <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="datepicker">
+                    <input type="text" class="form-control pull-right" id="datepicker2" name="endShow" autocomplete="off">
                 </div>
+                @if($errors->has('endShow'))
+                <div class="text-danger">
+                    {{ $errors->first('endShow')}}
+                </div>
+                @endif
                 </div>
                 <!-- /.form group -->
                 <button type="submit" class="btn btn-info">Pesan</button>
@@ -55,7 +66,15 @@
      })
          //Date picker
     $('#datepicker').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd-mm-yyyy',
+      orientation: "bottom"
     })
+    $('#datepicker2').datepicker({
+      autoclose: true,
+      format: 'dd-mm-yyyy',
+      orientation: "bottom"
+    })
+    
 </script>
 @endsection

@@ -8,14 +8,12 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-            <form action="">
+            <form action="{{ route('uploadStore', $pesanan->id) }}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            {{ method_field('POST') }}
             <div class="form-grub">
                 <label>Upload file iklan</label>
-                <input type="file" name="file" id="video">
-            </div>
-            <div class="form-grub">
-                <label>Upload file video</label>
-                <input type="file" name="file" id="video">
+                <input type="file" name="file">
             </div>
             <div class="form-group">
                 <label>Mulai penayangan</label>
@@ -23,14 +21,14 @@
                     <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="datepicker">
+                    <input type="text" class="form-control pull-right" autocomplete="off" value="{{ $pesanan->paket->startShow }}" readonly>
                 </div>
                 <label>Akhir penayangan</label>
                 <div class="input-group">
                     <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="datepicker">
+                    <input type="text" class="form-control pull-right" autocomplete="off" value="{{ $pesanan->paket->startShow }}" readonly>
                 </div>
                 </div>
                 <!-- /.form group -->
@@ -56,7 +54,15 @@
      })
          //Date picker
     $('#datepicker').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd-mm-yyyy',
+      orientation: 'bottom'
+    })
+
+    $('#datepicker2').datepicker({
+      autoclose: true,
+      format: 'dd-mm-yyyy',
+      orientation: 'bottom'
     })
 </script>
 @endsection

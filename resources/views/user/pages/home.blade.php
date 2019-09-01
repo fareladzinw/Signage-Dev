@@ -5,7 +5,6 @@
 @section('deskripsi', 'Silahkan pilih paket iklan')
 @section('content')
 
-
      @foreach($pakets as $p)
      <div class="card">
      <div class="box box-info">
@@ -20,7 +19,7 @@
               Some quick example text to build on the card title and make up the bulk of the card's content.
             </p>
             <div class="column">
-            <a href="{{url('/user/pesan')}}" class=""><button type="button" class="btn btn-sm btn-block btn-info">Pesan</button></a>
+            <a href="{{ route('pesan', $p->id) }}" class=""><button type="button" class="btn btn-sm btn-block btn-info">Pesan</button></a>
             </div> 
           </div>
           </div>

@@ -8,26 +8,25 @@
           <table id="list-afiliasi" class="table table-bordered table-hover">
             <thead>
             <tr>
-              <th>Nama User</th>
-              <th>Id User</th>
+              <th>Nama Lengkap</th>
+              <th>Username</th>
+              <th>Persentase</th>
+              <th>Nominal</th>
               <th>Tanggal</th>
             </tr>
             </thead>
             <tbody>
-              @for ($i = 0; $i < 4; $i++)
+              @foreach ($afiliasi as $af)
+              @foreach ($komisi as $k)
               <tr>
-                  <td>Adam Wildan</td>
-                  <td>I12NM</td>
-                  <td>19 Septemper 2019</td>
-                </tr>
-              @endfor
-              @for ($i = 0; $i < 4; $i++)
-              <tr>
-                  <td>Adam Wildan</td>
-                  <td>G7NM</td>
-                  <td>11 September 2019</td>
-                </tr>
-              @endfor
+                  <td>{{ $af->nama }}</td>
+                  <td>{{ $af->username }}</td>
+                  <td>{{ $k->persentase }}</td>
+                  <td>{{ $k->nominal }}</td>
+                  <td>{{ Carbon\Carbon::parse($k->updated_at)->format('d-m-Y') }}</td>
+              </tr>
+              @endforeach
+              @endforeach
         </tbody>
       </table>
     </div>
@@ -46,7 +45,8 @@
         'searching'   : false,
         'ordering'    : true,
         'info'        : true,
-        'autoWidth'   : true
+        'autoWidth'   : true,
+        'order'       : [[ 4, 'DESC']],
       })
     })
   </script>

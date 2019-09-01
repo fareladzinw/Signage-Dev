@@ -46,7 +46,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand"><b>Signage</b></a>
+          <a href="{{ route('homepage') }}" class="navbar-brand"><b>Signage</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -62,7 +62,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li class="{{ (request()->is('user/afiliasi/list-afiliasi')) ? 'active' : '' }}" ><a href="{{url ('/user/afiliasi/list-afiliasi')}}">List Afiliasi</a></li>
                 <li class="{{ (request()->is('user/afiliasi/withdraw-afiliasi')) ? 'active' : '' }}"><a href="{{url ('/user/afiliasi/withdraw-afiliasi')}}">Withdraw</a></li>
-                <li class="{{ (request()->is('user/afiliasi/riwayat-withdraw')) ? 'active' : '' }}"><a href="{{url ('/user/afiliasi/riwayat-afiliasi')}}">Riwayat Withdraw</a></li>
+                <li class="{{ (request()->is('user/afiliasi/riwayat-withdraw')) ? 'active' : '' }}"><a href="{{url ('/user/afiliasi/riwayat-withdraw')}}">Riwayat Withdraw</a></li>
                 {{-- <li class="divider"></li>
                 <li><a href="#">Separated link</a></li>
                 <li class="divider"></li>
@@ -82,15 +82,16 @@
                 <!-- The user image in the navbar-->
                 <img src="{{asset('bower_components/admin-lte/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Fareladzin Wibi</span>
+                <span class="hidden-xs">{{ Auth::user()->nama }}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
                   <img src="{{asset('bower_components/admin-lte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                   <p>
-                      Fareladzin Wibi - Premium User
-                    <small>Langganan sejak 1992</small>
+                      {{ Auth::user()->nama }} - {{ Auth::user()->tipeClient }}
+                    <small>Langganan sejak {{ \Carbon\Carbon::parse(Auth::user()->created_at)->format('d-m-Y') }}</small>
+                    <small>Kode Afiliasi : url/register/{{ Auth::user()->linkAfiliasi }}</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
