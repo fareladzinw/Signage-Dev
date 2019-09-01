@@ -27,22 +27,47 @@
             <div class="form-group">
                 <label for="player">Nama Player</label>
                 <input name="nama" type="text" class="form-control" placeholder="Nama">
+                @if($errors->has('nama'))
+                    <div class="text-danger">
+                        {{$errors->first('nama')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">Lokasi Player</label>
                 <input name="lokasi" type="text" class="form-control" placeholder="Lokasi">
+                @if($errors->has('lokasi'))
+                    <div class="text-danger">
+                        {{$errors->first('lokasi')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">KEYPLAYER</label>
-                <input name="KEYPLAYER" type="text" class="form-control" placeholder="KeyPlayer">
+                <input name="keyplayer" type="text" class="form-control" placeholder="KeyPlayer">
+                @if($errors->has('keyplayer'))
+                    <div class="text-danger">
+                        {{$errors->first('keyplayer')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">Password</label>
-                <input name="PASSWORD" type="text" class="form-control" placeholder="Password">
+                <input name="password" type="text" class="form-control" placeholder="Password">
+                @if($errors->has('password'))
+                    <div class="text-danger">
+                        {{$errors->first('password')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">Spesifikasi</label>
                 <input name="spesifikasi" type="text" class="form-control" placeholder="Spesifikasi">
+                @if($errors->has('spesifikasi'))
+                    <div class="text-danger">
+                        {{$errors->first('spesifikasi')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Tambah Data</button>
@@ -77,30 +102,55 @@
         <!-- /.box-header -->
         @foreach($player as $p)
         <div class="box-body">
-        <form action={{ route('editPlayer', $id)}} method="post">
+        <form action="{{ route('editPlayer', $id)}}" method="post">
             {{csrf_field()}}
             <div class="form-group">
-            <label for="player">Nama Player</label>
-            <input type="text" class="form-control" name="nama" value={{$p->nama}}>
+                <label for="player">Nama Player</label>
+                <input type="text" class="form-control" name="nama" value={{$p->nama}}>
+                @if($errors->has('nama'))
+                    <div class="text-danger">
+                        {{$errors->first('nama')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">Lokasi Player</label>
                 <input type="text" class="form-control" name="lokasi" value={{$p->lokasi}}>
+                @if($errors->has('lokasi'))
+                    <div class="text-danger">
+                        {{$errors->first('lokasi')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">KEY PLAYER</label>
                 <input type="text" class="form-control" name="keyplayer" value={{$p->KEYPLAYER}}>
+                @if($errors->has('keyplayer'))
+                    <div class="text-danger">
+                        {{$errors->first('keyplayer')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">Password</label>
                 <input type="text" class="form-control" name="password" value={{$p->PASSWORD}}>
+                @if($errors->has('password'))
+                    <div class="text-danger">
+                        {{$errors->first('password')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="player">Spesifikasi</label>
                 <input type="text" class="form-control" name="spesifikasi" value={{$p->spesifikasi}}>
+                @if($errors->has('spesifikasi'))
+                    <div class="text-danger">
+                        {{$errors->first('spesifikasi')}}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
-            <button  type="submit" class="btn btn-block btn-danger">Edit Data</button>
+            <button type="submit" class="btn btn-block btn-danger">Edit Data</button>
             </div>
             @endforeach
         </form>

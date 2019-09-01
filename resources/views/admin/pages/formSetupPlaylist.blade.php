@@ -68,6 +68,11 @@
                             <div class="form-group">
                                 <label for="player">Duration</label>
                                 <input name="duration" type="text" class="form-control" placeholder="Durasi">
+                                @if($errors->has('duration'))
+                                    <div class="text-danger">
+                                        {{$errors->first('duration')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">status Loop</label>
@@ -161,6 +166,11 @@
                                 <div class="form-group">
                                     <label for="player">Duration</label>
                                     <input name="duration" type="text" class="form-control" value="{{$p->duration}}">
+                                    @if($errors->has('duration'))
+                                        <div class="text-danger">
+                                            {{$errors->first('duration')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 @endforeach
                                 <div class="form-group">

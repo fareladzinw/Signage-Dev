@@ -53,7 +53,21 @@
                <td>{{$p->orderFile}}</td>
                <td>
                   <div class="column">
-                      <div class="col-md-12"><a href="" class="btn btn-block btn-warning">Tanyangkan</a></div>
+                      @if($p->status === 0)
+                        <form action="/admin/invoice/pesanan-tayang/on/{{$p->id}}" method="post">
+                          {{csrf_field()}}
+                          <div class="col-md-12">
+                            <button type="submit" class="btn btn-block btn-warning">Tanyangkan </button>
+                          </div>
+                        </form>
+                      @elseif($p->status === 1)
+                              <form action="/admin/invoice/pesanan-tayang/off/{{$p->id}}" method="post">
+                                  {{csrf_field()}}
+                                  <div class="col-md-12">
+                                      <button type="submit" class="btn btn-block btn-warning">Batal Tanyangkan</button>
+                                  </div>
+                              </form>
+                      @endif
                   </div>
               </td>
             </tr>

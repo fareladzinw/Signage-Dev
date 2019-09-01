@@ -27,10 +27,20 @@
                             <div class="form-group">
                                 <label for="player">Nama Kategori</label>
                                 <input name="nama" type="text" class="form-control" placeholder="Nama">
+                                @if($errors->has('nama'))
+                                    <div class="text-danger">
+                                        {{$errors->first('nama')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Keterangan</label>
                                 <input name="keterangan" type="text" class="form-control" placeholder="Keterangan">
+                                @if($errors->has('keterangan'))
+                                    <div class="text-danger">
+                                        {{$errors->first('keterangan')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block btn-flat">Tambah Data</button>
@@ -70,10 +80,20 @@
                                 <div class="form-group">
                                     <label for="player">Nama Kategori</label>
                                     <input name="nama" type="text" class="form-control" placeholder="Nama" value="{{$k->nama}}">
+                                    @if($errors->has('nama'))
+                                        <div class="text-danger">
+                                            {{$errors->first('nama')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Keterangan</label>
                                     <input name="keterangan" type="text" class="form-control" placeholder="Keterangan" value="{{$k->keterangan}}">
+                                    @if($errors->has('keterangan'))
+                                        <div class="text-danger">
+                                            {{$errors->first('keterangan')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <button  type="submit" class="btn btn-block btn-danger">Edit Data</button>
