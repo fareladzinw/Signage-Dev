@@ -13,9 +13,9 @@ class KomisiSeeder extends Seeder
     {
         DB::table('komisi')->insert([
             [
-                'user_id' => 1,
+                'user_id' => 3,
                 'tanggal' => Carbon\Carbon::now(),
-                'afiliasiFrom' => 'dummy',
+                'afiliasiFrom' => 1,
                 'persentase' => 50,
                 'nominal' => 100000,
             ]

@@ -7,38 +7,47 @@
 <div class="row">
 <div class="col-xs-12">
 <div class="box">
-    {{-- <div class="box-header">
-      <h3 class="box-title">Hover Data Table</h3>
-    </div> --}}
-    <!-- /.box-header -->
+    <div class="box-header">
+        <div class="column">
+            <div class="col-md-10">
+                <section class="content-header" style="padding : 0;">
+                    <h1>
+                        Daftar Client
+                    <small>Info Client</small>
+                    </h1>
+                </section>
+            </div>
+       </div>
+</div>
+<!-- /.box-header -->
     <div class="box-body">
       <table id="list-user" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Telp</th>
-          <th>Role</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Action</th>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Alamat</th>
+          <th>No. HP</th>
+          <th>Link Afiliasi</th>
+          <th>Aksi</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 4; $i++)
-          <tr>
-              <td>Adam GV</td>
-              <td>081222344564</td>
-              <td>Premium</td>
-              <td>Bucin</td>
-              <td>Akubucin123</td>
-              <td>
-                  <div class="column">
-                      <div class="col-md-6"><button type="button" class="btn btn-block btn-success">Edit</button></div>
-                      <div class="col-md-6"><button type="button" class="btn btn-block btn-danger">Hapus</button></div>
-                  </div>
-              </td>
-            </tr>
-          @endfor
+        @foreach($client as $c)
+        <tr>
+          <td>{{$c->nama}}</td>
+          <td>{{$c->email}}</td>
+          <td>{{$c->alamat}}</td>
+          <td>{{$c->hp}}</td>
+          <td>{{$c->linkAfiliasi}}</td>
+          <td>
+              <div class="column">
+                  <div class="col-md-6"><a href={{url('/admin/client/master-client/edit-data/'.$c->id)}}><button type="button" class="btn btn-block btn-success">Edit</button></a></div>
+                  <div class="col-md-6"><a href="{{url('/admin/client/delete/master-client/'.$c->id)}}"><button type="button" class="btn btn-block btn-danger">Hapus</button></a></div>
+              </div>
+          </td>
+        </tr>
+        @endforeach
     </tbody>
   </table>
 </div>

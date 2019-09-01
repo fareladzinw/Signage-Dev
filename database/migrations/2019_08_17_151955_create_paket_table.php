@@ -25,6 +25,7 @@ class CreatePaketTable extends Migration
             $table->integer('jumlahFile');
             $table->boolean('status');
             $table->timestamps();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

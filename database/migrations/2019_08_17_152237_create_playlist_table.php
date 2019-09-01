@@ -24,6 +24,7 @@ class CreatePlaylistTable extends Migration
             $table->boolean('statusLoop');
             $table->boolean('statusMedia');
             $table->timestamps();
+            $table->dateTime('deleted_at')->nullable();
 
             $table->foreign('player_id')->references('id')->on('player');
             $table->foreign('media_id')->references('id')->on('media');

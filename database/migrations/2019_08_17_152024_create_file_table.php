@@ -21,9 +21,9 @@ class CreateFileTable extends Migration
             $table->string('nama');
             $table->enum('type', ['JPG', 'PNG', 'MP4']);
             $table->integer('size');
-            $table->integer('duration');
+            $table->integer('duration')->nullable();
             $table->boolean('status');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->timestamps();
 
             $table->foreign('paket_id')->references('id')->on('paket');

@@ -16,11 +16,11 @@ class CreateUserTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('alamat');
             $table->BigInteger('hp');
             $table->enum('tipeClient', ['user', 'admin', 'master']);
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
             $table->dateTime('dateTime');
             $table->string('linkAfiliasi')->nullable();
@@ -30,6 +30,7 @@ class CreateUserTable extends Migration
             $table->string('namaRekening')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

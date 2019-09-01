@@ -109,10 +109,10 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-          <li class="{{ (request()->is('admin/player/master-player')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-player')}}"><i class="fa fa-link"></i> <span>Master Player</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Master Layout</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>File Manager</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Master Kategori Player</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-player')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-player')}}"><i class="fa fa-link"></i> <span>Master Player</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-layout')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-layout')}}"><i class="fa fa-link"></i> <span>Master Layout</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-media')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-media')}}"><i class="fa fa-link"></i> <span>File Manager</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-kategori')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-kategori')}}"><i class="fa fa-link"></i> <span>Master Kategori Player</span></a></li>
           </ul>
         </li>
         <li class="{{ (request()->is('admin/client/*')) ? 'treeview active' : 'treeview' }}">
@@ -122,28 +122,30 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-link"></i> <span>Master Afiliasi Client</span></a></li>
+            <li class="{{ (request()->is('admin/client/master-afiliasi')) ? 'active' : '' }}"><a href="{{url ('admin/client/master-afiliasi')}}"><i class="fa fa-link"></i> <span>Master Afiliasi Client</span></a></li>
             <li class="{{ (request()->is('admin/client/list-client')) ? 'active' : '' }}"><a href="{{url ('admin/client/list-client')}}"><i class="fa fa-link"></i> <span>List Client</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Setup Playlist</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Setup Paket Signage</span></a></li>
+            <li class="{{ (request()->is('admin/client/setup-playlist')) ? 'active' : '' }}"><a href="{{url ('admin/client/setup-playlist')}}"><i class="fa fa-link"></i> <span>Setup Playlist</span></a></li>
+            <li class="{{ (request()->is('admin/client/setup-paket')) ? 'active' : '' }}"><a href="{{url ('admin/client/setup-paket')}}"><i class="fa fa-link"></i> <span>Setup Paket Signage</span></a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="{{ (request()->is('admin/invoice/*')) ? 'treeview active' : 'treeview' }}">
           <a href="#"><i class="fa fa-link"></i> <span>Invoice</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-link"></i> <span>Daftar Pesanan Tayang</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Daftar Invoice</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Withdraw Afiliasi</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/konfirmasi-withdraw')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/konfirmasi-withdraw')}}"><i class="fa fa-link"></i> <span>Withdraw Afiliasi</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/konfirmasi-pembayaran')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/konfirmasi-pembayaran')}}"><i class="fa fa-link"></i> <span>Konfirmasi Pembayaran</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/riwayat-pesanan')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/riwayat-pesanan')}}"><i class="fa fa-link"></i> <span>Riwayat Transaksi Pesanan</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/request-player')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/request-player')}}"><i class="fa fa-link"></i> <span>Daftar Request Player</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/pesanan-tayang')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/pesanan-tayang')}}"><i class="fa fa-link"></i> <span>Daftar Pesanan Tayang</span></a></li>
           </ul>
         </li>
       </ul>
       <!-- /.sidebar-menu -->
       <ul class="logout">
-        <li><a href={{url ('/')}}><i class="fa fa-sign-out"></i>&emsp;<span>Log out</span></a></li>
+        <li><a href={{ route('logout') }}><i class="fa fa-sign-out"></i>&emsp;<span>Log out</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
