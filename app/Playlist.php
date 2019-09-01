@@ -10,4 +10,9 @@ class Playlist extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table = 'playlist';
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class, 'player_id', 'id');
+    }
 }

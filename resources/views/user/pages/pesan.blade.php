@@ -17,6 +17,7 @@
             <form action="{{ route('pesanStore', $paket->id) }}" method="post">
             {{ csrf_field() }}
             {{ method_field('POST') }}
+            <input type="hidden" name="harga" value="{{ $paket->harga }}">
             <div class="form-group">
                 <label>Mulai penayangan</label>
                 <div class="input-group">
