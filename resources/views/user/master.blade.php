@@ -22,7 +22,11 @@
   <link rel="stylesheet" href="{{asset('bower_components/admin-lte/dist/css/skins/skin-blue.min.css')}}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset('bower_components/admin-lte/plugins/iCheck/square/blue.css')}}">
-  <!-- CSS -->
+   <!-- daterange picker -->
+   <link rel="stylesheet" href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+   <!-- CSS -->
   <link rel="stylesheet" href="{{asset('css/main.css')}}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,7 +91,7 @@
                   <p>
                       {{ Auth::user()->nama }} - {{ Auth::user()->tipeClient }}
                     <small>Langganan sejak {{ \Carbon\Carbon::parse(Auth::user()->created_at)->format('d-m-Y') }}</small>
-                    <small>Sisa balance anda {{ $balance }}</small>
+                    <small>Kode Afiliasi : url/register/{{ Auth::user()->linkAfiliasi }}</small>
                   </p>
                 </li>
                 <!-- Menu Body -->

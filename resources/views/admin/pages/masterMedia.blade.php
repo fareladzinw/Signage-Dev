@@ -1,7 +1,5 @@
 @extends('admin.master')
-
-@section('titlePage','Master Player')
-
+@section('titlePage','Master Media')
 @section('content')
 <div class="row">
 <div class="col-xs-12">
@@ -11,12 +9,11 @@
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
-                    Master Player
-                  <small>Table data Player</small>
+                    Master Media
+                  <small>Media yang akan ditampilkan</small>
                 </h1>
               </section>
         </div>
-      <div class="col-md-2"><a href="{{url('/admin/player/master-player/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
       </div>
     </div>
     <!-- /.box-header -->
@@ -33,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-          @for ($i = 1; $i < 5; $i++)
+          @for ($i = 0; $i < 5; $i++)
            <tr>
               <td>14N67</td>
               <td>Rasberry Pie</td>
@@ -42,9 +39,8 @@
               <td>skuyparah123</td>
               <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="{{url('/admin/player/master-player/edit-data/'.$i)}}" class="btn btn-block btn-success">Edit</a></div>
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
-                  </div>
+                      <div class="col-md-12"><a href="" class="btn btn-block btn-primary">Download</a></div>
+                 </div>
               </td>
             </tr>
           @endfor

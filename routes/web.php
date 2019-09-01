@@ -24,17 +24,36 @@ Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
     Route::get('/player/master-player', 'pageController@masterPlayer');
+    Route::get('/player/master-layout', 'pageController@masterLayout');
+    Route::get('/player/master-media', 'pageController@masterMedia');
+    Route::get('/player/master-kategori', 'pageController@masterKategori');
+    Route::get('/client/master-afiliasi', 'pageController@masterAfiliasi');
     Route::get('/client/list-client', 'pageController@listClient');
+    Route::get('/client/setup-playlist', 'pageController@setupPlaylist');
+    Route::get('/client/setup-paket', 'pageController@setupPaket');
+    Route::get('/invoice/pesanan-tayang', 'pageController@pesananTayang');
+    Route::get('/invoice/konfirmasi-pembayaran', 'pageController@konfirmasiPemabayaran');
+    Route::get('/invoice/konfirmasi-withdraw', 'pageController@konfirmasiWithdraw');
+    Route::get('/invoice/request-player', 'pageController@daftarRequestPlayer');
+    Route::get('/invoice/riwayat-pesanan', 'pageController@riwayatPesanan');
     Route::get('/player/master-player/add-data', 'pageController@addDataMaster');
+    Route::get('/player/master-player/edit-data/{id}', 'pageController@editDataMaster');
+    
 });
 
 Route::prefix('user')->middleware('auth')->group(function() {
     Route::get('/', 'UserController@homepage')->name('homepage');
-    Route::get('/paket-aktif', 'UserController@paketAktif');
+    Route::get('/paket-aktif', 'UserController@paketAktif')->name('paket');
     Route::get('/afiliasi/list-afiliasi', 'UserController@listAfiliasi');
     Route::get('/afiliasi/withdraw-afiliasi', 'UserController@withdrawPage');
     Route::post('/afiliasi/withdraw-afiliasi', 'UserController@withdrawStore')->name('withdrawApproval');
     Route::get('/afiliasi/riwayat-withdraw', 'UserController@withdrawHistory')->name('withdrawHistory');
+    Route::get('/pesan/{id}', 'UserController@pesanIndex')->name('pesan');
+    Route::post('/pesan/{id}', 'UserController@pesanStore')->name('pesanStore');
+    Route::get('/paket-aktif/upload/{id}', 'UserController@uploadIndex')->name('uploadIklan');
+    Route::post('/paket-aktif/upload/{id}', 'UserController@uploadStore')->name('uploadStore');
+    Route::get('/paket-aktif/upload-bukti-pembayaran/{id}', 'UserController@buktiIndex')->name('buktiIndex');
+    Route::post('/paket-aktif/upload-bukti-pembayaran/{id}', 'UserController@buktiStore')->name('buktiStore');
 });
 
 

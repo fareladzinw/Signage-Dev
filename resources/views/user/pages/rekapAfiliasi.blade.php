@@ -5,7 +5,7 @@
     <div class="col-xs-12">
     @if (\Session::has('alert-success'))
     <div class="alert alert-warning">
-      <a href="{{ route('login') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+      <a href="{{ route('withdrawHistory') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
       <div>{{Session::get('alert-success')}}</div>
     </div>
     @endif

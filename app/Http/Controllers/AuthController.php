@@ -86,8 +86,8 @@ class AuthController extends Controller
             'alamat' => 'required',
             'hp' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
-            'repassword' => 'required|same:password',
+            'password' => 'required|min:6',
+            'repassword' => 'required|min:6|same:password',
         ]);
 
         $data = new User();
@@ -111,7 +111,7 @@ class AuthController extends Controller
 
         $linkAfiliasi = $request->linkAfiliasi;
         
-        Mail::to($data->email)->send(new UserActivation($data, $aktivasi)); 
+        Mail::to($request->email)->send(new UserActivation($data, $aktivasi)); 
 
         if(!$linkAfiliasi === null) {
             return redirect('activation/'.$linkAfiliasi);
@@ -168,10 +168,11 @@ class AuthController extends Controller
                         $aktivasi->user->afiliasiFrom = $afiliasi->id;
                         $aktivasi->user->save();
                         $aktivasi->save();
+                    } else {
+                        $aktivasi->status = 1;
+                        $aktivasi->save();
                     }
                     return redirect('login')->with('alert-success', 'Akun berhasil di aktivasi');
-                } else {
-                    return redirect('activation')->with('alert-fail', 'Masukan kode yang benar!');
                 }   
             }
         }

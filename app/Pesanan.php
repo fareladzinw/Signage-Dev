@@ -10,6 +10,6 @@ class Pesanan extends Model
 
     public function paket()
     {
-        return $this->belongsTo('App\Paket');
+        return $this->belongsTo(Paket::class, 'paket_id', 'id');
     }
 }

@@ -3,6 +3,12 @@
 @section('deskripsi', 'Informasi Status Paket Anda')
 @section('content')
     <div class="col-xs-12">
+    @if (\Session::has('alert-success'))
+    <div class="alert alert-warning">
+      <a href="{{ route('paket') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+      <div>{{Session::get('alert-success')}}</div>
+    </div>
+    @endif
     <div class="box box-info">
         <div class="box-body">
           <table id="paket-status" class="table table-bordered table-hover">
@@ -31,7 +37,10 @@
                   @else 
                     <td>Aktif</td>
                   @endif
-                  <td><a href="" class="btn btn-primary">Upload</a></td>
+                  <td>
+                    <a href="{{ route('uploadIklan', $p->id) }}" class="btn btn-primary">Upload</a>
+                    <a href="{{ route('buktiIndex', $p->id) }}" class="btn btn-success">Konfirmasi</a>
+                  </td>
                 </tr>
               @endforeach
         </tbody>

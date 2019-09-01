@@ -56,7 +56,7 @@
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Kode Aktivasi" name="kode">
         @if(!empty($user))
-        <input type="hidden" class="form-control" name="linkAfiliasi" value="{{ $user[0]->linkAfiliasi }}">
+        <input type="text" class="form-control" name="linkAfiliasi" value="{{ $user[0]->linkAfiliasi }}">
         @endif
         <span class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
         @if($errors->has('kode'))

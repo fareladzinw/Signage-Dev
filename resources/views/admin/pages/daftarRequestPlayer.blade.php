@@ -1,24 +1,22 @@
 @extends('admin.master')
-@section('judul','List Client')
-@section('titlePage','List Client')
-@section('deskripsi','Table data Cliient Yang Terdaftar')
+@section('judul','Daftar Request Player')
 
 @section('content')
 <div class="row">
 <div class="col-xs-12">
 <div class="box">
     <div class="box-header">
-        <div class="column">
-            <div class="col-md-10">
-                <section class="content-header" style="padding : 0;">
-                    <h1>
-                        Daftar Client
-                    <small>Info Client</small>
-                    </h1>
-                </section>
-            </div>
-       </div>
-</div>
+            <div class="column">
+                <div class="col-md-10">
+                    <section class="content-header" style="padding : 0;">
+                        <h1>
+                            Daftar Request Player
+                        <small>Info validasi Player</small>
+                        </h1>
+                    </section>
+                </div>
+           </div>
+    </div>
 <!-- /.box-header -->
     <div class="box-body">
       <table id="list-user" class="table table-bordered table-hover">
@@ -29,7 +27,6 @@
           <th>Role</th>
           <th>Username</th>
           <th>Password</th>
-          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -40,11 +37,6 @@
               <td>Premium</td>
               <td>Bucin</td>
               <td>Akubucin123</td>
-              <td>
-                  <div class="column">
-                      <div class="col-md-12"><a href="" class="btn btn-block btn-danger">Hapus</a></div>
-                  </div>
-              </td>
             </tr>
           @endfor
     </tbody>
