@@ -76,6 +76,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::post('/client/master-paket/edit-data/{id}', 'adminController@editDataMasterPaket')->name('editPaket');
     Route::get('/client/delete/master-paket/{id}', 'adminController@deletePaket');
 
+    //ROUTE INVOICE
     Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang');
 
     Route::get('/invoice/konfirmasi-pembayaran', 'adminController@konfirmasiPemabayaran');
