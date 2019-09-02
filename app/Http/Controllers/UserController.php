@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Paket;
 use App\Pesanan;
@@ -176,8 +177,18 @@ class UserController extends Controller
      */   
     public function pesanIndex($id) 
     {   
-        $paket = Paket::where('id', $id)->first();
-        return view('user.pages.pesan')->with(['paket' => $paket]);
+        $paket = Paket::find($id);
+        $dates = $this->generateDateRange(Carbon::parse($paket->startShow), Carbon::parse($paket->endShow));
+        
+        return view('user.pages.pesan')->with(['paket' => $paket, 'dates' => $dates]);
+    }
+
+    private function generateDateRange(Carbon $to, Carbon $from)
+    {
+        for($date = $to; $date->lte($from); $date->addDay()) {
+            $dates[] = $date->format('Y-m-d');
+        }
+        return $dates;
     }
 
     /**
@@ -190,25 +201,29 @@ class UserController extends Controller
             'startShow' => 'required|date',
             'endShow'   => 'required|date'
         ]);
+            
+        if(Carbon::parse($request->startShow)->format('Y-m-d') > Carbon::parse($request->endShow)->format('Y-m-d')) {
+            return redirect()->route('paket')->with('alert-danger', 'Masukkan tanggal yang benar!');
+        } else {
+            $pesanan            = new Pesanan;
+            $pesanan->paket_id  = $id;
+            $pesanan->user_id   = Auth::user()->id;
+            $pesanan->tanggal   = Carbon::now();
+            $pesanan->status    = 0;
+            $pesanan->startShow = Carbon::parse($request->startShow)->format('Y-m-d');
+            $pesanan->endShow   = Carbon::parse($request->endShow)->format('Y-m-d');
+            $pesanan->save();
+            
+            $pembayaran             = new Pembayaran;
+            $pembayaran->pesanan_id = $pesanan->id;
+            $pembayaran->user_id    = Auth::user()->id;
+            $pembayaran->tanggal    = Carbon::now();
+            $pembayaran->status     = 0;
+            $pembayaran->harga      = $request->harga;
+            $pembayaran->save();
 
-        $pesanan            = new Pesanan;
-        $pesanan->paket_id  = $id;
-        $pesanan->user_id   = Auth::user()->id;
-        $pesanan->tanggal   = Carbon::now();
-        $pesanan->status    = 0;
-        $pesanan->startShow = Carbon::parse($request->startShow)->format('Y-m-d');
-        $pesanan->endShow   = Carbon::parse($request->endShow)->format('Y-m-d');
-        $pesanan->save();
-        
-        $pembayaran             = new Pembayaran;
-        $pembayaran->pesanan_id = $pesanan->id;
-        $pembayaran->user_id    = Auth::user()->id;
-        $pembayaran->tanggal    = Carbon::now();
-        $pembayaran->status     = 0;
-        $pembayaran->harga      = $request->harga;
-        $pembayaran->save();
-
-        return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
+            return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
+        }
     }
 
     /**
@@ -218,7 +233,11 @@ class UserController extends Controller
     public function uploadIndex($id) 
     {   
         $pesanan = Pesanan::find($id);
-        return view('user.pages.uploadContent')->with(['pesanan' => $pesanan]);
+        if($pesanan->status === 1) {
+            return view('user.pages.uploadContent')->with(['pesanan' => $pesanan]);
+        } else {
+            return redirect()->route('paket')->with('alert-danger', 'Mohon konfirmasi pembayaran');
+        }
     }
 
     /**

@@ -21,14 +21,14 @@
                     <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" autocomplete="off" value="{{ $pesanan->paket->startShow }}" readonly>
+                    <input type="text" class="form-control pull-right" autocomplete="off" value="{{ $pesanan->startShow }}" readonly>
                 </div>
                 <label>Akhir penayangan</label>
                 <div class="input-group">
                     <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" autocomplete="off" value="{{ $pesanan->paket->startShow }}" readonly>
+                    <input type="text" class="form-control pull-right" autocomplete="off" value="{{ $pesanan->endShow }}" readonly>
                 </div>
                 </div>
                 <!-- /.form group -->
