@@ -557,9 +557,9 @@ class adminController extends Controller
     }
 
     public function downloadKonfirmasiPemabayaran($id){
-        $filename = Konfirmasi::where('id',$id)->pluck('dataBulb');
+        $filename = Konfirmasi::where('id',$id)->first();
 
-        $filepath = public_path('images/').$filename;
+        $filepath = public_path('images/').$filename->dataBulb;
 
         return response()->download($filepath);
     }
