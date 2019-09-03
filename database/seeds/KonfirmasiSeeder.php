@@ -11,19 +11,21 @@ class KonfirmasiSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('konfirmasi')->insert([
-            [
-                'transaksi_id' => 1,
-                'type' => 1,
-                'konfirmasiDari' => 'dummy',
-                'tanggal' => Carbon\Carbon::now(),
-                'namaBank' => 'BCA',
-                'namaRekening' => 'dummy',
-                'nominal' => 1000000,
-                'status' => 0,
-                'validasi' => 0,
-                'dataBulb' => 'dummy.jpg',
-            ]
-        ]);
+        for($i = 1; $i < 11; $i++) {
+            DB::table('konfirmasi')->insert([
+                [
+                    'transaksi_id' => $i,
+                    'type' => 1,
+                    'konfirmasiDari' => 'dummy',
+                    'tanggal' => Carbon\Carbon::now(),
+                    'namaBank' => 'BCA',
+                    'namaRekening' => 'dummy',
+                    'nominal' => 1000000,
+                    'status' => 0,
+                    'validasi' => 0,
+                    'dataBulb' => 'dummy.jpg',
+                ]
+            ]);
+        }
     }
 }

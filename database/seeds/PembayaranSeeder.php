@@ -11,15 +11,17 @@ class PembayaranSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pembayaran')->insert([
-            [
-                'pesanan_id' => 1,
-                'user_id' => 1,
-                'tanggal' => Carbon\Carbon::now(),
-                'harga' => 100000,
-                'status' => 0,
-                'urlFile' => 'dummy.com',
-            ]
-        ]);
+        for($i = 1; $i < 11; $i++) {
+            DB::table('pembayaran')->insert([
+                [
+                    'pesanan_id' => $i,
+                    'user_id' => 1,
+                    'tanggal' => Carbon\Carbon::now(),
+                    'harga' => 100000,
+                    'status' => 0,
+                    'urlFile' => 'dummy.com',
+                ]
+            ]);
+        }
     }
 }
