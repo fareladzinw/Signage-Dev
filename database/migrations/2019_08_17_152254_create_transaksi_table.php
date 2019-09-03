@@ -29,7 +29,7 @@ class CreateTransaksiTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('paket_id')->references('id')->on('paket');
-            $table->foreign('pesanan_id')->references('id')->on('paket');
+            $table->foreign('pesanan_id')->references('id')->on('pesanan');
         });
     }
 

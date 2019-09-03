@@ -227,6 +227,7 @@ class UserController extends Controller
             $transaksi                  = new Transaksi;
             $transaksi->user_id         = Auth::user()->id;
             $transaksi->paket_id        = $id;
+            $transaksi->pesanan_id      = $pesanan->id;
             $transaksi->jumlahPesanan   = 1;
             $transaksi->tanggal         = Carbon::now();
             $transaksi->nominal         = $request->harga;
@@ -246,7 +247,6 @@ class UserController extends Controller
             $konfirmasi->nominal = $request->harga;
             $konfirmasi->status = 0;
             $konfirmasi->validasi = 0;
-            $konfirmasi->dataBulb = null;
             $konfirmasi->save();
 
             return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
@@ -312,16 +312,18 @@ class UserController extends Controller
      * @return Resource\Views\Users\Pages\paketAktif.blade.php
      */   
     public function buktiStore(Request $request, $id) 
-    {   
+    {
         $pembayaran = Pembayaran::where('pesanan_id', $id)->first();
 
         $pembayaran->urlFile = $request->buktiPembayaran->getClientOriginalName();
         $pembayaran->save();
-        
+
         $transaksi = Transaksi::where('pesanan_id', $id)->first();
 
-        $transaksi = $request->buktiPembayaran->getClientOriginalName();
-        $transaksi->save();
+        $konfirmasi = Konfirmasi::where('transaksi_id', $transaksi)->first();
+
+        $konfirmasi->dataBulb = $request->buktiPembayaran->getClientOriginalName();
+        $konfirmasi->save();
 
         $image = $request->file('buktiPembayaran');
         $target = '/public/images';
