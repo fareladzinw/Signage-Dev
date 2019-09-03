@@ -534,8 +534,8 @@ class adminController extends Controller
         $transaksi -> statusTayang = 0;
         $transaksi -> save();
 
-    return redirect('/admin/invoice/pesanan-tayang');
-}
+        return redirect('/admin/invoice/pesanan-tayang');
+    }
 
     //=========================
 
@@ -560,10 +560,28 @@ class adminController extends Controller
 
     //CONTROLLER REQUEST PLAYER
     public function daftarRequestPlayer (){
-        Requests::join('player','player.id','=','request.player_id')
-            ->join('playlist','playlist.id','=','request.playlist_id');
+        $request = Requests::join('player','player.id','=','request.player_id')
+            ->join('playlist','playlist.id','=','request.playlist_id')
+            ->get(['player.nama AS namaplayer','playlist.id AS idplaylist','request.tanggal','request.status','request.uniqueId','request.kapasitasFile','request.estimateTransfer','request.id']);
 
-        return view('admin.pages.daftarRequestPlayer');
+        return view('admin.pages.daftarRequestPlayer',['request'=>$request]);
+    }
+
+    public function onRequestPlayer($id){
+        Requests::where('id',$id)->update([
+            'status' => 1
+        ]);
+
+
+        return redirect('/admin/invoice/request-player');
+    }
+
+    public function offRequestPlayer($id){
+        Requests::where('id',$id)->update([
+            'status' => 0
+        ]);
+
+        return redirect('/admin/invoice/request-player');
     }
 
     //==========================================

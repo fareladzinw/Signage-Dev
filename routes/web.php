@@ -88,6 +88,8 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::post('/invoice/konfirmasi-withdraw/{id}', 'adminController@makeKonfirmasiWithdraw')->name('konfirmasiWithdraw');
 
     Route::get('/invoice/request-player', 'adminController@daftarRequestPlayer');
+    Route::post('/invoice/request-player/on/{id}', 'adminController@onRequestPlayer');
+    Route::post('/invoice/request-player/off/{id}', 'adminController@offRequestPlayer');
 
     Route::get('/invoice/riwayat-pesanan', 'adminController@riwayatPesanan');
 
