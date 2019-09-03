@@ -13,6 +13,8 @@ use App\Komisi;
 use App\Withdraw;
 use App\File;
 use App\Pembayaran;
+use App\Transaksi;
+use App\Konfirmasi;
 
 class UserController extends Controller
 {
@@ -222,6 +224,19 @@ class UserController extends Controller
             $pembayaran->harga      = $request->harga;
             $pembayaran->save();
 
+            $transaksi                  = new Transaksi;
+            $transaksi->user_id         = Auth::user()->id;
+            $transaksi->paket_id        = $id;
+            $transaksi->jumlahPesanan   = 1;
+            $transaksi->tanggal         = Carbon::now();
+            $transaksi->nominal         = $request->harga;
+            $transaksi->discount        = 0;
+            $transaksi->total           = $request->harga;
+            $transaksi->statusUpload    = 0;
+            $transaksi->statusTayang    = 0;
+            $transaksi->save();
+
+
             return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
         }
     }
@@ -290,6 +305,10 @@ class UserController extends Controller
 
         $pembayaran->urlFile = $request->buktiPembayaran->getClientOriginalName();
         $pembayaran->save();
+
+        $konfirmasi = new Konfirmasi;
+        $konfirmasi->transaksi_id = $id;
+        
 
         $image = $request->file('buktiPembayaran');
         $target = '/public/images';
