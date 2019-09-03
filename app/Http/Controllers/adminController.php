@@ -554,11 +554,11 @@ class adminController extends Controller
             'validasi' => 1
         ]);
 
-        $transaksi_id = Konfirmasi::where('id','=',$id)->get(['transaksi_id'])->first();
-        $pesanan_id = Transaksi::where('id','=',$transaksi_id)->get(['pesanan_id']);
+        $konfirmasi = Konfirmasi::find($id);
+        $transaksi = Transaksi::where('id','=',$konfirmasi->transaksi_id)->first();
 
-        $pesanan = Pesanan::find($pesanan_id)->first();
-        $pesanan -> status = 1 ;
+        $pesanan = Pesanan::find($transaksi->pesanan_id)->first();
+        $pesanan ->status = 1 ;
         $pesanan ->save();
 
         return redirect('/admin/invoice/konfirmasi-pembayaran');
