@@ -9,7 +9,14 @@
         <div class="box-body">
             <div class="header-afiliasi">
                 <h4 class="header">Jumlah Balance Anda</h4>
-                <h1 class="afiliasi">Rp.{{ $balance }}</h1>
+                <?php
+                  function rupiah($angka){
+                  $hasil_rupiah = 'Rp.' . number_format($angka,2,',','.');
+                  return $hasil_rupiah;}
+                ?>
+                <h1 class="afiliasi">
+                  {{rupiah($balance)}}
+                </h1>
             </div>
             <div class="field-penarikan">
                 <label class="label">Jumlah penarikan</label>

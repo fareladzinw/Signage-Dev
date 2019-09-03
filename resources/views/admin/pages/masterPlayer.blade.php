@@ -29,7 +29,7 @@
               </section>
         </div>
       <div class="col-md-2"><button  type="button" class="btn btn-block btn-warning" onclick="exportTableToExcel('master-player', 'report-master-player')">Dowload Excel</button></div>
-      <div class="col-md-2"><a href="{{url('/admin/player/master-player/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tabmbah Data</button></a></div>
+      <div class="col-md-2"><a href="{{url('/admin/player/master-player/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tambah Data</button></a></div>
     </div>
     </div>
     <!-- /.box-header -->

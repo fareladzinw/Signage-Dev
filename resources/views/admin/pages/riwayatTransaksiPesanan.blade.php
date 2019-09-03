@@ -15,11 +15,12 @@
                         </h1>
                     </section>
                 </div>
+                <div class="col-md-2"><button  type="button" class="btn btn-block btn-warning" onclick="exportTableToExcel('list-transaksi', 'report-list-transaksi')">Dowload Excel</button></div>
            </div>
     </div>
 <!-- /.box-header -->
     <div class="box-body">
-      <table id="list-user" class="table table-bordered table-hover">
+      <table id="list-transaksi" class="table table-bordered table-hover">
         <thead>
         <tr>
           <th>Nama User</th>
@@ -69,5 +70,35 @@
         'autoWidth'   : false
       })
     })
+    function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+  }
   </script>
 @endsection
