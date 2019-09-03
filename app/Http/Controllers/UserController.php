@@ -320,7 +320,7 @@ class UserController extends Controller
 
         $transaksi = Transaksi::where('pesanan_id', $id)->first();
 
-        $konfirmasi = Konfirmasi::where('transaksi_id', $transaksi)->first();
+        $konfirmasi = Konfirmasi::where('transaksi_id', $transaksi->id)->first();
 
         $konfirmasi->dataBulb = $request->buktiPembayaran->getClientOriginalName();
         $konfirmasi->save();
