@@ -321,6 +321,7 @@ class UserController extends Controller
         $transaksi = Transaksi::where('pesanan_id', $id)->first();
 
         $transaksi = $request->buktiPembayaran->getClientOriginalName();
+        $transaksi->save();
 
         $image = $request->file('buktiPembayaran');
         $target = '/public/images';
