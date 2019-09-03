@@ -15,6 +15,7 @@ class TransaksiSeeder extends Seeder
             [
                 'user_id' => 1,
                 'paket_id' => 1,
+                'pesanan_id' => 1,
                 'jumlahPesanan' => 1,
                 'tanggal' => Carbon\Carbon::now(),
                 'nominal' => 100000,
