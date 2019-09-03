@@ -510,17 +510,29 @@ class adminController extends Controller
     }
 
     public function onPesananTayang($id){
-        Content::where('id',$id)->update([
+        $content = Content::where('id',$id)->update([
             'status' => 1
         ]);
+
+        $transaksi_id = Content::where('id',$id)->get(['transaksi_id']);
+
+        $transaksi = Transaksi::find($transaksi_id)->first();
+        $transaksi -> statusTayang = 1;
+        $transaksi -> save();
 
         return redirect('/admin/invoice/pesanan-tayang');
     }
 
     public function offPesananTayang($id){
-    Content::where('id',$id)->update([
-        'status' => 0
-    ]);
+        Content::where('id',$id)->update([
+            'status' => 0
+        ]);
+
+        $transaksi_id = Content::where('id',$id)->get(['transaksi_id']);
+
+        $transaksi = Transaksi::find($transaksi_id)->first();
+        $transaksi -> statusTayang = 0;
+        $transaksi -> save();
 
     return redirect('/admin/invoice/pesanan-tayang');
 }
@@ -548,6 +560,9 @@ class adminController extends Controller
 
     //CONTROLLER REQUEST PLAYER
     public function daftarRequestPlayer (){
+        Requests::join('player','player.id','=','request.player_id')
+            ->join('playlist','playlist.id','=','request.playlist_id');
+
         return view('admin.pages.daftarRequestPlayer');
     }
 

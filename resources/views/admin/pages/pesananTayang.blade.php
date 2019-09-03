@@ -57,14 +57,14 @@
                         <form action="/admin/invoice/pesanan-tayang/on/{{$p->id}}" method="post">
                           {{csrf_field()}}
                           <div class="col-md-12">
-                            <button type="submit" class="btn btn-block btn-warning">Tanyangkan </button>
+                            <button type="submit" class="btn btn-block btn-warning">Validasi </button>
                           </div>
                         </form>
                       @elseif($p->status === 1)
                               <form action="/admin/invoice/pesanan-tayang/off/{{$p->id}}" method="post">
                                   {{csrf_field()}}
                                   <div class="col-md-12">
-                                      <button type="submit" class="btn btn-block btn-warning">Batal Tanyangkan</button>
+                                      <button type="submit" class="btn btn-block btn-warning">Batal Validasi</button>
                                   </div>
                               </form>
                       @endif
