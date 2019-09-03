@@ -86,6 +86,9 @@ class AuthController extends Controller
             'alamat' => 'required',
             'hp' => 'required',
             'email' => 'required|email',
+            'namaBank' => 'required',
+            'nomorRekening' => 'required',
+            'namaRekening' => 'required',
             'password' => 'required|min:6',
             'repassword' => 'required|min:6|same:password',
         ]);
@@ -95,6 +98,9 @@ class AuthController extends Controller
         $data->username = $request->username;
         $data->alamat = $request->alamat;
         $data->hp = $request->hp;
+        $data->namaBank = $request->namaBank;
+        $data->nomorRekening = $request->nomorRekening;
+        $data->namaRekening = $request->namaRekening;
         $data->tipeClient = 1;
         $data->dateTime = Carbon::now();
         $data->email = $request->email;

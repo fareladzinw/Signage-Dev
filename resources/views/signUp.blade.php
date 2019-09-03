@@ -37,11 +37,11 @@
       </head>
 <body class="hold-transition register-page">
     <div class="register-box">
-        <div class="register-logo" style="margin-top: -20%;">
+        <div class="register-logo" style="margin-top: -25%;">
             <a href="../../index2.html"><b>Signage</b>DEV</a>
         </div>
         
-        <div class="register-box-body">
+        <div class="register-box-body" style="margin-top: -5%;">
             <p class="login-box-msg">Register a new membership</p>
         
             <form action="{{ route('postRegister') }}" method="post">
@@ -83,6 +83,33 @@
                     @if($errors->has('username'))
                     <div class="text-danger">
                         {{ $errors->first('username')}}
+                    </div>
+                    @endif
+            </div>
+            <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Nama Bank" name="namaBank">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    @if($errors->has('namaBank'))
+                    <div class="text-danger">
+                        {{ $errors->first('namaBank')}}
+                    </div>
+                    @endif
+            </div>
+            <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Nomor Rekening" name="nomorRekening">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    @if($errors->has('nomorRekening'))
+                    <div class="text-danger">
+                        {{ $errors->first('nomorRekening')}}
+                    </div>
+                    @endif
+            </div>
+            <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Nama Rekening" name="namaRekening">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    @if($errors->has('namaRekening'))
+                    <div class="text-danger">
+                        {{ $errors->first('namaRekening')}}
                     </div>
                     @endif
             </div>
