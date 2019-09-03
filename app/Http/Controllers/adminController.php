@@ -549,27 +549,44 @@ class adminController extends Controller
     }
 
     public function makeKonfirmasiPemabayaran($id){
-        Konfirmasi::where('id',$id)->update([
-            'status' => 1,
-            'validasi' => 1
-        ]);
+        $check = Konfirmasi::where('id',$id)->where('validasi','=',1)->first();
 
-        $konfirmasi = Konfirmasi::find($id);
-        $transaksi = Transaksi::where('id','=',$konfirmasi->transaksi_id)->first();
+        if($check === null){
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail1','Tidak dapat dikonfirmasi, karena belum melihat bukti pembayaran');
+        }
+        else {
+            Konfirmasi::where('id',$id)->update([
+                'status' => 1
+            ]);
 
-        $pesanan = Pesanan::find($transaksi->pesanan_id)->first();
-        $pesanan ->status = 1 ;
-        $pesanan ->save();
+            $konfirmasi = Konfirmasi::find($id);
+            $transaksi = Transaksi::where('id','=',$konfirmasi->transaksi_id)->first();
 
-        return redirect('/admin/invoice/konfirmasi-pembayaran');
+            $pesanan = Pesanan::find($transaksi->pesanan_id)->first();
+            $pesanan ->status = 1 ;
+            $pesanan ->save();
+
+            return redirect('/admin/invoice/konfirmasi-pembayaran');
+        }
     }
 
     public function downloadKonfirmasiPemabayaran($id){
-        $filename = Konfirmasi::where('id',$id)->first();
+        $check = Konfirmasi::where('id',$id)->first();
 
-        $filepath = public_path('images/').$filename->dataBulb;
+        if($check->dataBulb === null){
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail2','User Belum Mengupload Bukti Pembayaran');
+        }
+        else{
+            Konfirmasi::where('id',$id)->update([
+                'validasi' => 1
+            ]);
 
-        return response()->download($filepath);
+            $filename = Konfirmasi::where('id',$id)->first();
+
+            $filepath = public_path('images/').$filename->dataBulb;
+
+            return response()->download($filepath);
+        }
     }
 
     //============================================

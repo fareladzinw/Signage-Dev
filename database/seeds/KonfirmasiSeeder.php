@@ -23,7 +23,7 @@ class KonfirmasiSeeder extends Seeder
                     'nominal' => 1000000,
                     'status' => 0,
                     'validasi' => 0,
-                    'dataBulb' => 'dummy.jpg',
+                    'dataBulb' => null,
                 ]
             ]);
         }

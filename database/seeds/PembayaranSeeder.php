@@ -19,7 +19,7 @@ class PembayaranSeeder extends Seeder
                     'tanggal' => Carbon\Carbon::now(),
                     'harga' => 100000,
                     'status' => 0,
-                    'urlFile' => 'dummy.com',
+                    'urlFile' => null,
                 ]
             ]);
         }

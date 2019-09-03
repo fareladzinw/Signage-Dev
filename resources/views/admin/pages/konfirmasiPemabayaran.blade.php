@@ -8,6 +8,18 @@
 <div class="box ">
     <div class="box-header">
       <div class="column">
+          @if (\Session::has('alert-fail1'))
+              <div class="alert alert-danger">
+                  <button type="button" class="close">x</button>
+                  <div>{{Session::get('alert-fail1')}}</div>
+              </div>
+          @endif
+              @if (\Session::has('alert-fail2'))
+                  <div class="alert alert-danger">
+                      <button type="button" class="close">x</button>
+                      <div>{{Session::get('alert-fail2')}}</div>
+                  </div>
+              @endif
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
