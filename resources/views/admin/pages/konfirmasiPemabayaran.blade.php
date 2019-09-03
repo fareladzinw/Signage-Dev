@@ -43,7 +43,7 @@
               <td>{{$k->type}}</td>
               <td>{{$k->konfirmasiDari}}</td>
               <td>{{$k->tanggal}}</td>
-              <td>{{$k->id}}</td>
+              <td>{{$k->idtransaksi}}</td>
               <td>{{$k->namaBank}}</td>
                <td>{{$k->namaRekening}}</td>
                <td>{{$k->nominal}}</td>
@@ -53,7 +53,18 @@
                <td>
                   <div class="column">
                       <div class="col-md-6"><a href="" class="btn btn-block btn-primary">Download</a></div>
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-warning">Konfirmasi</a></div>
+                      @if($k->status === 0)
+                          <form action="/admin/invoice/konfirmasi-pembayaran/{{$k->id}}" method="post">
+                              {{csrf_field()}}
+                              <div class="col-md-6">
+                                  <button type="submit" class="btn btn-block btn-warning">Konfirmasi</button>
+                              </div>
+                          </form>
+                      @elseif($k->status === 1)
+                              <div class="col-md-6">
+                                  <p class="btn btn-block btn-warning">Telah Dikonfirmasi</p>
+                              </div>
+                      @endif
                     </div>
               </td>
             </tr>

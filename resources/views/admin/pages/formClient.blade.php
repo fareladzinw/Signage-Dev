@@ -28,26 +28,56 @@
                                 <div class="form-group">
                                     <label for="player">Nama Client</label>
                                     <input name="nama" type="text" class="form-control" placeholder="Nama" value="{{$c->nama}}">
+                                    @if($errors->has('nama'))
+                                        <div class="text-danger">
+                                            {{$errors->first('nama')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Email</label>
                                     <input name="email" type="text" class="form-control" placeholder="Email" value="{{$c->email}}">
+                                    @if($errors->has('email'))
+                                        <div class="text-danger">
+                                            {{$errors->first('email')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Alamat</label>
                                     <input name="alamat" type="text" class="form-control" placeholder="Alamat" value="{{$c->alamat}}">
+                                    @if($errors->has('alamat'))
+                                        <div class="text-danger">
+                                            {{$errors->first('alamat')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">No. HP</label>
                                     <input name="hp" type="text" class="form-control" placeholder="No.HP" value="{{$c->hp}}">
+                                    @if($errors->has('hp'))
+                                        <div class="text-danger">
+                                            {{$errors->first('hp')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Username</label>
                                     <input name="username" type="text" class="form-control" placeholder="Username" value="{{$c->username}}">
+                                    @if($errors->has('username'))
+                                        <div class="text-danger">
+                                            {{$errors->first('username')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Password</label>
                                     <input name="password" type="text" class="form-control" placeholder="Masukan Kembali Password">
+                                    @if($errors->has('password'))
+                                        <div class="text-danger">
+                                            {{$errors->first('password')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <button  type="submit" class="btn btn-block btn-danger">Edit Data</button>

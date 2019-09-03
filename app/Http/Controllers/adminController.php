@@ -37,11 +37,19 @@ class adminController extends Controller
     }
 
     public function storeDataMasterPlayer(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'lokasi' => 'required',
+            'keyplayer' => 'required',
+            'password' => 'required',
+            'spesifikasi' => 'required',
+        ]);
+
         $data = new Player();
         $data->nama = $request->nama;
         $data->lokasi = $request->lokasi;
-        $data->KEYPLAYER = $request->KEYPLAYER;
-        $data->PASSWORD = $request->PASSWORD;
+        $data->KEYPLAYER = $request->keyplayer;
+        $data->PASSWORD = $request->password;
         $data->spesifikasi = $request->spesifikasi;
         $data->save();
 
@@ -56,6 +64,14 @@ class adminController extends Controller
     }
 
     public function editDataMasterPlayer($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'lokasi' => 'required',
+            'keyplayer' => 'required',
+            'password' => 'required',
+            'spesifikasi' => 'required',
+        ]);
+
         Player::where('id',$id)->update([
             'nama' => $request->nama,
             'lokasi' => $request->lokasi,
@@ -94,6 +110,14 @@ class adminController extends Controller
     }
 
     public function storeDataMasterLayout(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'width' => 'required',
+            'height' => 'required',
+            'statusFullscreen' => 'required',
+            'orientation' => 'required',
+        ]);
+
         $data = new Layout();
         $data->nama = $request->nama;
         $data->width = $request->width;
@@ -113,6 +137,14 @@ class adminController extends Controller
     }
 
     public function editDataMasterLayout($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'width' => 'required',
+            'height' => 'required',
+            'statusFullscreen' => 'required',
+            'orientation' => 'required',
+        ]);
+
         Layout::where('id',$id)->update([
             'nama' => $request->nama,
             'width' => $request->width,
@@ -151,6 +183,11 @@ class adminController extends Controller
     }
 
     public function storeDataMasterKategori(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'keterangan' => 'required',
+        ]);
+
         $data = new Kategori();
         $data->nama = $request->nama;
         $data->keterangan = $request->keterangan;
@@ -167,6 +204,11 @@ class adminController extends Controller
     }
 
     public function editDataMasterKategori($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'keterangan' => 'required',
+        ]);
+
         Kategori::where('id',$id)->update([
             'nama' => $request->nama,
             'keterangan' => $request->keterangan
@@ -212,6 +254,15 @@ class adminController extends Controller
     }
 
     public function editDataMasterClient($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'email' => 'required|email',
+            'alamat' => 'required',
+            'hp' => 'required',
+            'username' => 'required',
+            'password' => 'required|min:6'
+        ]);
+
         User::where('id',$id)->update([
             'nama' => $request->nama,
             'email' => $request->email,
@@ -253,6 +304,18 @@ class adminController extends Controller
     }
 
     public function storeDataMasterPaket(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'harga' => 'required',
+            'durasi' => 'required',
+            'jumlahPlayer' => 'required',
+            'jenisContent' => 'required',
+            'startShow' => 'required|date',
+            'endShow' => 'required|date',
+            'jumlahFile' => 'required',
+            'status' => 'required'
+        ]);
+
         $data = new Paket();
         $data->nama = $request->nama;
         $data->harga = $request->harga;
@@ -276,6 +339,18 @@ class adminController extends Controller
     }
 
     public function editDataMasterPaket($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'harga' => 'required',
+            'durasi' => 'required',
+            'jumlahPlayer' => 'required',
+            'jenisContent' => 'required',
+            'startShow' => 'required|date',
+            'endShow' => 'required|date',
+            'jumlahFile' => 'required',
+            'status' => 'required'
+        ]);
+
         Paket::where('id',$id)->update([
             'nama' => $request->nama,
             'harga' => $request->harga,
@@ -327,6 +402,17 @@ class adminController extends Controller
     }
 
     public function storeDataMasterPlaylist(Request $request){
+        $this->validate($request, [
+            'player_id' => 'required',
+            'media_id' => 'required',
+            'layout_id' => 'required',
+            'kategori_id' => 'required',
+            'paket_id' => 'required',
+            'duration' => 'required',
+            'statusLoop' => 'required',
+            'statusMedia' => 'required',
+        ]);
+
         $data = new Playlist();
         $data->player_id = $request->player_id;
         $data->media_id = $request->media_id;
@@ -361,6 +447,17 @@ class adminController extends Controller
     }
 
     public function editDataMasterPlaylist($id, Request $request){
+        $this->validate($request, [
+            'player_id' => 'required',
+            'media_id' => 'required',
+            'layout_id' => 'required',
+            'kategori_id' => 'required',
+            'paket_id' => 'required',
+            'duration' => 'required',
+            'statusLoop' => 'required',
+            'statusMedia' => 'required',
+        ]);
+
         Playlist::where('id',$id)->update([
             'player_id' => $request->player_id,
             'media_id' => $request->media_id,
@@ -386,9 +483,17 @@ class adminController extends Controller
     //CONTROLLER WITHDRAW AFILIASi
     public function konfirmasiWithdraw (){
         $withdraw = Withdraw::join('users','users.id','=','withdraw.user_id')
-            ->get(['users.id','users.nama','withdraw.tanggal','withdraw.nominal','withdraw.status','users.namaBank','users.nomorRekening']);
+            ->get(['users.id AS userid','users.nama','withdraw.tanggal','withdraw.nominal','withdraw.status','users.namaBank','users.nomorRekening','withdraw.id']);
 
         return view('admin.pages.konfirmasiWithdraw',['withdraw'=>$withdraw]);
+    }
+
+    public function makeKonfirmasiWithdraw($id){
+        Withdraw::where('id',$id)->update([
+            'status' => 1
+        ]);
+
+        return redirect('/admin/invoice/konfirmasi-withdraw');
     }
 
     //================================
@@ -399,25 +504,65 @@ class adminController extends Controller
             ->join('paket','paket.id','=','content.paket_id')
             ->join('playlist','playlist.id','=','content.playlist_id')
             ->join('users','users.id','=','content.user_id')
-            ->get(['transaksi.id AS idtrans','paket.nama AS namapaket','playlist.id AS idplaylist','users.nama AS namauser','content.status','content.startTayang','content.endTayang','content.numberFile','content.typeFile','content.urlFile','content.orderFile']);
+            ->get(['transaksi.id AS idtrans','paket.nama AS namapaket','playlist.id AS idplaylist','users.nama AS namauser','content.status','content.startTayang','content.endTayang','content.numberFile','content.typeFile','content.urlFile','content.orderFile','content.id as id']);
 
         return view('admin.pages.pesananTayang',['pesanan'=>$pesanan]);
     }
+
+    public function onPesananTayang($id){
+        $content = Content::where('id',$id)->update([
+            'status' => 1
+        ]);
+
+        $transaksi_id = Content::where('id',$id)->get(['transaksi_id']);
+
+        $transaksi = Transaksi::find($transaksi_id)->first();
+        $transaksi -> statusTayang = 1;
+        $transaksi -> save();
+
+        return redirect('/admin/invoice/pesanan-tayang');
+    }
+
+    public function offPesananTayang($id){
+        Content::where('id',$id)->update([
+            'status' => 0
+        ]);
+
+        $transaksi_id = Content::where('id',$id)->get(['transaksi_id']);
+
+        $transaksi = Transaksi::find($transaksi_id)->first();
+        $transaksi -> statusTayang = 0;
+        $transaksi -> save();
+
+    return redirect('/admin/invoice/pesanan-tayang');
+}
 
     //=========================
 
     //CONTROLLER KONFIRMASI PEMBAYARAN
     public function konfirmasiPemabayaran (){
         $konfirmasi = Konfirmasi::join('transaksi','transaksi.id','=','konfirmasi.transaksi_id')
-            ->get(['konfirmasi.type','konfirmasi.konfirmasiDari','konfirmasi.tanggal','transaksi.id','konfirmasi.namaBank','konfirmasi.namaRekening','konfirmasi.nominal','konfirmasi.status','konfirmasi.validasi','konfirmasi.dataBulb']);
+            ->get(['konfirmasi.type','konfirmasi.konfirmasiDari','konfirmasi.tanggal','transaksi.id AS idtransaksi','konfirmasi.namaBank','konfirmasi.namaRekening','konfirmasi.nominal','konfirmasi.status','konfirmasi.validasi','konfirmasi.dataBulb','konfirmasi.id']);
 
         return view('admin.pages.konfirmasiPemabayaran',['konfirmasi'=>$konfirmasi]);
+    }
+
+    public function makeKonfirmasiPemabayaran($id){
+        Konfirmasi::where('id',$id)->update([
+            'status' => 1,
+            'validasi' => 1
+        ]);
+
+        return redirect('/admin/invoice/konfirmasi-pembayaran');
     }
 
     //============================================
 
     //CONTROLLER REQUEST PLAYER
     public function daftarRequestPlayer (){
+        Requests::join('player','player.id','=','request.player_id')
+            ->join('playlist','playlist.id','=','request.playlist_id');
+
         return view('admin.pages.daftarRequestPlayer');
     }
 
