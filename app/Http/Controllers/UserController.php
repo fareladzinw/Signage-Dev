@@ -236,6 +236,18 @@ class UserController extends Controller
             $transaksi->statusTayang    = 0;
             $transaksi->save();
 
+            $konfirmasi = new Konfirmasi;
+            $konfirmasi->transaksi_id = $transaksi->id;
+            $konfirmasi->type = null;
+            $konfirmasi->konfirmasiDari = null;
+            $konfirmasi->tanggal = Carbon::now();
+            $konfirmasi->namaBank = Auth::user()->namaBank;
+            $konfirmasi->namaRekening = Auth::user()->namaRekening;
+            $konfirmasi->nominal = $request->harga;
+            $konfirmasi->status = 0;
+            $konfirmasi->validasi = 0;
+            $konfirmasi->dataBulb = null;
+            $konfirmasi->save();
 
             return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
         }
