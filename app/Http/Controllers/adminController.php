@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\Pesanan;
 use App\Transaksi;
 use Carbon\Carbon;
 use http\Client;
@@ -552,6 +553,13 @@ class adminController extends Controller
             'status' => 1,
             'validasi' => 1
         ]);
+
+        $transaksi_id = Konfirmasi::where('id','=',$id)->get(['transaksi_id'])->first();
+        $pesanan_id = Transaksi::where('id','=',$transaksi_id)->get(['pesanan_id']);
+
+        $pesanan = Pesanan::find($pesanan_id)->first();
+        $pesanan -> status = 1 ;
+        $pesanan ->save();
 
         return redirect('/admin/invoice/konfirmasi-pembayaran');
     }
