@@ -78,10 +78,14 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 
     //ROUTE INVOICE
     Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang');
+    Route::post('/invoice/pesanan-tayang/on/{id}', 'adminController@onPesananTayang');
+    Route::post('/invoice/pesanan-tayang/off/{id}', 'adminController@offPesananTayang');
 
     Route::get('/invoice/konfirmasi-pembayaran', 'adminController@konfirmasiPemabayaran');
+    Route::post('/invoice/konfirmasi-pembayaran/{id}', 'adminController@makeKonfirmasiPemabayaran')->name('konfirasiPembayaran');
 
     Route::get('/invoice/konfirmasi-withdraw', 'adminController@konfirmasiWithdraw');
+    Route::post('/invoice/konfirmasi-withdraw/{id}', 'adminController@makeKonfirmasiWithdraw')->name('konfirmasiWithdraw');
 
     Route::get('/invoice/request-player', 'adminController@daftarRequestPlayer');
 
