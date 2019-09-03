@@ -23,23 +23,47 @@
       <table id="daftar-request" class="table table-bordered table-hover">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Telp</th>
-          <th>Role</th>
-          <th>Username</th>
-          <th>Password</th>
+          <th>Nama Player</th>
+          <th>ID Playlist</th>
+          <th>Tanggal Request</th>
+          <th>Status Request</th>
+            <th>Id Unique</th>
+          <th>Kapasitas File Request</th>
+            <th>Estimate Tansfer</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
-          @for ($i = 0; $i < 4; $i++)
+          @foreach($request as $r)
           <tr>
-              <td>Adam GV</td>
-              <td>081222344564</td>
-              <td>Premium</td>
-              <td>Bucin</td>
-              <td>Akubucin123</td>
-            </tr>
-          @endfor
+              <td>{{$r -> namaplayer}}</td>
+              <td>{{$r -> idplaylist}}</td>
+              <td>{{$r -> tanggal}}</td>
+              <td>{{$r -> status}}</td>
+              <td>{{$r -> uniqueId}}</td>
+              <td>{{$r -> kapasitasFile}}</td>
+              <td>{{$r -> estimateTransfer}}</td>
+              <td>
+                  <div class="column">
+                      @if($r->status === 0)
+                          <form action="/admin/invoice/request-player/on/{{$r->id}}" method="post">
+                              {{csrf_field()}}
+                              <div class="col-md-12">
+                                  <button type="submit" class="btn btn-block btn-warning">Validasi </button>
+                              </div>
+                          </form>
+                      @elseif($r->status === 1)
+                          <form action="/admin/invoice/request-player/off/{{$r->id}}" method="post">
+                              {{csrf_field()}}
+                              <div class="col-md-12">
+                                  <button type="submit" class="btn btn-block btn-warning">Batal Validasi</button>
+                              </div>
+                          </form>
+                      @endif
+                  </div>
+              </td>
+          </tr>
+          @endforeach
     </tbody>
   </table>
 </div>
