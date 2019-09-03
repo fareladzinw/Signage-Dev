@@ -305,9 +305,6 @@ class UserController extends Controller
 
         $pembayaran->urlFile = $request->buktiPembayaran->getClientOriginalName();
         $pembayaran->save();
-
-        $konfirmasi = new Konfirmasi;
-        $konfirmasi->transaksi_id = $id;
         
 
         $image = $request->file('buktiPembayaran');
