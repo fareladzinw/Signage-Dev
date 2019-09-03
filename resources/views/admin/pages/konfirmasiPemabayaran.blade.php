@@ -52,7 +52,10 @@
                <td>{{$k->dataBulb}}</td>
                <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-primary">Download</a></div>
+                      <form action="/admin/invoice/download-pembayaran/{{$k->id}}" method="post">
+                          {{csrf_field()}}
+                          <div class="col-md-6"><button type="submit" class="btn btn-block btn-primary">download</button></div>
+                      </form>
                       @if($k->status === 0)
                           <form action="/admin/invoice/konfirmasi-pembayaran/{{$k->id}}" method="post">
                               {{csrf_field()}}

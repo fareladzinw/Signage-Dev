@@ -83,6 +83,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 
     Route::get('/invoice/konfirmasi-pembayaran', 'adminController@konfirmasiPemabayaran');
     Route::post('/invoice/konfirmasi-pembayaran/{id}', 'adminController@makeKonfirmasiPemabayaran')->name('konfirasiPembayaran');
+    Route::post('/invoice/download-pembayaran/{id}', 'adminController@downloadKonfirmasiPemabayaran')->name('downloadPembayaran');
 
     Route::get('/invoice/konfirmasi-withdraw', 'adminController@konfirmasiWithdraw');
     Route::post('/invoice/konfirmasi-withdraw/{id}', 'adminController@makeKonfirmasiWithdraw')->name('konfirmasiWithdraw');

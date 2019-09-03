@@ -556,6 +556,14 @@ class adminController extends Controller
         return redirect('/admin/invoice/konfirmasi-pembayaran');
     }
 
+    public function downloadKonfirmasiPemabayaran($id){
+        $filename = Konfirmasi::where('id',$id)->pluck('dataBulb');
+
+        $filepath = public_path('images/').$filename;
+
+        return response()->download($filepath);
+    }
+
     //============================================
 
     //CONTROLLER REQUEST PLAYER
