@@ -6,6 +6,10 @@
 @section('content')
 
      @foreach($pakets as $p)
+     @if(\Carbon\Carbon::now()->format('Y-m-d') > \Carbon\Carbon::parse($p->startShow)->format('Y-m-d')
+     && \Carbon\Carbon::now()->format('Y-m-d') < \Carbon\Carbon::parse($p->endShow)->format('Y-m-d')
+     || \Carbon\Carbon::now()->format('Y-m-d') == \Carbon\Carbon::parse($p->startShow)->format('Y-m-d')
+     || \Carbon\Carbon::now()->format('Y-m-d') == \Carbon\Carbon::parse($p->endShow)->format('Y-m-d'))
      <div class="card">
      <div class="box box-info">
             <div class="box-header">
@@ -24,5 +28,6 @@
           </div>
           </div>
         </div>
+     @endif
      @endforeach
 @endsection

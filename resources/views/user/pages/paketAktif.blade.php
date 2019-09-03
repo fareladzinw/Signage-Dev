@@ -9,6 +9,12 @@
       <div>{{Session::get('alert-success')}}</div>
     </div>
     @endif
+    @if (\Session::has('alert-danger'))
+    <div class="alert alert-danger">
+      <a href="{{ route('paket') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+      <div>{{Session::get('alert-danger')}}</div>
+    </div>
+    @endif
     <div class="box box-info">
         <div class="box-body">
           <table id="paket-status" class="table table-bordered table-hover">

@@ -1,6 +1,6 @@
 @extends('user.master')
-@section('judul', 'Paket Aktif')
-@section('deskripsi', 'Informasi Status Paket Anda')
+@section('judul', 'Riwayat Withdraw')
+@section('deskripsi', 'Informasi Riwayat Withdrawal')
 @section('content')
     <div class="col-xs-12">
     @if (\Session::has('alert-success'))

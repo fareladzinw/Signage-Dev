@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::get('call_player/{idPlayer}/{keyPlayer}', 'ApiController@getSetupPlayer');
+Route::get('get_signage/{idPlayer}/{keyPlayer}/{idUnique}', 'ApiController@getDaftarIklan');
+Route::get('download_content/{idPlayer}/{keyPlayer}', 'ApiController@getContentIklan');
+Route::get('afiliasi/{idUser}', 'ApiController@getDaftarAfiliasiClient');
+Route::post('withdraw/{idUser}', 'ApiController@postWithdrawAfiliasi');
+Route::get('rekap_afiliasi/{idUser}/{tanggal}', 'ApiController@getRekapAfiliasi');
+Route::post('set_afiliasi/{kodeAfiliasi}', 'ApiController@postRegAfiliasi');
+

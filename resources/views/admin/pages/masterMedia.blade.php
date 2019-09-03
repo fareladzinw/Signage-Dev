@@ -42,9 +42,7 @@
               <td>{{$m->url}}</td>
               <td>{{$m->statusDownload}}</td>
               <td>
-                  <div class="column">
-                      <div class="col-md-12"><a href="" class="btn btn-block btn-primary">Download</a></div>
-                 </div>
+                <a href="" class="btn btn-block btn-primary">Download</a>
               </td>
             </tr>
           @endforeach

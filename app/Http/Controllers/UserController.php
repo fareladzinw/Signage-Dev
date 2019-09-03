@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Paket;
 use App\Pesanan;
@@ -11,6 +12,9 @@ use App\User;
 use App\Komisi;
 use App\Withdraw;
 use App\File;
+use App\Pembayaran;
+use App\Transaksi;
+use App\Konfirmasi;
 
 class UserController extends Controller
 {
@@ -60,7 +64,7 @@ class UserController extends Controller
         }
         
         $balance = $nilaiKomisi - $nilaiWithdraw;
-        return view('user.pages.paketAKtif')->with(['pesanans' => $pesanans, 'balance' => $balance]);
+        return view('user.pages.paketAktif')->with(['pesanans' => $pesanans, 'balance' => $balance]);
     }
 
     /**
@@ -175,8 +179,18 @@ class UserController extends Controller
      */   
     public function pesanIndex($id) 
     {   
-        $paket = Paket::where('id', $id)->first();
-        return view('user.pages.pesan')->with(['paket' => $paket]);
+        $paket = Paket::find($id);
+        $dates = $this->generateDateRange(Carbon::parse($paket->startShow), Carbon::parse($paket->endShow));
+        
+        return view('user.pages.pesan')->with(['paket' => $paket, 'dates' => $dates]);
+    }
+
+    private function generateDateRange(Carbon $to, Carbon $from)
+    {
+        for($date = $to; $date->lte($from); $date->addDay()) {
+            $dates[] = $date->format('Y-m-d');
+        }
+        return $dates;
     }
 
     /**
@@ -189,17 +203,42 @@ class UserController extends Controller
             'startShow' => 'required|date',
             'endShow'   => 'required|date'
         ]);
+            
+        if(Carbon::parse($request->startShow)->format('Y-m-d') > Carbon::parse($request->endShow)->format('Y-m-d')) {
+            return redirect()->route('paket')->with('alert-danger', 'Masukkan tanggal yang benar!');
+        } else {
+            $pesanan            = new Pesanan;
+            $pesanan->paket_id  = $id;
+            $pesanan->user_id   = Auth::user()->id;
+            $pesanan->tanggal   = Carbon::now();
+            $pesanan->status    = 0;
+            $pesanan->startShow = Carbon::parse($request->startShow)->format('Y-m-d');
+            $pesanan->endShow   = Carbon::parse($request->endShow)->format('Y-m-d');
+            $pesanan->save();
+            
+            $pembayaran             = new Pembayaran;
+            $pembayaran->pesanan_id = $pesanan->id;
+            $pembayaran->user_id    = Auth::user()->id;
+            $pembayaran->tanggal    = Carbon::now();
+            $pembayaran->status     = 0;
+            $pembayaran->harga      = $request->harga;
+            $pembayaran->save();
 
-        $pesanan            = new Pesanan;
-        $pesanan->paket_id  = $id;
-        $pesanan->user_id   = Auth::user()->id;
-        $pesanan->tanggal   = Carbon::now();
-        $pesanan->status    = 0;
-        $pesanan->startShow = Carbon::parse($request->startShow)->format('Y-m-d');
-        $pesanan->endShow   = Carbon::parse($request->endShow)->format('Y-m-d');
-        $pesanan->save();
+            $transaksi                  = new Transaksi;
+            $transaksi->user_id         = Auth::user()->id;
+            $transaksi->paket_id        = $id;
+            $transaksi->jumlahPesanan   = 1;
+            $transaksi->tanggal         = Carbon::now();
+            $transaksi->nominal         = $request->harga;
+            $transaksi->discount        = 0;
+            $transaksi->total           = $request->harga;
+            $transaksi->statusUpload    = 0;
+            $transaksi->statusTayang    = 0;
+            $transaksi->save();
 
-        return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
+
+            return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
+        }
     }
 
     /**
@@ -209,7 +248,11 @@ class UserController extends Controller
     public function uploadIndex($id) 
     {   
         $pesanan = Pesanan::find($id);
-        return view('user.pages.uploadContent')->with(['pesanan' => $pesanan]);
+        if($pesanan->status === 1) {
+            return view('user.pages.uploadContent')->with(['pesanan' => $pesanan]);
+        } else {
+            return redirect()->route('paket')->with('alert-danger', 'Mohon konfirmasi pembayaran');
+        }
     }
 
     /**
@@ -232,6 +275,8 @@ class UserController extends Controller
         $file->status       = 0;
         $file->url          = "http://aksesdatautama.com/arba_signage/public/". $file->nama;
         $file->save();
+
+
         
         $image = $request->file('file');
         $target = '/public/images';
@@ -256,10 +301,11 @@ class UserController extends Controller
      */   
     public function buktiStore(Request $request, $id) 
     {   
-        $pesanan = Pesanan::find($id);
+        $pembayaran = Pembayaran::where('pesanan_id', $id)->first();
 
-        $pesanan->buktiPembayaran = $request->buktiPembayaran->getClientOriginalName();
-        $pesanan->save();
+        $pembayaran->urlFile = $request->buktiPembayaran->getClientOriginalName();
+        $pembayaran->save();
+        
 
         $image = $request->file('buktiPembayaran');
         $target = '/public/images';
