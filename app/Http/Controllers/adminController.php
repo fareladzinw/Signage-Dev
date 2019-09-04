@@ -312,7 +312,6 @@ class adminController extends Controller
             'startShow' => 'required|date',
             'endShow' => 'required|date',
             'jumlahFile' => 'required',
-            'status' => 'required'
         ]);
 
         $data = new Paket();
@@ -347,7 +346,6 @@ class adminController extends Controller
             'startShow' => 'required|date',
             'endShow' => 'required|date',
             'jumlahFile' => 'required',
-            'status' => 'required'
         ]);
 
         Paket::where('id',$id)->update([

@@ -131,6 +131,7 @@
                         <div class="box-body">
                             <form action={{ route('editPaket', $id)}} method="post">
                                 {{csrf_field()}}
+                                {{ method_field('POST') }}
                                 <div class="form-group">
                                     <label for="player">Nama Paket</label>
                                     <input name="nama" type="text" class="form-control" placeholder="Nama" value="{{$p->nama}}">
