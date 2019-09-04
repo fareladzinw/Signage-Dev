@@ -22,6 +22,18 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
+    @if (\Session::has('alert-fail'))
+          <div class="alert alert-danger">
+          <a href="{{ route('indexMasterPlaylist') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+              <div>{{Session::get('alert-fail')}}</div>
+          </div>
+      @endif
+      @if (\Session::has('alert-success'))
+          <div class="alert alert-success">
+          <a href="{{ route('indexMasterPlaylist') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+              <div>{{Session::get('alert-success')}}</div>
+          </div>
+      @endif
       <table id="master-playlist" class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -45,8 +57,16 @@
               <td>{{$p->namafile}}</td>
               <td>{{$p->duration}}</td>
               <td>{{$p->namalayout}}</td>
-              <td>{{$p->statusLoop}}</td>
-              <td>{{$p->statusMedia}}</td>
+              @if($p->statusLoop == 0)
+              <td>Off</td>
+              @elseif($p->statusLoop == 1)
+              <td>On</td>
+              @endif
+              @if($p->statusMedia == 0)
+              <td>Off</td>
+              @elseif($p->statusMedia == 1)
+              <td>On</td>
+              @endif
               <td>{{$p->namakategori}}</td>
               <td>{{$p->namapaket}}</td>
                <td>

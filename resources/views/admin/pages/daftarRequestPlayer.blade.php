@@ -20,6 +20,18 @@
     </div>
 <!-- /.box-header -->
     <div class="box-body">
+    @if (\Session::has('alert-fail'))
+        <div class="alert alert-danger">
+        <a href="{{ route('indexRequestPlayer') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+            <div>{{Session::get('alert-fail')}}</div>
+        </div>
+    @endif
+    @if (\Session::has('alert-success'))
+        <div class="alert alert-success">
+        <a href="{{ route('indexRequestPlayer') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+            <div>{{Session::get('alert-success')}}</div>
+        </div>
+    @endif
       <table id="daftar-request" class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -49,14 +61,14 @@
                           <form action="/admin/invoice/request-player/on/{{$r->id}}" method="post">
                               {{csrf_field()}}
                               <div class="col-md-12">
-                                  <button type="submit" class="btn btn-block btn-warning">Validasi </button>
+                                  <button type="submit" class="btn btn-block btn-success">Validasi </button>
                               </div>
                           </form>
                       @elseif($r->status === 1)
                           <form action="/admin/invoice/request-player/off/{{$r->id}}" method="post">
                               {{csrf_field()}}
                               <div class="col-md-12">
-                                  <button type="submit" class="btn btn-block btn-warning">Batal Validasi</button>
+                                  <button type="submit" class="btn btn-block btn-danger">Batal Validasi</button>
                               </div>
                           </form>
                       @endif

@@ -54,7 +54,7 @@ class adminController extends Controller
         $data->spesifikasi = $request->spesifikasi;
         $data->save();
 
-        return redirect('/admin/player/master-player');
+        return redirect('/admin/player/master-player')->with('alert-success', 'Berhasil tambah player');
     }
 
     public function getEditDataMasterPlayer($id){
@@ -81,7 +81,7 @@ class adminController extends Controller
             'spesifikasi' => $request->spesifikasi
         ]);
 
-        return redirect('/admin/player/master-player');
+        return redirect('/admin/player/master-player')->with('alert-success', 'Berhasil edit player');
     }
 
     public function deletePlayer ($id){
@@ -93,7 +93,7 @@ class adminController extends Controller
             return redirect()->back()->with('alert-success','Player berhasil dihapus');
         }
         else{
-            return redirect()->back()->with('alert-fail','Player gagal dihapus,karena Player sedang digunakan');
+            return redirect()->back()->with('alert-fail','Player gagal dihapus, karena Player sedang digunakan');
         }
     }
     //=======================================
@@ -127,7 +127,7 @@ class adminController extends Controller
         $data->orientation = $request->orientation;
         $data->save();
 
-        return redirect('/admin/player/master-layout');
+        return redirect('/admin/player/master-layout')->with('alert-success', 'Berhasil tambah layout');
     }
 
     public function getEditDataMasterLayout($id){
@@ -154,7 +154,7 @@ class adminController extends Controller
             'orientation' => $request->orientation
         ]);
 
-        return redirect('/admin/player/master-layout');
+        return redirect('/admin/player/master-layout')->with('alert-success', 'Berhasil edit layout');
     }
 
     public function deleteLayout ($id){
@@ -165,7 +165,7 @@ class adminController extends Controller
             return redirect()->back()->with('alert-success','Layout berhasil dihapus');
         }
         else{
-            return redirect()->back()->with('alert-fail','Layout gagal dihapus,karena layout sedang digunakan');
+            return redirect()->back()->with('alert-fail','Layout gagal dihapus, karena layout sedang digunakan');
         }
     }
     //=============================
@@ -174,7 +174,7 @@ class adminController extends Controller
     //CONTROLLER KATEGORI
 
     public function masterKategori (){
-        $kategori = Kategori::get();
+        $kategori = Kategori::all();
 
         return view('admin.pages.masterKategori',['kategori'=>$kategori]);
     }
@@ -194,12 +194,11 @@ class adminController extends Controller
         $data->keterangan = $request->keterangan;
         $data->save();
 
-        return redirect('/admin/player/master-kategori');
+        return redirect('/admin/player/master-kategori')->with('alert-success', 'Berhasil tambah kategori');
     }
 
     public function getEditDataMasterKategori($id){
-        $kategori = Kategori::where('id',$id)
-            ->get();
+        $kategori = Kategori::where('id', $id)->get();
 
         return view('admin.pages.formMasterKategori',['kategori'=> $kategori, 'id'=>$id]);
     }
@@ -215,7 +214,7 @@ class adminController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        return redirect('/admin/player/master-kategori');
+        return redirect('/admin/player/master-kategori')->with('alert-success', 'Berhasil edit kategori');
     }
 
     public function deleteKategori ($id){
@@ -223,9 +222,8 @@ class adminController extends Controller
         if(empty($check)){
             Kategori::where('id',$id)->delete();
             return redirect()->back()->with('alert-success','Kategori berhasil dihapus');
-        }
-        else{
-            return redirect()->back()->with('alert-fail','Kategori gagal dihapus,karena Kategori sedang digunakan');
+        } else {
+            return redirect()->back()->with('alert-fail','Kategori gagal dihapus, karena Kategori sedang digunakan');
         }
     }
     //=====================================
@@ -242,7 +240,7 @@ class adminController extends Controller
 
     //CONTROLLER CLIENT
     public function listClient (){
-        $client = User::orderBy('tipeClient','asc')->get();
+        $client = User::orderBy('created_at','desc')->get();
 
         return view('admin.pages.listClient',['client'=>$client]);
     }
@@ -273,13 +271,13 @@ class adminController extends Controller
             'password'=>bcrypt($request->password)
         ]);
 
-        return redirect('/admin/client/list-client');
+        return redirect('/admin/client/list-client')->with('alert-success', 'Berhasil edit client');
     }
 
-    public function deleteClient ($id){
+    public function deleteClient($id){
         User::find($id)->delete();
 
-        return redirect('/admin/client/list-client');
+        return redirect('/admin/client/list-client')->with('alert-success', 'Berhasil delete client');
     }
 
     //===============================
@@ -329,7 +327,7 @@ class adminController extends Controller
         $data->status = 0;
         $data->save();
 
-        return redirect('/admin/client/setup-paket');
+        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil tambah paket');
     }
 
     public function getEditDataMasterPaket($id){
@@ -363,13 +361,13 @@ class adminController extends Controller
             'jumlahFile' => $request->jumlahFile,
         ]);
 
-        return redirect('/admin/client/setup-paket');
+        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil edit paket');;
     }
 
     public function deletePaket ($id){
         Paket::find($id)->delete();
 
-        return redirect('/admin/client/setup-paket');
+        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil delete paket');;
     }
     //=================================
 
@@ -425,7 +423,7 @@ class adminController extends Controller
         $data->statusMedia = $request->statusMedia;
         $data->save();
 
-        return redirect('/admin/client/setup-playlist');
+        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil tambah playlist');
     }
 
     public function getEditDataMasterPlaylist($id){
@@ -470,13 +468,13 @@ class adminController extends Controller
             'statusMedia' => $request->statusMedia,
         ]);
 
-        return redirect('/admin/client/setup-playlist');
+        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil edit playlist');;
     }
 
     public function deletePlaylist ($id){
         Playlist::find($id)->delete();
 
-        return redirect('/admin/client/setup-playlist');
+        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil delete playlist');;
     }
 
     //=======================================
@@ -494,7 +492,7 @@ class adminController extends Controller
             'status' => 1
         ]);
 
-        return redirect('/admin/invoice/konfirmasi-withdraw');
+        return redirect('/admin/invoice/konfirmasi-withdraw')->with('alert-success', 'Withdraw berhasil dikonfirmasi');
     }
 
     //================================
@@ -521,7 +519,7 @@ class adminController extends Controller
         $transaksi -> statusTayang = 1;
         $transaksi -> save();
 
-        return redirect('/admin/invoice/pesanan-tayang');
+        return redirect('/admin/invoice/pesanan-tayang')->with('alert-success', 'Berhasil validasi pesanan!');
     }
 
     public function offPesananTayang($id){
@@ -535,7 +533,7 @@ class adminController extends Controller
         $transaksi -> statusTayang = 0;
         $transaksi -> save();
 
-        return redirect('/admin/invoice/pesanan-tayang');
+        return redirect('/admin/invoice/pesanan-tayang')->with('alert-fail', 'Berhasil hapus validasi!');;
     }
 
     //=========================
@@ -552,7 +550,7 @@ class adminController extends Controller
         $check = Konfirmasi::where('id',$id)->where('validasi','=',1)->first();
 
         if($check === null){
-            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail1','Tidak dapat dikonfirmasi, karena belum melihat bukti pembayaran');
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail','Tidak dapat dikonfirmasi, karena belum melihat bukti pembayaran');
         }
         else {
             Konfirmasi::where('id',$id)->update([
@@ -566,7 +564,7 @@ class adminController extends Controller
             $pesanan ->status = 1 ;
             $pesanan ->save();
 
-            return redirect('/admin/invoice/konfirmasi-pembayaran');
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-success','Berhasil mengkonfirmasi pembayaran!');;
         }
     }
 
@@ -574,7 +572,7 @@ class adminController extends Controller
         $check = Konfirmasi::where('id',$id)->first();
 
         if($check->dataBulb === null){
-            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail2','User Belum Mengupload Bukti Pembayaran');
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail','User Belum Mengupload Bukti Pembayaran');
         }
         else{
             Konfirmasi::where('id',$id)->update([
@@ -606,7 +604,7 @@ class adminController extends Controller
         ]);
 
 
-        return redirect('/admin/invoice/request-player');
+        return redirect('/admin/invoice/request-player')->with('alert-success', 'Berhasil validasi request player!');
     }
 
     public function offRequestPlayer($id){
@@ -614,7 +612,7 @@ class adminController extends Controller
             'status' => 0
         ]);
 
-        return redirect('/admin/invoice/request-player');
+        return redirect('/admin/invoice/request-player')->with('alert-fail', 'Berhasil hapus request player!');
     }
 
     //==========================================

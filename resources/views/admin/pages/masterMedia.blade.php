@@ -38,9 +38,17 @@
               <td>{{$m->duration}}</td>
               <td>{{$m->type}}</td>
               <td>{{$m->size}}</td>
-              <td>{{$m->status}}</td>
+              @if($m->status == 0)
+              <td>Off</td>
+              @elseif($m->status == 1)
+              <td>On</td>
+              @endif
               <td>{{$m->url}}</td>
-              <td>{{$m->statusDownload}}</td>
+              @if($m->statusDownload == 0)
+              <td>Off</td>
+              @elseif($m->statusDownload == 1)
+              <td>On</td>
+              @endif
               <td>
                 <a href="" class="btn btn-block btn-primary">Download</a>
               </td>
