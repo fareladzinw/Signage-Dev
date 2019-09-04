@@ -49,7 +49,8 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/player/delete/master-kategori/{id}', 'adminController@deleteKategori');
 
     //ROUTE MEDIA / FILE MANAGER
-    Route::get('/player/master-media', 'adminController@masterMedia');
+    Route::get('/player/master-media', 'adminController@masterMedia')->name('masterMedia');
+    Route::post('/player/master-media/download/{id}', 'adminController@downloadMasterMedia')->name('downloadMedia');
 
     //ROUTE CLIENT
     Route::get('/client/list-client', 'adminController@listClient')->name('indexMasterClient');

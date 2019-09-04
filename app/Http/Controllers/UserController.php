@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -288,6 +289,10 @@ class UserController extends Controller
         $file->url          = "http://aksesdatautama.com/arba_signage/public/". $file->nama;
         $file->save();
 
+        $media = new Media();
+        $media->file_id = $file->id;
+        $media->statusDownload = 0;
+        $media->save();
 
         
         $image = $request->file('file');

@@ -231,9 +231,32 @@ class adminController extends Controller
     //CONTROLLER MANAGER / MEDIA
     public function masterMedia (){
         $media = Media::join('file','file.id','=','media.file_id')
-            ->get(['file.nama','file.type','file.size','file.duration','file.url','media.statusDownload','file.status']);
+            ->get(['media.id','file.nama','file.type','file.size','file.duration','file.url','media.statusDownload','file.status']);
 
         return view('admin.pages.masterMedia',['media'=>$media]);
+    }
+
+    public function downloadMasterMedia ($id){
+        $file_id = Media::where('id',$id)->first();
+        $check = File::where('id',$file_id->file_id)->first();
+
+        if($check->nama === null){
+            return redirect('/admin/player/master-media')->with('alert-fail','User Belum Mengupload Iklan');
+        }
+        else{
+            File::where('id',$file_id->file_id)->update([
+                'status' => 1
+            ]);
+            Media::where('id',$id)->update([
+                'statusDownload' => 1
+            ]);
+
+            $filename = File::where('id',$file_id->file_id)->first();
+
+            $filepath = public_path('images/').$filename->nama;
+
+            return response()->download($filepath)->with('alert-succes','Iklan Telah didownload');
+        }
     }
 
     //=============================
