@@ -21,6 +21,7 @@ use App\Komisi;
 use App\Withdraw;
 use App\Konfirmasi;
 use App\Requests;
+use Illuminate\Support\Str;
 
 
 class adminController extends Controller
@@ -41,16 +42,14 @@ class adminController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'lokasi' => 'required',
-            'keyplayer' => 'required',
-            'password' => 'required',
             'spesifikasi' => 'required',
         ]);
 
         $data = new Player();
         $data->nama = $request->nama;
         $data->lokasi = $request->lokasi;
-        $data->KEYPLAYER = $request->keyplayer;
-        $data->PASSWORD = $request->password;
+        $data->KEYPLAYER = strtoupper(Str::random(16));
+        $data->PASSWORD = Str::random(10);
         $data->spesifikasi = $request->spesifikasi;
         $data->save();
 

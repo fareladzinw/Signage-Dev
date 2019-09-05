@@ -46,7 +46,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="{{ route('homepage') }}" class="navbar-brand"><b>Signage</b></a>
+          <a href="{{ route('homepage') }}" class="navbar-brand"><img src="{{ asset('images/LogoSignage.jpeg') }}" alt="Image not found" style="height: 35px; margin-top: -7.5px;"></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -137,10 +137,9 @@
   <footer class="main-footer">
     <div class="container">
       <div class="pull-right hidden-xs">
-        <b>SGDev</b> 2019
+        <a href="http://aksesdatauatama.com/"><b>aksesdatauatama.com</b></a> 2019
       </div>
-      <strong>Copyright &copy; 2019 <a href="#">Signage</a>.</strong> All rights
-      reserved.
+      Copyright &copy; <strong>2019</strong> <a href="">Arbaajaa.com</a>
     </div>
     <!-- /.container -->
   </footer>

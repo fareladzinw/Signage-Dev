@@ -43,24 +43,6 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="player">KEYPLAYER</label>
-                <input name="keyplayer" type="text" class="form-control" placeholder="KeyPlayer">
-                @if($errors->has('keyplayer'))
-                    <div class="text-danger">
-                        {{$errors->first('keyplayer')}}
-                    </div>
-                @endif
-            </div>
-            <div class="form-group">
-                <label for="player">Password</label>
-                <input name="password" type="text" class="form-control" placeholder="Password">
-                @if($errors->has('password'))
-                    <div class="text-danger">
-                        {{$errors->first('password')}}
-                    </div>
-                @endif
-            </div>
-            <div class="form-group">
                 <label for="player">Spesifikasi</label>
                 <input name="spesifikasi" type="text" class="form-control" placeholder="Spesifikasi">
                 @if($errors->has('spesifikasi'))
