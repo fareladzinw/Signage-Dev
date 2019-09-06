@@ -61,7 +61,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/client/master-afiliasi', 'adminController@masterAfiliasi');
 
     //ROUTE PLAYLIST
-    Route::get('/client/setup-playlist', 'adminController@setupPlaylist');
+    Route::get('/setup/setup-playlist', 'adminController@setupPlaylist');
     Route::get('/client/master-playlist/add-data', 'adminController@addDataMasterPlaylist');
     Route::post('/client/master-playlist/add-data', 'adminController@storeDataMasterPlaylist')->name('storePlaylist');
     Route::get('/client/master-playlist/edit-data/{id}', 'adminController@getEditDataMasterPlaylist');
@@ -69,7 +69,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/client/delete/master-playlist/{id}', 'adminController@deletePlaylist');
 
     //ROUTE PAKET
-    Route::get('/client/setup-paket', 'adminController@setupPaket');
+    Route::get('/setup/setup-paket', 'adminController@setupPaket');
     Route::get('/client/master-paket/add-data', 'adminController@addDataMasterPaket');
     Route::post('/client/master-paket/add-data', 'adminController@storeDataMasterPaket')->name('storePaket');
     Route::get('/client/master-paket/edit-data/{id}', 'adminController@getEditDataMasterPaket');

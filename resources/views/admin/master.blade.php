@@ -67,7 +67,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>GN</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Signage</b></span>
+      <span class="logo-lg"><img src="{{asset('images/logo/signage.png')}}" alt="" style="width: 100%;"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -124,8 +124,17 @@ desired effect
           <ul class="treeview-menu">
             <li class="{{ (request()->is('admin/client/master-afiliasi')) ? 'active' : '' }}"><a href="{{url ('admin/client/master-afiliasi')}}"><i class="fa fa-link"></i> <span>Master Afiliasi Client</span></a></li>
             <li class="{{ (request()->is('admin/client/list-client')) ? 'active' : '' }}"><a href="{{url ('admin/client/list-client')}}"><i class="fa fa-link"></i> <span>List Client</span></a></li>
-            <li class="{{ (request()->is('admin/client/setup-playlist')) ? 'active' : '' }}"><a href="{{url ('admin/client/setup-playlist')}}"><i class="fa fa-link"></i> <span>Setup Playlist</span></a></li>
-            <li class="{{ (request()->is('admin/client/setup-paket')) ? 'active' : '' }}"><a href="{{url ('admin/client/setup-paket')}}"><i class="fa fa-link"></i> <span>Setup Paket Signage</span></a></li>
+          </ul>
+        </li>
+        <li class="{{ (request()->is('admin/setup/*')) ? 'treeview active' : 'treeview' }}">
+          <a href="#"><i class="fa fa-link"></i> <span>Setup</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ (request()->is('admin/setup/setup-playlist')) ? 'active' : '' }}"><a href="{{url ('admin/setup/setup-playlist')}}"><i class="fa fa-link"></i> <span>Setup Playlist</span></a></li>
+            <li class="{{ (request()->is('admin/setup/setup-paket')) ? 'active' : '' }}"><a href="{{url ('admin/setup/setup-paket')}}"><i class="fa fa-link"></i> <span>Setup Paket Signage</span></a></li>
           </ul>
         </li>
         <li class="{{ (request()->is('admin/invoice/*')) ? 'treeview active' : 'treeview' }}">
@@ -177,10 +186,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      SGDev
+      aksesdatauatama.com
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2019 <a href="#">Signage</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2019 <a href="#">Arbaajaa.com</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

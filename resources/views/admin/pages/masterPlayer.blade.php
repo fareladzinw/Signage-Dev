@@ -55,9 +55,10 @@
           <td>{{$p->spesifikasi}}</td>
             <td>
                 <div class="column">
-                    <div class="col-md-6"><a href="{{url('/admin/player/master-player/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
-                    <div class="col-md-6"><a href="/admin/player/master-player/delete/{{$p->id}}" class="btn btn-block btn-danger">Hapus</a></div>
-                </div>
+                    <div class="col-md-4"><a href="{{url('/admin/player/master-player/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
+                    <div class="col-md-4"><a href="/admin/player/master-player/delete/{{$p->id}}" class="btn btn-block btn-danger">Hapus</a></div>
+                    <div class="col-md-4"><a href="" class="btn btn-block btn-warning" style="">Connect Player</a></div>
+                  </div>
             </td>
         </tr>
         @endforeach

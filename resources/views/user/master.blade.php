@@ -46,7 +46,8 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="{{ route('homepage') }}" class="navbar-brand"><b>Signage</b></a>
+          {{-- <a href="{{ route('homepage') }}" class="navbar-brand"><b>Signage</b></a> --}}
+          <a href="{{ route('homepage') }}" class="navbar-brand"><img src="{{asset('images/logo/signage.png')}}" alt="" width="150px;" style="transform: translateY(-15px);"></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
