@@ -21,6 +21,18 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
+    @if (\Session::has('alert-fail'))
+        <div class="alert alert-danger">
+        <a href="{{ route('indexKonfirmasiPembayaran') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+            <div>{{Session::get('alert-fail')}}</div>
+        </div>
+    @endif
+    @if (\Session::has('alert-success'))
+        <div class="alert alert-success">
+        <a href="{{ route('indexKonfirmasiPembayaran') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+            <div>{{Session::get('alert-success')}}</div>
+        </div>
+    @endif
       <table id="konfirmasi-pembayaran" class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -43,7 +55,7 @@
               <td>{{$k->type}}</td>
               <td>{{$k->konfirmasiDari}}</td>
               <td>{{$k->tanggal}}</td>
-              <td>{{$k->id}}</td>
+              <td>{{$k->idtransaksi}}</td>
               <td>{{$k->namaBank}}</td>
                <td>{{$k->namaRekening}}</td>
                <td>{{$k->nominal}}</td>
@@ -52,8 +64,22 @@
                <td>{{$k->dataBulb}}</td>
                <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-primary">Download</a></div>
-                      <div class="col-md-6"><a href="" class="btn btn-block btn-warning">Konfirmasi</a></div>
+                      <form action="/admin/invoice/download-pembayaran/{{$k->id}}" method="post">
+                          {{csrf_field()}}
+                          <div class="col-md-6"><button type="submit" class="btn btn-block btn-primary">download</button></div>
+                      </form>
+                      @if($k->status === 0)
+                          <form action="/admin/invoice/konfirmasi-pembayaran/{{$k->id}}" method="post">
+                              {{csrf_field()}}
+                              <div class="col-md-6">
+                                  <button type="submit" class="btn btn-block btn-warning">Konfirmasi</button>
+                              </div>
+                          </form>
+                      @elseif($k->status === 1)
+                              <div class="col-md-6">
+                                  <p class="btn btn-block btn-warning">Telah Dikonfirmasi</p>
+                              </div>
+                      @endif
                     </div>
               </td>
             </tr>

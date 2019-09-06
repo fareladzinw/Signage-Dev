@@ -25,7 +25,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', 'pageController@indexAdmin');
 
     //ROUTE PLAYER
-    Route::get('/player/master-player', 'adminController@masterPlayer');
+    Route::get('/player/master-player', 'adminController@masterPlayer')->name('indexMasterPlayer');
     Route::get('/player/master-player/add-data', 'adminController@addDataMasterPlayer');
     Route::post('/player/master-player/add-data', 'adminController@storeDataMasterPlayer')->name('storePlayer');
     Route::get('/player/master-player/edit-data/{id}', 'adminController@getEditDataMasterPlayer');
@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/player/master-player/delete/{id}', 'adminController@deletePlayer');
 
     //ROUTE LAYOUT
-    Route::get('/player/master-layout', 'adminController@masterLayout');
+    Route::get('/player/master-layout', 'adminController@masterLayout')->name('indexMasterLayout');
     Route::get('/player/master-layout/add-data', 'adminController@addDataMasterLayout');
     Route::post('/player/master-layout/add-data', 'adminController@storeDataMasterLayout')->name('storeLayout');
     Route::get('/player/master-layout/edit-data/{id}', 'adminController@getEditDataMasterLayout');
@@ -41,7 +41,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/player/delete/master-layout/{id}', 'adminController@deleteLayout');
 
     //ROUTE KATEGORI
-    Route::get('/player/master-kategori', 'adminController@masterKategori');
+    Route::get('/player/master-kategori', 'adminController@masterKategori')->name('indexMasterKategori');
     Route::get('/player/master-kategori/add-data', 'adminController@addDataMasterKategori');
     Route::post('/player/master-kategori/add-data', 'adminController@storeDataMasterKategori')->name('storeKategori');
     Route::get('/player/master-kategori/edit-data/{id}', 'adminController@getEditDataMasterKategori');
@@ -49,10 +49,11 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/player/delete/master-kategori/{id}', 'adminController@deleteKategori');
 
     //ROUTE MEDIA / FILE MANAGER
-    Route::get('/player/master-media', 'adminController@masterMedia');
+    Route::get('/player/master-media', 'adminController@masterMedia')->name('masterMedia');
+    Route::post('/player/master-media/download/{id}', 'adminController@downloadMasterMedia')->name('downloadMedia');
 
     //ROUTE CLIENT
-    Route::get('/client/list-client', 'adminController@listClient');
+    Route::get('/client/list-client', 'adminController@listClient')->name('indexMasterClient');
     Route::get('/client/master-client/edit-data/{id}', 'adminController@getEditDataMasterClient');
     Route::post('/client/master-client/edit-data/{id}', 'adminController@editDataMasterClient')->name('editClient');
     Route::get('/client/delete/master-client/{id}', 'adminController@deleteClient');
@@ -77,13 +78,20 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/client/delete/master-paket/{id}', 'adminController@deletePaket');
 
     //ROUTE INVOICE
-    Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang');
+    Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang')->name('indexPesananTayang');
+    Route::post('/invoice/pesanan-tayang/on/{id}', 'adminController@onPesananTayang');
+    Route::post('/invoice/pesanan-tayang/off/{id}', 'adminController@offPesananTayang');
 
-    Route::get('/invoice/konfirmasi-pembayaran', 'adminController@konfirmasiPemabayaran');
+    Route::get('/invoice/konfirmasi-pembayaran', 'adminController@konfirmasiPemabayaran')->name('indexKonfirmasiPembayaran');
+    Route::post('/invoice/konfirmasi-pembayaran/{id}', 'adminController@makeKonfirmasiPemabayaran')->name('konfirasiPembayaran');
+    Route::post('/invoice/download-pembayaran/{id}', 'adminController@downloadKonfirmasiPemabayaran')->name('downloadPembayaran');
 
-    Route::get('/invoice/konfirmasi-withdraw', 'adminController@konfirmasiWithdraw');
+    Route::get('/invoice/konfirmasi-withdraw', 'adminController@konfirmasiWithdraw')->name('indexKonfirmasiWithdraw');
+    Route::post('/invoice/konfirmasi-withdraw/{id}', 'adminController@makeKonfirmasiWithdraw')->name('konfirmasiWithdraw');
 
-    Route::get('/invoice/request-player', 'adminController@daftarRequestPlayer');
+    Route::get('/invoice/request-player', 'adminController@daftarRequestPlayer')->name('indexRequestPlayer');
+    Route::post('/invoice/request-player/on/{id}', 'adminController@onRequestPlayer');
+    Route::post('/invoice/request-player/off/{id}', 'adminController@offRequestPlayer');
 
     Route::get('/invoice/riwayat-pesanan', 'adminController@riwayatPesanan');
 
@@ -103,5 +111,6 @@ Route::prefix('user')->middleware('auth')->group(function() {
     Route::get('/paket-aktif/upload-bukti-pembayaran/{id}', 'UserController@buktiIndex')->name('buktiIndex');
     Route::post('/paket-aktif/upload-bukti-pembayaran/{id}', 'UserController@buktiStore')->name('buktiStore');
 });
+
 
 

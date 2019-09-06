@@ -29,7 +29,7 @@
                                 <label for="player">Pilih Player</label>
                                 <select class="form-control" name="player_id">
                                     @foreach($player as $player)
-                                    <option value="{{$player -> id}}">{{$player->id}} --> {{$player->nama}}</option>
+                                    <option value="{{$player -> id}}">{{$player->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -37,7 +37,7 @@
                                     <label for="player">Pilih Media</label>
                                     <select class="form-control" name="media_id">
                                         @foreach($media as $media)
-                                        <option value="{{$media->id}}">{{$media->id}} --> {{$media->nama}}</option>
+                                        <option value="{{$media->id}}">{{$media->nama}}</option>
                                         @endforeach
                                     </select>
                             </div>
@@ -45,7 +45,7 @@
                                     <label for="player">Pilih Layout</label>
                                     <select class="form-control" name="layout_id">
                                         @foreach($layout as $layout)
-                                        <option value="{{$layout->id}}">{{$layout->id}} --> {{$layout->nama}}</option>
+                                        <option value="{{$layout->id}}">{{$layout->nama}}</option>
                                         @endforeach
                                     </select>
                             </div>
@@ -53,7 +53,7 @@
                                     <label for="player">Pilih Kategori</label>
                                     <select class="form-control" name="kategori_id">
                                         @foreach($kategori as $kategori)
-                                        <option value="{{$kategori->id}}">{{$kategori->id}} --> {{$kategori->nama}}</option>
+                                        <option value="{{$kategori->id}}">{{$kategori->nama}}</option>
                                         @endforeach
                                     </select>
                             </div>
@@ -61,26 +61,31 @@
                                     <label for="player">Pilih Paket</label>
                                     <select class="form-control" name="paket_id">
                                         @foreach($paket as $paket)
-                                        <option value="{{$paket->id}}">{{$paket->id}} --> {{$paket->nama}}</option>
+                                        <option value="{{$paket->id}}">{{$paket->nama}}</option>
                                         @endforeach
                                     </select>
                             </div>
                             <div class="form-group">
                                 <label for="player">Duration</label>
                                 <input name="duration" type="text" class="form-control" placeholder="Durasi">
+                                @if($errors->has('duration'))
+                                    <div class="text-danger">
+                                        {{$errors->first('duration')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
-                                <label for="player">status Loop</label>
+                                <label for="player">Status Loop</label>
                                 <select class="form-control" name="statusLoop">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
+                                    <option value="0">Off</option>
+                                    <option value="1">On</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="player">status Media</label>
+                                <label for="player">Status Media</label>
                                 <select class="form-control" name="statusMedia">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
+                                    <option value="0">Off</option>
+                                    <option value="1">On</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -121,7 +126,7 @@
                                         <label for="player">Pilih Player</label>
                                         <select class="form-control" name="player_id" data-placeholder="">
                                             @foreach($player as $player)
-                                            <option value="{{$player -> id}}">{{$player->id}} --> {{$player->nama}}</option>
+                                            <option value="{{$player -> id}}">{{$player->nama}}</option>
                                             @endforeach
                                         </select>
                                 </div>
@@ -129,7 +134,7 @@
                                         <label for="player">Pilih Media</label>
                                         <select class="form-control" name="media_id" data-placeholder="">
                                             @foreach($media as $media)
-                                            <option value="{{$media->id}}">{{$media->id}} --> {{$media->nama}}</option>
+                                            <option value="{{$media->id}}">{{$media->nama}}</option>
                                             @endforeach
                                         </select>
                                 </div>
@@ -137,7 +142,7 @@
                                         <label for="player">Pilih Layout</label>
                                         <select class="form-control" name="layout_id" data-placeholder="">
                                             @foreach($layout as $layout)
-                                            <option value="{{$layout->id}}">{{$layout->id}} --> {{$layout->nama}}</option>
+                                            <option value="{{$layout->id}}">{{$layout->nama}}</option>
                                             @endforeach
                                         </select>
                                 </div>
@@ -145,7 +150,7 @@
                                         <label for="player">Pilih Kategori</label>
                                         <select class="form-control" name="kategori_id">
                                             @foreach($kategori as $kategori)
-                                            <option value="{{$kategori->id}}">{{$kategori->id}} --> {{$kategori->nama}}</option>
+                                            <option value="{{$kategori->id}}">{{$kategori->nama}}</option>
                                             @endforeach
                                         </select>
                                 </div>
@@ -153,7 +158,7 @@
                                         <label for="player">Pilih Paket</label>
                                         <select class="form-control" name="paket_id">
                                             @foreach($paket as $paket)
-                                            <option value="{{$paket->id}}">{{$paket->id}} --> {{$paket->nama}}</option>
+                                            <option value="{{$paket->id}}">{{$paket->nama}}</option>
                                             @endforeach
                                         </select>
                                 </div>
@@ -161,20 +166,35 @@
                                 <div class="form-group">
                                     <label for="player">Duration</label>
                                     <input name="duration" type="text" class="form-control" value="{{$p->duration}}">
+                                    @if($errors->has('duration'))
+                                        <div class="text-danger">
+                                            {{$errors->first('duration')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 @endforeach
                                 <div class="form-group">
-                                    <label for="player">status Loop</label>
+                                    <label for="player">Status Loop</label>
                                     <select class="form-control" name="statusLoop">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
+                                    @if($playlist[0]->statusLoop == 0)
+                                    <option value="0">Off</option>
+                                    <option value="1">On</option>
+                                    @elseif($playlist[0]->statusLoop == 1)
+                                    <option value="1">On</option>
+                                    <option value="0">Off</option>
+                                    @endif
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="player">status Media</label>
+                                    <label for="player">Status Media</label>
                                     <select class="form-control" name="statusMedia">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
+                                    @if($playlist[0]->statusMedia == 0)
+                                    <option value="0">Off</option>
+                                    <option value="1">On</option>
+                                    @elseif($playlist[0]->statusMedia == 1)
+                                    <option value="1">On</option>
+                                    <option value="0">Off</option>
+                                    @endif
                                     </select>
                                 </div>
                                 <div class="form-group">

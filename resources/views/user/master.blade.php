@@ -138,10 +138,9 @@
   <footer class="main-footer">
     <div class="container">
       <div class="pull-right hidden-xs">
-        <b>SGDev</b> 2019
+        <a href="http://aksesdatauatama.com/"><b>aksesdatauatama.com</b></a> 2019
       </div>
-      <strong>Copyright &copy; 2019 <a href="#">Signage</a>.</strong> All rights
-      reserved.
+      Copyright &copy; <strong>2019</strong> <a href="">Arbaajaa.com</a>
     </div>
     <!-- /.container -->
   </footer>

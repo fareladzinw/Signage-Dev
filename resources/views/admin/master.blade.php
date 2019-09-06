@@ -145,8 +145,8 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li class="{{ (request()->is('admin/invoice/konfirmasi-withdraw')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/konfirmasi-withdraw')}}"><i class="fa fa-link"></i> <span>Withdraw Afiliasi</span></a></li>
-            <li class="{{ (request()->is('admin/invoice/konfirmasi-pembayaran')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/konfirmasi-pembayaran')}}"><i class="fa fa-link"></i> <span>Konfirmasi Pembayaran</span></a></li>
             <li class="{{ (request()->is('admin/invoice/riwayat-pesanan')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/riwayat-pesanan')}}"><i class="fa fa-link"></i> <span>Riwayat Transaksi Pesanan</span></a></li>
+            <li class="{{ (request()->is('admin/invoice/konfirmasi-pembayaran')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/konfirmasi-pembayaran')}}"><i class="fa fa-link"></i> <span>Konfirmasi Pembayaran</span></a></li>
             <li class="{{ (request()->is('admin/invoice/request-player')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/request-player')}}"><i class="fa fa-link"></i> <span>Daftar Request Player</span></a></li>
             <li class="{{ (request()->is('admin/invoice/pesanan-tayang')) ? 'active' : '' }}"><a href="{{url ('admin/invoice/pesanan-tayang')}}"><i class="fa fa-link"></i> <span>Daftar Pesanan Tayang</span></a></li>
           </ul>

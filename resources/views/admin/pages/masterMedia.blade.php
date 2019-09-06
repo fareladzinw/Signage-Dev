@@ -6,6 +6,18 @@
 <div class="box ">
     <div class="box-header">
       <div class="column">
+          @if (\Session::has('alert-fail'))
+              <div class="alert alert-danger">
+                  <a href="{{ route('masterMedia') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+                  <div>{{Session::get('alert-fail')}}</div>
+              </div>
+          @endif
+          @if (\Session::has('alert-success'))
+              <div class="alert alert-success">
+                  <a href="{{ route('masterMedia') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+                  <div>{{Session::get('alert-success')}}</div>
+              </div>
+          @endif
         <div class="col-md-10">
             <section class="content-header" style="padding : 0;">
                 <h1>
@@ -38,11 +50,26 @@
               <td>{{$m->duration}}</td>
               <td>{{$m->type}}</td>
               <td>{{$m->size}}</td>
-              <td>{{$m->status}}</td>
+              @if($m->status == 0)
+              <td>Off</td>
+              @elseif($m->status == 1)
+              <td>On</td>
+              @endif
               <td>{{$m->url}}</td>
-              <td>{{$m->statusDownload}}</td>
+              @if($m->statusDownload == 0)
+              <td>Off</td>
+              @elseif($m->statusDownload == 1)
+              <td>On</td>
+              @endif
               <td>
-                <a href="" class="btn btn-block btn-primary">Download</a>
+                  @if($m->statusDownload == 0)
+                  <form action="/admin/player/master-media/download/{{$m->id}}" method="post">
+                      {{csrf_field()}}
+                      <div class="col-md-12"><button type="submit" class="btn btn-block btn-primary">download</button></div>
+                  </form>
+                  @elseif($m->statusDownload == 1)
+                  <div class="col-md-12"><p class="btn btn-block btn-danger">Ter Download</p></div>
+                  @endif
               </td>
             </tr>
           @endforeach

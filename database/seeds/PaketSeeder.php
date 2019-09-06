@@ -20,7 +20,7 @@ class PaketSeeder extends Seeder
                     'jumlahPlayer' => 1,
                     'jenisContent' => 1,
                     'startShow' => Carbon\Carbon::now(),
-                    'endShow' => Carbon\Carbon::now(),
+                    'endShow' => Carbon\Carbon::now()->addMonth(),
                     'jumlahFile' => 10,
                     'status' => 0,
                 ]

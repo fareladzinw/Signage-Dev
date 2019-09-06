@@ -27,34 +27,74 @@
                             <div class="form-group">
                                 <label for="player">Nama Paket</label>
                                 <input name="nama" type="text" class="form-control" placeholder="Nama">
+                                @if($errors->has('nama'))
+                                    <div class="text-danger">
+                                        {{$errors->first('nama')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Harga Paket</label>
                                 <input name="harga" type="text" class="form-control" placeholder="harga">
+                                @if($errors->has('harga'))
+                                    <div class="text-danger">
+                                        {{$errors->first('harga')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Durasi</label>
                                 <input name="durasi" type="text" class="form-control" placeholder="durasi">
+                                @if($errors->has('durasi'))
+                                    <div class="text-danger">
+                                        {{$errors->first('durasi')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Jumlah Player</label>
                                 <input name="jumlahPlayer" type="text" class="form-control" placeholder="jumlah Player">
+                                @if($errors->has('jumlahPlayer'))
+                                    <div class="text-danger">
+                                        {{$errors->first('jumlahPlayer')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Jenis Content</label>
                                 <input name="jenisContent" type="text" class="form-control" placeholder="jenis Content">
+                                @if($errors->has('jenisContent'))
+                                    <div class="text-danger">
+                                        {{$errors->first('jenisContent')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Start Show</label>
                                 <input name="startShow" type="date" class="datepicker" placeholder="start Show">
+                                @if($errors->has('startShow'))
+                                    <div class="text-danger">
+                                        {{$errors->first('startShow')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">End Show</label>
                                 <input name="endShow" type="date" class="datepicker" placeholder="end Show">
+                                @if($errors->has('endShow'))
+                                    <div class="text-danger">
+                                        {{$errors->first('endShow')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Jumlah File</label>
                                 <input name="jumlahFile" type="text" class="form-control" placeholder="jumlah File">
+                                @if($errors->has('jumlahFile'))
+                                    <div class="text-danger">
+                                        {{$errors->first('jumlahFile')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-danger btn-block btn-flat">Tambah Data</button>
@@ -91,37 +131,78 @@
                         <div class="box-body">
                             <form action={{ route('editPaket', $id)}} method="post">
                                 {{csrf_field()}}
+                                {{ method_field('POST') }}
                                 <div class="form-group">
                                     <label for="player">Nama Paket</label>
                                     <input name="nama" type="text" class="form-control" placeholder="Nama" value="{{$p->nama}}">
+                                    @if($errors->has('nama'))
+                                        <div class="text-danger">
+                                            {{$errors->first('nama')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Harga Paket</label>
                                     <input name="harga" type="text" class="form-control" placeholder="harga" value="{{$p->harga}}">
+                                    @if($errors->has('harga'))
+                                        <div class="text-danger">
+                                            {{$errors->first('harga')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Durasi</label>
                                     <input name="durasi" type="text" class="form-control" placeholder="durasi" value="{{$p->durasi}}">
+                                    @if($errors->has('durasi'))
+                                        <div class="text-danger">
+                                            {{$errors->first('durasi')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Jumlah Player</label>
                                     <input name="jumlahPlayer" type="text" class="form-control" placeholder="jumlah Player" value="{{$p->jumlahPlayer}}">
+                                    @if($errors->has('jumlahPlayer'))
+                                        <div class="text-danger">
+                                            {{$errors->first('jumlahPlayer')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Jenis Content</label>
                                     <input name="jenisContent" type="text" class="form-control" placeholder="jenis Content" value="{{$p->jenisContent}}">
+                                    @if($errors->has('jenisContent'))
+                                        <div class="text-danger">
+                                            {{$errors->first('jenisContent')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Start Show</label>
                                     <input name="startShow" type="date" class="datepicker" placeholder="start Show" value="{{$p->startShow}}">
+                                    @if($errors->has('startShow'))
+                                        <div class="text-danger">
+                                            {{$errors->first('startShow')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">End Show</label>
                                     <input name="endShow" type="date" class="datepicker" placeholder="end Show" value="{{$p->endShow}}">
+                                    @if($errors->has('endShow'))
+                                        <div class="text-danger">
+                                            {{$errors->first('endShow')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Jumlah File</label>
                                     <input name="jumlahFile" type="text" class="form-control" placeholder="jumlah File" value="{{$p->jumlahFile}}">
+                                    @if($errors->has('jumlahFile'))
+                                        <div class="text-danger">
+                                            {{$errors->first('jumlahFile')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <button  type="submit" class="btn btn-block btn-danger">Edit Data</button>

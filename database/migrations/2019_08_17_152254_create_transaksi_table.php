@@ -17,6 +17,7 @@ class CreateTransaksiTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('paket_id');
+            $table->unsignedBigInteger('pesanan_id');
             $table->integer('jumlahPesanan');
             $table->date('tanggal');
             $table->integer('nominal');
@@ -28,6 +29,7 @@ class CreateTransaksiTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('paket_id')->references('id')->on('paket');
+            $table->foreign('pesanan_id')->references('id')->on('pesanan');
         });
     }
 

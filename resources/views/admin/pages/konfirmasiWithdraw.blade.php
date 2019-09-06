@@ -20,6 +20,18 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
+    @if (\Session::has('alert-fail'))
+        <div class="alert alert-danger">
+        <a href="{{ route('indexKonfirmasiWithdraw') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+            <div>{{Session::get('alert-fail')}}</div>
+        </div>
+    @endif
+    @if (\Session::has('alert-success'))
+        <div class="alert alert-success">
+        <a href="{{ route('indexKonfirmasiWithdraw') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
+            <div>{{Session::get('alert-success')}}</div>
+        </div>
+    @endif
       <table id="master-player" class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -36,16 +48,28 @@
         <tbody>
           @foreach ($withdraw as $w)
            <tr>
-              <td>{{$w->id}}</td>
+              <td>{{$w->userid}}</td>
               <td>{{$w->nama}}</td>
               <td>{{$w->tanggal}}</td>
               <td>{{$w->nominal}}</td>
               <td>{{$w->status}}</td>
-               <td>{{$w->namaBank}}</td>
-               <td>{{$w->nomorRekening}}</td>
+              <td>{{$w->namaBank}}</td>
+              <td>{{$w->nomorRekening}}</td>
               <td>
                   <div class="column">
-                      <div class="col-md-12"><a href="" class="btn btn-block btn-info">Konfirmasi</a></div>
+                      @if($w->status === 0)
+                          <form action="/admin/invoice/konfirmasi-withdraw/{{$w->id}}" method="post">
+                              {{csrf_field()}}
+                              <div class="col-md-12">
+                                  <button type="submit" class="btn btn-block btn-warning">Konfirmasi </button>
+                              </div>
+                          </form>
+                      @elseif($w->status === 1)
+                              <div class="col-md-12">
+                                  <p type="submit" class="btn btn-block btn-success">Telah Dikonfirmasi</p>
+                              </div>
+                          </form>
+                      @endif
                   </div>
               </td>
             </tr>

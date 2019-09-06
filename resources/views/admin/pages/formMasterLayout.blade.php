@@ -27,14 +27,29 @@
                             <div class="form-group">
                                 <label for="player">Nama Layout</label>
                                 <input name="nama" type="text" class="form-control" placeholder="Nama">
+                                @if($errors->has('nama'))
+                                    <div class="text-danger">
+                                        {{$errors->first('nama')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Width</label>
                                 <input name="width" type="text" class="form-control" placeholder="Width">
+                                @if($errors->has('width'))
+                                    <div class="text-danger">
+                                        {{$errors->first('width')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Height</label>
                                 <input name="height" type="text" class="form-control" placeholder="Height">
+                                @if($errors->has('height'))
+                                    <div class="text-danger">
+                                        {{$errors->first('height')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="player">Status Fullscreen</label>
@@ -90,29 +105,53 @@
                                 <div class="form-group">
                                     <label for="player">Nama Layout</label>
                                     <input type="text" class="form-control" name="nama" value={{$l->nama}}>
+                                    @if($errors->has('nama'))
+                                        <div class="text-danger">
+                                            {{$errors->first('nama')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Width</label>
                                     <input type="text" class="form-control" name="width" value={{$l->width}}>
+                                    @if($errors->has('width'))
+                                        <div class="text-danger">
+                                            {{$errors->first('width')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Height</label>
                                     <input type="text" class="form-control" name="height" value={{$l->height}}>
+                                    @if($errors->has('height'))
+                                        <div class="text-danger">
+                                            {{$errors->first('height')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Status Fullscreen</label>
-                                    {{--<input type="text" class="form-control" name="statusFullscreen" value={{$l->statusFullscreen}}>--}}
                                     <select class="form-control" name="statusFullscreen">
-                                        <option value="1">1</option>
-                                        <option value="0">0</option>
+                                        @if($l->statusFullscreen == 0)
+                                        <option value="0">Off</option>
+                                        <option value="1">On</option>
+                                        @elseif($l->statusFullscreen == 1)
+                                        <option value="1">On</option>
+                                        <option value="0">Off</option>
+                                        @endif
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Orientation</label>
-                                    {{--<input type="text" class="form-control" name="orientation" value={{$l->orientation}}>--}}
                                     <select class="form-control" name="orientation">
+                                        @if($l->orientation == 'landscape')
                                         <option value="landscape">Landscape</option>
                                         <option value="potrait">Potrait</option>
+                                        @elseif($l->orientation == 'potrait')
+                                        <option value="potrait">Potrait</option>
+                                        <option value="landscape">Landscape</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group">

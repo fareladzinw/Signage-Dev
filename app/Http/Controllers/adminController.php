@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\Pesanan;
 use App\Transaksi;
 use Carbon\Carbon;
 use http\Client;
@@ -20,6 +21,7 @@ use App\Komisi;
 use App\Withdraw;
 use App\Konfirmasi;
 use App\Requests;
+use Illuminate\Support\Str;
 
 
 class adminController extends Controller
@@ -37,15 +39,21 @@ class adminController extends Controller
     }
 
     public function storeDataMasterPlayer(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'lokasi' => 'required',
+            'spesifikasi' => 'required',
+        ]);
+
         $data = new Player();
         $data->nama = $request->nama;
         $data->lokasi = $request->lokasi;
-        $data->KEYPLAYER = $request->KEYPLAYER;
-        $data->PASSWORD = $request->PASSWORD;
+        $data->KEYPLAYER = strtoupper(Str::random(16));
+        $data->PASSWORD = Str::random(10);
         $data->spesifikasi = $request->spesifikasi;
         $data->save();
 
-        return redirect('/admin/player/master-player');
+        return redirect('/admin/player/master-player')->with('alert-success', 'Berhasil tambah player');
     }
 
     public function getEditDataMasterPlayer($id){
@@ -56,6 +64,14 @@ class adminController extends Controller
     }
 
     public function editDataMasterPlayer($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'lokasi' => 'required',
+            'keyplayer' => 'required',
+            'password' => 'required',
+            'spesifikasi' => 'required',
+        ]);
+
         Player::where('id',$id)->update([
             'nama' => $request->nama,
             'lokasi' => $request->lokasi,
@@ -64,7 +80,7 @@ class adminController extends Controller
             'spesifikasi' => $request->spesifikasi
         ]);
 
-        return redirect('/admin/player/master-player');
+        return redirect('/admin/player/master-player')->with('alert-success', 'Berhasil edit player');
     }
 
     public function deletePlayer ($id){
@@ -76,7 +92,7 @@ class adminController extends Controller
             return redirect()->back()->with('alert-success','Player berhasil dihapus');
         }
         else{
-            return redirect()->back()->with('alert-fail','Player gagal dihapus,karena Player sedang digunakan');
+            return redirect()->back()->with('alert-fail','Player gagal dihapus, karena Player sedang digunakan');
         }
     }
     //=======================================
@@ -94,6 +110,14 @@ class adminController extends Controller
     }
 
     public function storeDataMasterLayout(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'width' => 'required',
+            'height' => 'required',
+            'statusFullscreen' => 'required',
+            'orientation' => 'required',
+        ]);
+
         $data = new Layout();
         $data->nama = $request->nama;
         $data->width = $request->width;
@@ -102,7 +126,7 @@ class adminController extends Controller
         $data->orientation = $request->orientation;
         $data->save();
 
-        return redirect('/admin/player/master-layout');
+        return redirect('/admin/player/master-layout')->with('alert-success', 'Berhasil tambah layout');
     }
 
     public function getEditDataMasterLayout($id){
@@ -113,6 +137,14 @@ class adminController extends Controller
     }
 
     public function editDataMasterLayout($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'width' => 'required',
+            'height' => 'required',
+            'statusFullscreen' => 'required',
+            'orientation' => 'required',
+        ]);
+
         Layout::where('id',$id)->update([
             'nama' => $request->nama,
             'width' => $request->width,
@@ -121,7 +153,7 @@ class adminController extends Controller
             'orientation' => $request->orientation
         ]);
 
-        return redirect('/admin/player/master-layout');
+        return redirect('/admin/player/master-layout')->with('alert-success', 'Berhasil edit layout');
     }
 
     public function deleteLayout ($id){
@@ -132,7 +164,7 @@ class adminController extends Controller
             return redirect()->back()->with('alert-success','Layout berhasil dihapus');
         }
         else{
-            return redirect()->back()->with('alert-fail','Layout gagal dihapus,karena layout sedang digunakan');
+            return redirect()->back()->with('alert-fail','Layout gagal dihapus, karena layout sedang digunakan');
         }
     }
     //=============================
@@ -141,7 +173,7 @@ class adminController extends Controller
     //CONTROLLER KATEGORI
 
     public function masterKategori (){
-        $kategori = Kategori::get();
+        $kategori = Kategori::all();
 
         return view('admin.pages.masterKategori',['kategori'=>$kategori]);
     }
@@ -151,28 +183,37 @@ class adminController extends Controller
     }
 
     public function storeDataMasterKategori(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'keterangan' => 'required',
+        ]);
+
         $data = new Kategori();
         $data->nama = $request->nama;
         $data->keterangan = $request->keterangan;
         $data->save();
 
-        return redirect('/admin/player/master-kategori');
+        return redirect('/admin/player/master-kategori')->with('alert-success', 'Berhasil tambah kategori');
     }
 
     public function getEditDataMasterKategori($id){
-        $kategori = Kategori::where('id',$id)
-            ->get();
+        $kategori = Kategori::where('id', $id)->get();
 
         return view('admin.pages.formMasterKategori',['kategori'=> $kategori, 'id'=>$id]);
     }
 
     public function editDataMasterKategori($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'keterangan' => 'required',
+        ]);
+
         Kategori::where('id',$id)->update([
             'nama' => $request->nama,
             'keterangan' => $request->keterangan
         ]);
 
-        return redirect('/admin/player/master-kategori');
+        return redirect('/admin/player/master-kategori')->with('alert-success', 'Berhasil edit kategori');
     }
 
     public function deleteKategori ($id){
@@ -180,9 +221,8 @@ class adminController extends Controller
         if(empty($check)){
             Kategori::where('id',$id)->delete();
             return redirect()->back()->with('alert-success','Kategori berhasil dihapus');
-        }
-        else{
-            return redirect()->back()->with('alert-fail','Kategori gagal dihapus,karena Kategori sedang digunakan');
+        } else {
+            return redirect()->back()->with('alert-fail','Kategori gagal dihapus, karena Kategori sedang digunakan');
         }
     }
     //=====================================
@@ -190,16 +230,39 @@ class adminController extends Controller
     //CONTROLLER MANAGER / MEDIA
     public function masterMedia (){
         $media = Media::join('file','file.id','=','media.file_id')
-            ->get(['file.nama','file.type','file.size','file.duration','file.url','media.statusDownload','file.status']);
+            ->get(['media.id','file.nama','file.type','file.size','file.duration','file.url','media.statusDownload','file.status']);
 
         return view('admin.pages.masterMedia',['media'=>$media]);
+    }
+
+    public function downloadMasterMedia ($id){
+        $file_id = Media::where('id',$id)->first();
+        $check = File::where('id',$file_id->file_id)->first();
+
+        if($check->nama === null){
+            return redirect('/admin/player/master-media')->with('alert-fail','User Belum Mengupload Iklan');
+        }
+        else{
+            File::where('id',$file_id->file_id)->update([
+                'status' => 1
+            ]);
+            Media::where('id',$id)->update([
+                'statusDownload' => 1
+            ]);
+
+            $filename = File::where('id',$file_id->file_id)->first();
+
+            $filepath = public_path('images/').$filename->nama;
+
+            return response()->download($filepath)->with('alert-succes','Iklan Telah didownload');
+        }
     }
 
     //=============================
 
     //CONTROLLER CLIENT
     public function listClient (){
-        $client = User::orderBy('tipeClient','asc')->get();
+        $client = User::orderBy('created_at','desc')->get();
 
         return view('admin.pages.listClient',['client'=>$client]);
     }
@@ -212,6 +275,15 @@ class adminController extends Controller
     }
 
     public function editDataMasterClient($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'email' => 'required|email',
+            'alamat' => 'required',
+            'hp' => 'required',
+            'username' => 'required',
+            'password' => 'required|min:6'
+        ]);
+
         User::where('id',$id)->update([
             'nama' => $request->nama,
             'email' => $request->email,
@@ -221,13 +293,13 @@ class adminController extends Controller
             'password'=>bcrypt($request->password)
         ]);
 
-        return redirect('/admin/client/list-client');
+        return redirect('/admin/client/list-client')->with('alert-success', 'Berhasil edit client');
     }
 
-    public function deleteClient ($id){
+    public function deleteClient($id){
         User::find($id)->delete();
 
-        return redirect('/admin/client/list-client');
+        return redirect('/admin/client/list-client')->with('alert-success', 'Berhasil delete client');
     }
 
     //===============================
@@ -253,6 +325,17 @@ class adminController extends Controller
     }
 
     public function storeDataMasterPaket(Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'harga' => 'required',
+            'durasi' => 'required',
+            'jumlahPlayer' => 'required',
+            'jenisContent' => 'required',
+            'startShow' => 'required|date',
+            'endShow' => 'required|date',
+            'jumlahFile' => 'required',
+        ]);
+
         $data = new Paket();
         $data->nama = $request->nama;
         $data->harga = $request->harga;
@@ -265,7 +348,7 @@ class adminController extends Controller
         $data->status = 0;
         $data->save();
 
-        return redirect('/admin/client/setup-paket');
+        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil tambah paket');
     }
 
     public function getEditDataMasterPaket($id){
@@ -276,6 +359,17 @@ class adminController extends Controller
     }
 
     public function editDataMasterPaket($id, Request $request){
+        $this->validate($request, [
+            'nama' => 'required',
+            'harga' => 'required',
+            'durasi' => 'required',
+            'jumlahPlayer' => 'required',
+            'jenisContent' => 'required',
+            'startShow' => 'required|date',
+            'endShow' => 'required|date',
+            'jumlahFile' => 'required',
+        ]);
+
         Paket::where('id',$id)->update([
             'nama' => $request->nama,
             'harga' => $request->harga,
@@ -287,13 +381,13 @@ class adminController extends Controller
             'jumlahFile' => $request->jumlahFile,
         ]);
 
-        return redirect('/admin/client/setup-paket');
+        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil edit paket');;
     }
 
     public function deletePaket ($id){
         Paket::find($id)->delete();
 
-        return redirect('/admin/client/setup-paket');
+        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil delete paket');;
     }
     //=================================
 
@@ -327,6 +421,17 @@ class adminController extends Controller
     }
 
     public function storeDataMasterPlaylist(Request $request){
+        $this->validate($request, [
+            'player_id' => 'required',
+            'media_id' => 'required',
+            'layout_id' => 'required',
+            'kategori_id' => 'required',
+            'paket_id' => 'required',
+            'duration' => 'required',
+            'statusLoop' => 'required',
+            'statusMedia' => 'required',
+        ]);
+
         $data = new Playlist();
         $data->player_id = $request->player_id;
         $data->media_id = $request->media_id;
@@ -338,7 +443,7 @@ class adminController extends Controller
         $data->statusMedia = $request->statusMedia;
         $data->save();
 
-        return redirect('/admin/client/setup-playlist');
+        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil tambah playlist');
     }
 
     public function getEditDataMasterPlaylist($id){
@@ -361,6 +466,17 @@ class adminController extends Controller
     }
 
     public function editDataMasterPlaylist($id, Request $request){
+        $this->validate($request, [
+            'player_id' => 'required',
+            'media_id' => 'required',
+            'layout_id' => 'required',
+            'kategori_id' => 'required',
+            'paket_id' => 'required',
+            'duration' => 'required',
+            'statusLoop' => 'required',
+            'statusMedia' => 'required',
+        ]);
+
         Playlist::where('id',$id)->update([
             'player_id' => $request->player_id,
             'media_id' => $request->media_id,
@@ -372,13 +488,13 @@ class adminController extends Controller
             'statusMedia' => $request->statusMedia,
         ]);
 
-        return redirect('/admin/client/setup-playlist');
+        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil edit playlist');;
     }
 
     public function deletePlaylist ($id){
         Playlist::find($id)->delete();
 
-        return redirect('/admin/client/setup-playlist');
+        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil delete playlist');;
     }
 
     //=======================================
@@ -386,9 +502,17 @@ class adminController extends Controller
     //CONTROLLER WITHDRAW AFILIASi
     public function konfirmasiWithdraw (){
         $withdraw = Withdraw::join('users','users.id','=','withdraw.user_id')
-            ->get(['users.id','users.nama','withdraw.tanggal','withdraw.nominal','withdraw.status','users.namaBank','users.nomorRekening']);
+            ->get(['users.id AS userid','users.nama','withdraw.tanggal','withdraw.nominal','withdraw.status','users.namaBank','users.nomorRekening','withdraw.id']);
 
         return view('admin.pages.konfirmasiWithdraw',['withdraw'=>$withdraw]);
+    }
+
+    public function makeKonfirmasiWithdraw($id){
+        Withdraw::where('id',$id)->update([
+            'status' => 1
+        ]);
+
+        return redirect('/admin/invoice/konfirmasi-withdraw')->with('alert-success', 'Withdraw berhasil dikonfirmasi');
     }
 
     //================================
@@ -399,9 +523,37 @@ class adminController extends Controller
             ->join('paket','paket.id','=','content.paket_id')
             ->join('playlist','playlist.id','=','content.playlist_id')
             ->join('users','users.id','=','content.user_id')
-            ->get(['transaksi.id AS idtrans','paket.nama AS namapaket','playlist.id AS idplaylist','users.nama AS namauser','content.status','content.startTayang','content.endTayang','content.numberFile','content.typeFile','content.urlFile','content.orderFile']);
+            ->get(['transaksi.id AS idtrans','paket.nama AS namapaket','playlist.id AS idplaylist','users.nama AS namauser','content.status','content.startTayang','content.endTayang','content.numberFile','content.typeFile','content.urlFile','content.orderFile','content.id as id']);
 
         return view('admin.pages.pesananTayang',['pesanan'=>$pesanan]);
+    }
+
+    public function onPesananTayang($id){
+        $content = Content::where('id',$id)->update([
+            'status' => 1
+        ]);
+
+        $transaksi_id = Content::where('id',$id)->get(['transaksi_id']);
+
+        $transaksi = Transaksi::find($transaksi_id)->first();
+        $transaksi -> statusTayang = 1;
+        $transaksi -> save();
+
+        return redirect('/admin/invoice/pesanan-tayang')->with('alert-success', 'Berhasil validasi pesanan!');
+    }
+
+    public function offPesananTayang($id){
+        Content::where('id',$id)->update([
+            'status' => 0
+        ]);
+
+        $transaksi_id = Content::where('id',$id)->get(['transaksi_id']);
+
+        $transaksi = Transaksi::find($transaksi_id)->first();
+        $transaksi -> statusTayang = 0;
+        $transaksi -> save();
+
+        return redirect('/admin/invoice/pesanan-tayang')->with('alert-fail', 'Berhasil hapus validasi!');;
     }
 
     //=========================
@@ -409,16 +561,78 @@ class adminController extends Controller
     //CONTROLLER KONFIRMASI PEMBAYARAN
     public function konfirmasiPemabayaran (){
         $konfirmasi = Konfirmasi::join('transaksi','transaksi.id','=','konfirmasi.transaksi_id')
-            ->get(['konfirmasi.type','konfirmasi.konfirmasiDari','konfirmasi.tanggal','transaksi.id','konfirmasi.namaBank','konfirmasi.namaRekening','konfirmasi.nominal','konfirmasi.status','konfirmasi.validasi','konfirmasi.dataBulb']);
+            ->get(['konfirmasi.type','konfirmasi.konfirmasiDari','konfirmasi.tanggal','transaksi.id AS idtransaksi','konfirmasi.namaBank','konfirmasi.namaRekening','konfirmasi.nominal','konfirmasi.status','konfirmasi.validasi','konfirmasi.dataBulb','konfirmasi.id']);
 
         return view('admin.pages.konfirmasiPemabayaran',['konfirmasi'=>$konfirmasi]);
+    }
+
+    public function makeKonfirmasiPemabayaran($id){
+        $check = Konfirmasi::where('id',$id)->where('validasi','=',1)->first();
+
+        if($check === null){
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail','Tidak dapat dikonfirmasi, karena belum melihat bukti pembayaran');
+        }
+        else {
+            Konfirmasi::where('id',$id)->update([
+                'status' => 1
+            ]);
+
+            $konfirmasi = Konfirmasi::find($id);
+            $transaksi = Transaksi::where('id','=',$konfirmasi->transaksi_id)->first();
+
+            $pesanan = Pesanan::find($transaksi->pesanan_id)->first();
+            $pesanan ->status = 1 ;
+            $pesanan ->save();
+
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-success','Berhasil mengkonfirmasi pembayaran!');;
+        }
+    }
+
+    public function downloadKonfirmasiPemabayaran($id){
+        $check = Konfirmasi::where('id',$id)->first();
+
+        if($check->dataBulb === null){
+            return redirect('/admin/invoice/konfirmasi-pembayaran')->with('alert-fail','User Belum Mengupload Bukti Pembayaran');
+        }
+        else{
+            Konfirmasi::where('id',$id)->update([
+                'validasi' => 1
+            ]);
+
+            $filename = Konfirmasi::where('id',$id)->first();
+
+            $filepath = public_path('images/').$filename->dataBulb;
+
+            return response()->download($filepath);
+        }
     }
 
     //============================================
 
     //CONTROLLER REQUEST PLAYER
     public function daftarRequestPlayer (){
-        return view('admin.pages.daftarRequestPlayer');
+        $request = Requests::join('player','player.id','=','request.player_id')
+            ->join('playlist','playlist.id','=','request.playlist_id')
+            ->get(['player.nama AS namaplayer','playlist.id AS idplaylist','request.tanggal','request.status','request.uniqueId','request.kapasitasFile','request.estimateTransfer','request.id']);
+
+        return view('admin.pages.daftarRequestPlayer',['request'=>$request]);
+    }
+
+    public function onRequestPlayer($id){
+        Requests::where('id',$id)->update([
+            'status' => 1
+        ]);
+
+
+        return redirect('/admin/invoice/request-player')->with('alert-success', 'Berhasil validasi request player!');
+    }
+
+    public function offRequestPlayer($id){
+        Requests::where('id',$id)->update([
+            'status' => 0
+        ]);
+
+        return redirect('/admin/invoice/request-player')->with('alert-fail', 'Berhasil hapus request player!');
     }
 
     //==========================================
