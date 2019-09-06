@@ -70,7 +70,7 @@
 @section('js')
 <script>
     $(function () {
-      $('#master-player').DataTable({
+      $('#master-playlist').DataTable({
         'paging'      : true,
         'lengthChange': true,
         'searching'   : false,

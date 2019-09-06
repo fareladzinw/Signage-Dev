@@ -73,7 +73,7 @@
 <script>
 
     $(function () {
-      $('#master-player').DataTable({
+      $('#master-layout').DataTable({
         'paging'      : true,
         'lengthChange': true,
         'searching'   : false,

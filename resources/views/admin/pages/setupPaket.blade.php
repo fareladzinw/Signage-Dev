@@ -62,7 +62,7 @@
 @section('js')
 <script>
     $(function () {
-      $('#master-player').DataTable({
+      $('#setup-paket').DataTable({
         'paging'      : true,
         'lengthChange': true,
         'searching'   : false,

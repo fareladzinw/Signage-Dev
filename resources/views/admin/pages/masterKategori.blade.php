@@ -66,7 +66,7 @@
 @section('js')
 <script>
     $(function () {
-      $('#master-player').DataTable({
+      $('#master-kategori').DataTable({
         'paging'      : true,
         'lengthChange': true,
         'searching'   : false,
