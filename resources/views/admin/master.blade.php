@@ -135,6 +135,8 @@ desired effect
           <ul class="treeview-menu">
             <li class="{{ (request()->is('admin/setup/setup-playlist')) ? 'active' : '' }}"><a href="{{url ('admin/setup/setup-playlist')}}"><i class="fa fa-link"></i> <span>Setup Playlist</span></a></li>
             <li class="{{ (request()->is('admin/setup/setup-paket')) ? 'active' : '' }}"><a href="{{url ('admin/setup/setup-paket')}}"><i class="fa fa-link"></i> <span>Setup Paket Signage</span></a></li>
+            <li class="{{ (request()->is('admin/setup/setup-paket/player')) ? 'active' : '' }}"><a href="{{url ('admin/setup/setup-paket/player')}}"><i class="fa fa-link"></i> <span>Setup Paket And Player</span></a></li>
+            <li class="{{ (request()->is('admin/setup/setup-paket/kategori')) ? 'active' : '' }}"><a href="{{url ('admin/setup/setup-paket/kategori')}}"><i class="fa fa-link"></i> <span>Setup Paket And Kategori</span></a></li>
           </ul>
         </li>
         <li class="{{ (request()->is('admin/invoice/*')) ? 'treeview active' : 'treeview' }}">
