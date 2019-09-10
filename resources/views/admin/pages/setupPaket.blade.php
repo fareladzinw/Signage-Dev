@@ -17,7 +17,7 @@
               </section>
         </div>
         <div class="col-md-2"><button  type="button" class="btn btn-block btn-warning" onclick="exportTableToExcel('setup-paket', 'report-setup-paket')">Dowload Excel</button></div>
-      <div class="col-md-2"><a href="{{url('/admin/client/master-paket/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tambah Data</button></a></div>
+      <div class="col-md-2"><a href="{{url('/admin/setup/master-paket/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tambah Data</button></a></div>
       </div>
     </div>
     <!-- /.box-header -->
@@ -55,8 +55,8 @@
               <td>{{$p->jenisContent}}</td>
               <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="{{url('/admin/client/master-paket/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
-                      <div class="col-md-6"><a href="{{url('/admin/client/delete/master-paket/'.$p->id)}}" class="btn btn-block btn-danger">Hapus</a></div>
+                      <div class="col-md-6"><a href="{{url('/admin/setup/master-paket/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
+                      <div class="col-md-6"><a href="{{url('/admin/setup/delete/master-paket/'.$p->id)}}" class="btn btn-block btn-danger">Hapus</a></div>
                   </div>
               </td>
             </tr>

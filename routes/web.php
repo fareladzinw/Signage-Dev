@@ -63,19 +63,21 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 
     //ROUTE PLAYLIST
     Route::get('/setup/setup-playlist', 'adminController@setupPlaylist');
-    Route::get('/client/master-playlist/add-data', 'adminController@addDataMasterPlaylist');
-    Route::post('/client/master-playlist/add-data', 'adminController@storeDataMasterPlaylist')->name('storePlaylist');
-    Route::get('/client/master-playlist/edit-data/{id}', 'adminController@getEditDataMasterPlaylist');
-    Route::post('/client/master-playlist/edit-data/{id}', 'adminController@editDataMasterPlaylist')->name('editPlaylist');
-    Route::get('/client/delete/master-playlist/{id}', 'adminController@deletePlaylist');
+    Route::get('/setup/master-playlist/add-data', 'adminController@addDataMasterPlaylist');
+    Route::post('/setup/master-playlist/add-data', 'adminController@storeDataMasterPlaylist')->name('storePlaylist');
+    Route::get('/setup/master-playlist/edit-data/{id}', 'adminController@getEditDataMasterPlaylist');
+    Route::post('/setup/master-playlist/edit-data/{id}', 'adminController@editDataMasterPlaylist')->name('editPlaylist');
+    Route::get('/setup/delete/master-playlist/{id}', 'adminController@deletePlaylist');
 
     //ROUTE PAKET
     Route::get('/setup/setup-paket', 'adminController@setupPaket');
-    Route::get('/client/master-paket/add-data', 'adminController@addDataMasterPaket');
-    Route::post('/client/master-paket/add-data', 'adminController@storeDataMasterPaket')->name('storePaket');
-    Route::get('/client/master-paket/edit-data/{id}', 'adminController@getEditDataMasterPaket');
-    Route::post('/client/master-paket/edit-data/{id}', 'adminController@editDataMasterPaket')->name('editPaket');
-    Route::get('/client/delete/master-paket/{id}', 'adminController@deletePaket');
+    Route::get('/setup/master-paket/add-data', 'adminController@addDataMasterPaket');
+    Route::post('/setup/master-paket/add-data', 'adminController@storeDataMasterPaket')->name('storePaket');
+    Route::get('/setup/master-paket/edit-data/{id}', 'adminController@getEditDataMasterPaket');
+    Route::post('/setup/master-paket/edit-data/{id}', 'adminController@editDataMasterPaket')->name('editPaket');
+    Route::get('/setup/delete/master-paket/{id}', 'adminController@deletePaket');
+    Route::get('/setup/setup-paket/player', 'adminController@setupPaketPlayer');
+    Route::get('/setup/setup-paket/kategori', 'adminController@setupPaketKategori');
 
     //ROUTE INVOICE
     Route::get('/invoice/pesanan-tayang', 'adminController@pesananTayang')->name('indexPesananTayang');

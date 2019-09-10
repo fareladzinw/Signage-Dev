@@ -17,7 +17,7 @@
               </section>
         </div>
         <div class="col-md-2"><button  type="button" class="btn btn-block btn-warning" onclick="exportTableToExcel('master-playlist', 'report-master-playlist')">Dowload Excel</button></div>
-      <div class="col-md-2"><a href="{{url('/admin/client/master-playlist/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tambah Data</button></a></div>
+      <div class="col-md-2"><a href="{{url('/admin/setup/master-playlist/add-data')}}"><button  type="button" class="btn btn-block btn-danger">Tambah Data</button></a></div>
       </div>
     </div>
     <!-- /.box-header -->
@@ -71,8 +71,8 @@
               <td>{{$p->namapaket}}</td>
                <td>
                   <div class="column">
-                      <div class="col-md-6"><a href="{{url('/admin/client/master-playlist/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
-                      <div class="col-md-6"><a href="{{url('/admin/client/delete/master-playlist/'.$p->id)}}" class="btn btn-block btn-danger">Hapus</a></div>
+                      <div class="col-md-6"><a href="{{url('/admin/setup/master-playlist/edit-data/'.$p->id)}}" class="btn btn-block btn-success">Edit</a></div>
+                      <div class="col-md-6"><a href="{{url('/admin/setup/delete/master-playlist/'.$p->id)}}" class="btn btn-block btn-danger">Hapus</a></div>
                   </div>
               </td>
             </tr>

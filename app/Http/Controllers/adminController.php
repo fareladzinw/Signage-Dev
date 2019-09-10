@@ -348,7 +348,7 @@ class adminController extends Controller
         $data->status = 0;
         $data->save();
 
-        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil tambah paket');
+        return redirect('/admin/setup/setup-paket')->with('alert-success', 'Berhasil tambah paket');
     }
 
     public function getEditDataMasterPaket($id){
@@ -381,13 +381,31 @@ class adminController extends Controller
             'jumlahFile' => $request->jumlahFile,
         ]);
 
-        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil edit paket');;
+        return redirect('/admin/setup/setup-paket')->with('alert-success', 'Berhasil edit paket');;
     }
 
     public function deletePaket ($id){
         Paket::find($id)->delete();
 
-        return redirect('/admin/client/setup-paket')->with('alert-success', 'Berhasil delete paket');;
+        return redirect('/admin/setup/setup-paket')->with('alert-success', 'Berhasil delete paket');;
+    }
+
+    public function setupPaketPlayer(){
+        $playlist = Playlist::join('player','player.id','=','playlist.player_id')
+            ->join('paket','paket.id','=','playlist.paket_id')
+            ->orderBy('paket.id')
+            ->get(['paket.id AS idpaket','player.id AS idplayer','player.nama AS namaplayer','paket.nama AS namapaket']);
+
+        return view('admin.pages.setupPaketPlayer',['playlist'=>$playlist]);
+    }
+
+    public function setupPaketKategori(){
+        $playlist = Playlist::join('kategori','kategori.id','=','playlist.kategori_id')
+            ->join('paket','paket.id','=','playlist.paket_id')
+            ->orderBy('kategori.id')
+            ->get(['paket.id AS idpaket','kategori.id AS idkategori','kategori.nama AS namakategori','paket.nama AS namapaket']);
+
+        return view('admin.pages.setupPaketKategori',['playlist'=>$playlist]);
     }
     //=================================
 
@@ -443,7 +461,7 @@ class adminController extends Controller
         $data->statusMedia = $request->statusMedia;
         $data->save();
 
-        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil tambah playlist');
+        return redirect('/admin/setup/setup-playlist')->with('alert-success', 'Berhasil tambah playlist');
     }
 
     public function getEditDataMasterPlaylist($id){
@@ -488,13 +506,13 @@ class adminController extends Controller
             'statusMedia' => $request->statusMedia,
         ]);
 
-        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil edit playlist');;
+        return redirect('/admin/setup/setup-playlist')->with('alert-success', 'Berhasil edit playlist');;
     }
 
     public function deletePlaylist ($id){
         Playlist::find($id)->delete();
 
-        return redirect('/admin/client/setup-playlist')->with('alert-success', 'Berhasil delete playlist');;
+        return redirect('/admin/setup/setup-playlist')->with('alert-success', 'Berhasil delete playlist');;
     }
 
     //=======================================
