@@ -52,7 +52,7 @@
       <div>{{Session::get('alert-success')}}</div>
     </div>
     @endif
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Silahkan Login</p>
 
     <form action="{{ route('checkLogin') }}" method="POST">
     {{ csrf_field() }}
@@ -69,13 +69,13 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Remember Me
+              <input type="checkbox"> Ingat saya
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Log in</button>
         </div>
         <!-- /.col -->
       </div>
@@ -90,8 +90,8 @@
     </div>
     <!-- /.social-auth-links --> --}}
 
-    <a href="#">Forgot password?</a><br>
-    <a href="{{ route('register') }}" class="text-center">Sign Up</a>
+    <a href="#">Lupa password?</a><br>
+    <a href="{{ route('register') }}" class="text-center">Daftar</a>
 
   </div>
   <!-- /.login-box-body -->

@@ -98,11 +98,11 @@
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  {{-- <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  </div> --}}
+                  <div class="pull-left">
+                    <a href="#" class="btn btn-default btn-flat">Profil</a>
+                  </div>
                   <div class="pull-right">
-                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Log out</a>
                   </div>
                 </li>
               </ul>

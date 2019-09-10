@@ -110,6 +110,9 @@ Route::prefix('user')->middleware('auth')->group(function() {
     Route::post('/paket-aktif/upload/{id}', 'UserController@uploadStore')->name('uploadStore');
     Route::get('/paket-aktif/upload-bukti-pembayaran/{id}', 'UserController@buktiIndex')->name('buktiIndex');
     Route::post('/paket-aktif/upload-bukti-pembayaran/{id}', 'UserController@buktiStore')->name('buktiStore');
+
+    Route::get('/profile', 'pageController@profile');
+    Route::get('/edit-profile', 'pageController@editProfile');
 });
 
 

@@ -189,7 +189,7 @@ desired effect
       aksesdatauatama.com
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2019 <a href="#">Arbaajaa.com</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2019 <a href="#">Arbaajaa.com</a></strong>
   </footer>
 
   <!-- Control Sidebar -->

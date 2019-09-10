@@ -38,11 +38,11 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo" style="margin-top: -25%;">
-            <a href="../../index2.html"><b>Signage</b>DEV</a>
+            <a href="#"><img src="{{asset('images/logo/signage.png')}}" alt="" style="width: 100%;"></a>
         </div>
         
         <div class="register-box-body" style="margin-top: -5%;">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Pendaftaran Member Baru</p>
         
             <form action="{{ route('postRegister') }}" method="post">
             {{ csrf_field() }}
@@ -132,7 +132,7 @@
                 @endif
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Retype password" name="repassword">
+                <input type="password" class="form-control" placeholder="Ketik ulang password" name="repassword">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 @if($errors->has('repassword'))
                 <div class="text-danger">
@@ -144,18 +144,18 @@
                 <div class="col-xs-8">
                 <div class="checkbox icheck">
                     <label>
-                    <input type="checkbox" required> I agree to the <a href="#">terms</a>
+                    <input type="checkbox" required> Saya setuju dengan <a href="#">ketentuan</a>
                     </label>
                 </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Daftar</button>
                 </div>
                 <!-- /.col -->
             </div>
             </form>        
-            <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+            <a href="{{ route('login') }}" class="text-center">Sudah mempunyai akun</a>
         </div>
         <!-- /.form-box -->
         </div>

@@ -69,6 +69,12 @@ class pageController extends Controller
     public function indexUser(){
         return view('user.pages.home');
     }
+    public function profile(){
+        return view('user.pages.profile');
+    }
+    public function editProfile(){
+        return view('user.pages.formEditProfile');
+    }
     public function paketAktif(){
         return view('user.pages.paketAktif');
     }
