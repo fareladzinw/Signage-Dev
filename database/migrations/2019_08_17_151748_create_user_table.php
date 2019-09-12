@@ -28,6 +28,7 @@ class CreateUserTable extends Migration
             $table->string('namaBank')->nullable();
             $table->string('nomorRekening')->nullable();
             $table->string('namaRekening')->nullable();
+            $table->string('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();

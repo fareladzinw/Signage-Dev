@@ -44,6 +44,59 @@ class UserController extends Controller
     }
 
     /**
+     * Load profile user
+     * @return Resource\Views\Users\Pages\home.blade.php
+     */   
+    public function profile() 
+    {
+        $user = User::find(Auth::user()->id);
+        return view('user.pages.profile')->with(['user' => $user]);
+    }
+
+    /**
+     * Load view update profile user
+     * @return Resource\Views\Users\Pages\home.blade.php
+     */   
+    public function editProfile($id) 
+    {
+        $user = User::find($id);
+        return view('user.pages.formEditProfile')->with(['user' => $user]);
+    }
+
+    /**
+     * Update profile user
+     * @return Resource\Views\Users\Pages\home.blade.php
+     */   
+    public function updateProfile(Request $request, $id) 
+    {
+        $this->validate($request, [
+            'nama' => 'required',
+            'email' => 'required',
+            'norek' => 'required',
+            'bank' => 'required',
+            'namaRek' => 'required',
+        ]);
+
+        $user = User::find($id);
+        $user->nama = $request->nama;
+        $user->email = $request->email;
+        $user->nomorRekening = $request->norek;
+        $user->namaBank = $request->bank;
+        $user->namaRekening = $request->namaRek;
+        if(!empty($request->fotoProfile)) {
+            $user->foto = $request->fotoProfile->getClientOriginalName();   
+
+            $image = $request->file('fotoProfile');
+            $target = '/public/images';
+            $image->move(\base_path() . $target, $image->getClientOriginalName());
+        }
+
+        $user->save();     
+
+        return redirect()->route('indexProfile')->with('alert-success', 'Profile sudah diupdate');
+    }
+
+    /**
      * Load landing page user
      * @return Resource\Views\Users\Pages\paketAktif.blade.php
      */   
