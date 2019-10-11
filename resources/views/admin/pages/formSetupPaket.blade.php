@@ -62,7 +62,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="player">Jenis Content</label>
-                                <input name="jenisContent" type="text" class="form-control" placeholder="jenis Content">
+                                <select name="jenisContent" class="form-control">
+                                        <option value="">Pilih Content</option>
+                                        <option value="1">Image</option>
+                                        <option value="2">Slideshow</option>
+                                        <option value="3">Video</option>
+                                    </select>
                                 @if($errors->has('jenisContent'))
                                     <div class="text-danger">
                                         {{$errors->first('jenisContent')}}
@@ -71,7 +76,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="player">Start Show</label>
-                                <input name="startShow" type="date" class="datepicker" placeholder="start Show">
+                                <input name="startShow" type="date" class="form-control" placeholder="start Show">
                                 @if($errors->has('startShow'))
                                     <div class="text-danger">
                                         {{$errors->first('startShow')}}
@@ -80,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="player">End Show</label>
-                                <input name="endShow" type="date" class="datepicker" placeholder="end Show">
+                                <input name="endShow" type="date" class="form-control" placeholder="end Show">
                                 @if($errors->has('endShow'))
                                     <div class="text-danger">
                                         {{$errors->first('endShow')}}
@@ -170,7 +175,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Jenis Content</label>
-                                    <input name="jenisContent" type="text" class="form-control" placeholder="jenis Content" value="{{$p->jenisContent}}">
+                                    <select name="jenisContent" class="form-control">
+                                        <option value="1" {{ $p->jenisContent === 'Image' ? 'selected' : ''}}>Image</option>
+                                        <option value="2" {{ $p->jenisContent === 'Slideshow' ? 'selected' : ''}}>Slideshow</option>
+                                        <option value="3" {{ $p->jenisContent === 'Video' ? 'selected' : ''}}>Video</option>
+                                    </select>
                                     @if($errors->has('jenisContent'))
                                         <div class="text-danger">
                                             {{$errors->first('jenisContent')}}
@@ -179,7 +188,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="player">Start Show</label>
-                                    <input name="startShow" type="date" class="datepicker" placeholder="start Show" value="{{$p->startShow}}">
+                                    <input name="startShow" type="date" class="form-control" placeholder="start Show" value="{{$p->startShow}}">
                                     @if($errors->has('startShow'))
                                         <div class="text-danger">
                                             {{$errors->first('startShow')}}
@@ -188,7 +197,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="player">End Show</label>
-                                    <input name="endShow" type="date" class="datepicker" placeholder="end Show" value="{{$p->endShow}}">
+                                    <input name="endShow" type="date" class="form-control" placeholder="end Show" value="{{$p->endShow}}">
                                     @if($errors->has('endShow'))
                                         <div class="text-danger">
                                             {{$errors->first('endShow')}}

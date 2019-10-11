@@ -19,7 +19,7 @@ class CreatePaketTable extends Migration
             $table->integer('harga');
             $table->integer('durasi');
             $table->integer('jumlahPlayer');
-            $table->integer('jenisContent');
+            $table->enum('jenisContent', ['Image', 'Slideshow', 'Video']);
             $table->date('startShow');
             $table->date('endShow');
             $table->integer('jumlahFile');
