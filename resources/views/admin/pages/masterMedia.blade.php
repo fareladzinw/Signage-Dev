@@ -18,13 +18,16 @@
                   <div>{{Session::get('alert-success')}}</div>
               </div>
           @endif
-        <div class="col-md-10">
+        <div class="col-md-10 ">
             <section class="content-header" style="padding : 0;">
                 <h1>
                     Master Media
                   <small>Media yang akan ditampilkan</small>
                 </h1>
               </section>
+        </div>
+        <div class="col-md-2">
+            <a href="{{route('addMedia')}}"><button type="button" class="btn btn-danger"><i class="fa fa-plus"></i> Add new media</button></a>
         </div>
       </div>
     </div>
@@ -46,30 +49,28 @@
         <tbody>
           @foreach($media as $m)
            <tr>
-              <td>{{$m->nama}}</td>
-              <td>{{$m->duration}}</td>
-              <td>{{$m->type}}</td>
-              <td>{{$m->size}}</td>
-              @if($m->status == 0)
+              <td>{{$m->file['nama']}}</td>
+              <td>{{$m->file['duration']}}</td>
+              <td>{{$m->file['type']}}</td>
+              <td>{{$m->file['size']}}</td>
+              @if($m->file['status'] == 0)
               <td>Off</td>
-              @elseif($m->status == 1)
+              @elseif($m->file['status'] == 1)
               <td>On</td>
               @endif
-              <td>{{$m->url}}</td>
+              <td>{{$m->file['url']}}</td>
               @if($m->statusDownload == 0)
               <td>Off</td>
               @elseif($m->statusDownload == 1)
               <td>On</td>
               @endif
               <td>
-                  @if($m->statusDownload == 0)
                   <form action="/admin/player/master-media/download/{{$m->id}}" method="post">
                       {{csrf_field()}}
-                      <div class="col-md-12"><button type="submit" class="btn btn-block btn-primary">download</button></div>
-                  </form>
-                  @elseif($m->statusDownload == 1)
-                  <div class="col-md-12"><p class="btn btn-block btn-danger">Ter Download</p></div>
-                  @endif
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-download"></i></button>
+                      <a href="{{route('addFile', $m->id)}}"><button type="button" class="btn btn-warning"><i class="fa fa-plus"></i></button></a>
+                      <a href="{{route('deleteMedia', $m->id)}}"><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
+                  </form>                  
               </td>
             </tr>
           @endforeach

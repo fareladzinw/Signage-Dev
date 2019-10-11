@@ -22,7 +22,7 @@ Route::post('/activation', 'AuthController@checkActivation')->name('checkActivat
 Route::get('/logout', 'AuthController@logout')->name('logout');
 
 Route::prefix('admin')->middleware('auth')->group(function() {
-    Route::get('/', 'pageController@indexAdmin');
+    Route::get('/', 'pageController@indexAdmin')->name('adminHomepage');
 
     //ROUTE PLAYER
     Route::get('/player/master-player', 'adminController@masterPlayer')->name('indexMasterPlayer');
@@ -50,6 +50,10 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 
     //ROUTE MEDIA / FILE MANAGER
     Route::get('/player/master-media', 'adminController@masterMedia')->name('masterMedia');
+    Route::get('/player/add-media', 'adminController@addNewMedia')->name('addMedia');
+    Route::get('/player/add-file/{id}', 'adminController@addNewFile')->name('addFile');
+    Route::post('/player/store-file/{id}', 'adminController@storeNewFile')->name('storeFile');
+    Route::get('/player/delete-media/{id}', 'adminController@deleteMedia')->name('deleteMedia');
     Route::post('/player/master-media/download/{id}', 'adminController@downloadMasterMedia')->name('downloadMedia');
 
     //ROUTE CLIENT
@@ -70,7 +74,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/setup/delete/master-playlist/{id}', 'adminController@deletePlaylist');
 
     //ROUTE PAKET
-    Route::get('/setup/setup-paket', 'adminController@setupPaket');
+    Route::get('/setup/setup-paket', 'adminController@setupPaket')->name('indexSetupPaket');
     Route::get('/setup/master-paket/add-data', 'adminController@addDataMasterPaket');
     Route::post('/setup/master-paket/add-data', 'adminController@storeDataMasterPaket')->name('storePaket');
     Route::get('/setup/master-paket/edit-data/{id}', 'adminController@getEditDataMasterPaket');

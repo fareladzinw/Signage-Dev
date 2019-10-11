@@ -22,6 +22,7 @@ use App\Withdraw;
 use App\Konfirmasi;
 use App\Requests;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 
 
 class adminController extends Controller
@@ -229,10 +230,58 @@ class adminController extends Controller
 
     //CONTROLLER MANAGER / MEDIA
     public function masterMedia (){
-        $media = Media::join('file','file.id','=','media.file_id')
-            ->get(['media.id','file.nama','file.type','file.size','file.duration','file.url','media.statusDownload','file.status']);
+        $media = Media::all();
 
         return view('admin.pages.masterMedia',['media'=>$media]);
+    }
+
+    public function deleteMedia ($id){
+        $media = Media::find($id);
+        $media->delete();
+
+        Session::flash('alert-success', 'Berhasil delete media');
+        return redirect()->back();
+    }
+    
+    public function addNewMedia (){
+        $media = new Media;
+        $media->file_id         = null;
+        $media->statusDownload  = 0;
+        $media->save();
+
+        return redirect()->back()->with('alert-success', 'Berhasil add media');
+    }
+
+    public function addNewFile ($id){
+        $media = Media::find($id);
+        $paket = Paket::all();
+
+        return view('admin.pages.formFileManager')->with(compact(['media', 'paket']));
+    }
+
+    public function storeNewFile (Request $request, $id){
+        $file               = new File;
+        $file->paket_id     = $id;
+        $file->nama         = $request->file->getClientOriginalName();
+        $type               = explode(".", $file->nama);
+        $file->type         = $type[1];
+        $file->size         = $request->file('file')->getSize();
+        $file->duration     = null;
+        $file->status       = 0;
+        $file->url          = "http://aksesdatautama.com/arba_signage/public/". $file->nama;
+        $file->save();
+
+        $media = Media::find($id);
+        $media->file_id = $file->id;
+        $media->statusDownload = 0;
+        $media->save();
+
+        
+        $image = $request->file('file');
+        $target = '/public/images';
+        $image->move(\base_path() . $target, $image->getClientOriginalName());
+        
+        return redirect()->route('masterMedia')->with('alert-success', 'Berhasil tambah file');
     }
 
     public function downloadMasterMedia ($id){
@@ -254,7 +303,8 @@ class adminController extends Controller
 
             $filepath = public_path('images/').$filename->nama;
 
-            return response()->download($filepath)->with('alert-succes','Iklan Telah didownload');
+            return response()->download($filepath);
+            return redirect('/admin/player/master-media')->with('alert-success','Berhasil download file');
         }
     }
 
@@ -348,7 +398,7 @@ class adminController extends Controller
         $data->status = 0;
         $data->save();
 
-        return redirect('/admin/setup/setup-paket')->with('alert-success', 'Berhasil tambah paket');
+        return redirect('admin/setup/setup-paket')->with('alert-success', 'Berhasil tambah paket');
     }
 
     public function getEditDataMasterPaket($id){

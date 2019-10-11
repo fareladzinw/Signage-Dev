@@ -50,7 +50,7 @@
            <tr>
               <td>{{$p->nama}}</td>
               <td>{{$p->harga}}</td>
-              <td>{{$p->durasi}}</td>
+              <td>{{$p->durasi}} hari</td>
               <td>{{$p->jumlahPlayer}}</td>
               <td>{{$p->jenisContent}}</td>
               <td>
