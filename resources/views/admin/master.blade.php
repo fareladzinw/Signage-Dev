@@ -111,7 +111,7 @@ desired effect
           <ul class="treeview-menu">
             <li class="{{ (request()->is('admin/player/master-player')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-player')}}"><i class="fa fa-link"></i> <span>Master Player</span></a></li>
             <li class="{{ (request()->is('admin/player/master-layout')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-layout')}}"><i class="fa fa-link"></i> <span>Master Layout</span></a></li>
-            <li class="{{ (request()->is('admin/player/master-media')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-media')}}"><i class="fa fa-link"></i> <span>File Manager</span></a></li>
+            <li class="{{ (request()->is('admin/player/master-media')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-media')}}"><i class="fa fa-link"></i> <span>Master Media</span></a></li>
             <li class="{{ (request()->is('admin/player/master-kategori')) ? 'active' : '' }}"><a href="{{url ('admin/player/master-kategori')}}"><i class="fa fa-link"></i> <span>Master Kategori Player</span></a></li>
           </ul>
         </li>
