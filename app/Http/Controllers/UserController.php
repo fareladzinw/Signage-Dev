@@ -83,6 +83,7 @@ class UserController extends Controller
         $user->nomorRekening = $request->norek;
         $user->namaBank = $request->bank;
         $user->namaRekening = $request->namaRek;
+        if(!is_null($request->password))$user->password = bcrypt($request->password);
         if(!empty($request->fotoProfile)) {
             $user->foto = $request->fotoProfile->getClientOriginalName();   
 

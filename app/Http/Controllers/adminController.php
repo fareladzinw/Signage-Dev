@@ -648,7 +648,7 @@ class adminController extends Controller
             $konfirmasi = Konfirmasi::find($id);
             $transaksi = Transaksi::where('id','=',$konfirmasi->transaksi_id)->first();
 
-            $pesanan = Pesanan::find($transaksi->pesanan_id)->first();
+            $pesanan = Pesanan::find($transaksi->pesanan_id);
             $pesanan ->status = 1 ;
             $pesanan ->save();
 

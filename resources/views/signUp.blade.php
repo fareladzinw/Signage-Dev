@@ -50,7 +50,7 @@
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Full name" name="name"> 
                 @if(!empty($user)) 
-                <input type="text" class="form-control" name="linkAfiliasi" value="{{ $user[0]->linkAfiliasi }}">
+                <input type="hidden" class="form-control" name="linkAfiliasi" value="{{ $user[0]->linkAfiliasi }}">
                 @endif
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 @if($errors->has('name'))

@@ -71,6 +71,7 @@ class AuthController extends Controller
     public function indexRegisterWithAfiliasi($afiliasi) 
     {
         $user = User::where('linkAfiliasi', $afiliasi)->get();
+
         return view('signUp')->with(['user' => $user]);
     }
 
@@ -115,14 +116,14 @@ class AuthController extends Controller
         $aktivasi->status = 0;
         $aktivasi->save();
 
-        $linkAfiliasi = $request->linkAfiliasi;
+        $linkAfiliasi = $request->linkAfiliasi;  
         
         Mail::to($request->email)->send(new UserActivation($data, $aktivasi)); 
 
-        if(!$linkAfiliasi === null) {
-            return redirect('activation/'.$linkAfiliasi);
-        } else {
+        if(is_null($linkAfiliasi)) {
             return redirect('activation');
+        } else {
+            return redirect('activation/'.$linkAfiliasi);
         }
         
     }

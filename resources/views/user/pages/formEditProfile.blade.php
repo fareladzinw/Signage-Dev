@@ -36,6 +36,11 @@
                 <input name="namaRek" type="text" class="form-control" value="{{$user->namaRekening}}" placeholder="Nama Rekening">
             </div>
             <div class="form-group">
+                <label for="player">Ubah Kata Sandi</label>
+                <input name="password" type="password" class="form-control" placeholder="Isi kata sandi">
+                <small>Bila tidak ingin merubah tidak perlu diisi</small>
+            </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-info btn-block btn-flat"><b> Ubah Profile </b></button>
             </div>
         </form>
