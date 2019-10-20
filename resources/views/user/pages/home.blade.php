@@ -18,9 +18,9 @@
                 </h3>
             </div>
             <div class="box-body">
-            <h6 class="box-subtitle mb-2 text-muted" style="margin : 0;">durasi 3 malam</h6>
+            <h6 class="box-subtitle mb-2 text-muted" style="margin : 0;">Durasi {{$p->durasi}} hari</h6>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk of the card's content.
+              Paket ini berdurasi selama {{ $p->durasi }} hari
             </p>
             <div class="column">
             <a href="{{ route('pesan', $p->id) }}" class=""><button type="button" class="btn btn-sm btn-block btn-info">Pesan</button></a>

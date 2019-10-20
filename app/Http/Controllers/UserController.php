@@ -255,8 +255,7 @@ class UserController extends Controller
     public function pesanStore(Request $request, $id) 
     {   
         $this->validate($request, [
-            'startShow' => 'required|date',
-            'endShow'   => 'required|date'
+            'startShow' => 'required|date'
         ]);
             
         if(Carbon::parse($request->startShow)->format('Y-m-d') > Carbon::parse($request->endShow)->format('Y-m-d')) {
@@ -268,7 +267,7 @@ class UserController extends Controller
             $pesanan->tanggal   = Carbon::now();
             $pesanan->status    = 0;
             $pesanan->startShow = Carbon::parse($request->startShow)->format('Y-m-d');
-            $pesanan->endShow   = Carbon::parse($request->endShow)->format('Y-m-d');
+            $pesanan->endShow   = Carbon::parse($request->startShow)->addDays($pesanan->paket['durasi'])->format('Y-m-d');
             $pesanan->save();
             
             $pembayaran             = new Pembayaran;

@@ -16,54 +16,25 @@
     <div class="box-body">
             <div class="durasi">{{ $paket->durasi }} hari</div>
             <div class="desc">
-                Paket Start {{ \Carbon\Carbon::parse($paket->startShow)->format('d-m-Y') }}<br>
-                Paket End {{ \Carbon\Carbon::parse($paket->endShow)->format('d-m-Y') }}<br>
-                Harga Paket {{ $paket->harga }}
+                Harga Paket {{ $paket->harga }} <br><br>
             </div>
             <form action="{{ route('pesanStore', $paket->id) }}" method="post">
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <input type="hidden" name="harga" value="{{ $paket->harga }}">
             <div class="form-group">
-                <label>Mulai penayangan</label>
+                <label>Tanggal mulai penayangan</label>
                 <div class="form-group">
-                    <select name="startShow" class="form-control">
-                        <option value="">Choose Date...</option>
-                        @foreach($dates as $keyD => $d)
-                            @if(Carbon\Carbon::parse($d)->format('Y-m-d') > Carbon\Carbon::now()->format('Y-m-d')
-                                ||
-                                Carbon\Carbon::parse($d)->format('Y-m-d') == Carbon\Carbon::now()->format('Y-m-d'))  
-                                <option name="" value="{{ $d }}">{{ Carbon\Carbon::parse($d)->format('d-m-Y') }}</option>
-                            @endif
-                        @endforeach
-                    </select>
+                    <input type="text" id="datepicker" class="form-control" name="startShow" autocomplete="off">
                     @if($errors->has('startShow'))
                     <div class="text-danger">
                         {{ $errors->first('startShow')}}
-                    </div>
-                </div>
-                @endif
-                <label>Akhir penayangan</label>
-                <div class="form-group">
-                    <select name="endShow" class="form-control">
-                        <option value="">Choose Date...</option>
-                        @foreach($dates as $keyD => $d)
-                            @if(Carbon\Carbon::parse($d)->format('Y-m-d') > Carbon\Carbon::now()->format('Y-m-d')
-                                ||
-                                Carbon\Carbon::parse($d)->format('Y-m-d') == Carbon\Carbon::now()->format('Y-m-d'))  
-                                <option name="" value="{{ $d }}">{{ Carbon\Carbon::parse($d)->format('d-m-Y') }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @if($errors->has('endShow'))
-                    <div class="text-danger">
-                        {{ $errors->first('endShow')}}
                     </div>
                     @endif
                 </div>
                 </div>
                 <!-- /.form group -->
-                <button type="submit" class="btn btn-info">Pesan</button>
+                <button type="submit" class="btn btn-info btn-block">Pesan</button>
             </form>
             </div>
     </div>
