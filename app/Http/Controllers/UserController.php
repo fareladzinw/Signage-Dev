@@ -6,6 +6,7 @@ use App\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Paket;
 use App\Pesanan;
@@ -16,6 +17,7 @@ use App\File;
 use App\Pembayaran;
 use App\Transaksi;
 use App\Konfirmasi;
+use App\Mail\Payment;
 
 class UserController extends Controller
 {
@@ -258,9 +260,6 @@ class UserController extends Controller
             'startShow' => 'required|date'
         ]);
             
-        if(Carbon::parse($request->startShow)->format('Y-m-d') > Carbon::parse($request->endShow)->format('Y-m-d')) {
-            return redirect()->route('paket')->with('alert-danger', 'Masukkan tanggal yang benar!');
-        } else {
             $pesanan            = new Pesanan;
             $pesanan->paket_id  = $id;
             $pesanan->user_id   = Auth::user()->id;
@@ -303,8 +302,10 @@ class UserController extends Controller
             $konfirmasi->validasi = 0;
             $konfirmasi->save();
 
+            Mail::to(Auth::user()->email)->send(new Payment($transaksi)); 
+
             return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
-        }
+        
     }
 
     /**

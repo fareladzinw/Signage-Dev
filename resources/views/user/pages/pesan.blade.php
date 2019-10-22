@@ -16,7 +16,7 @@
     <div class="box-body">
             <div class="durasi">{{ $paket->durasi }} hari</div>
             <div class="desc">
-                Harga Paket {{ $paket->harga }} <br><br>
+                Harga Paket {{ "Rp. ". number_format($paket->harga,2,',','.') }} <br><br>
             </div>
             <form action="{{ route('pesanStore', $paket->id) }}" method="post">
             {{ csrf_field() }}
