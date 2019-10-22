@@ -1,8 +1,39 @@
 /* dasboard user */
 .card {
-    width: 25rem;
+    width: 20rem;
     display: inline-block;
     margin-right: 20px;
+}
+.content{
+    padding: 0;
+    padding-top: 15px;
+}
+.box-paket{
+    background-color: #ECF0FB;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.box-paket .box-header h3{
+    color: #51C6B2;
+    font-weight: bold;
+}
+.box-paket .box-body{
+    background-color: #ffffff;
+}
+.btn-pesan{
+    width: 100%;
+    font-size: 20px;
+    color: #C4AB4E;
+    background-color: #ECF0FB;
+    font-weight: bold;
+}
+.btn-pesan:hover{
+    color: #C4AB4E;
+}
+.box-harga{
+    color: #C4AB4E;
+    font-size: 20px;
+    margin: 0;
+    font-weight: bold;
 }
 /* dasboard admin */
 .logout{

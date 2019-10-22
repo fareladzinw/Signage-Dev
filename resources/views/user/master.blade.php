@@ -128,7 +128,6 @@
       <!-- Main content -->
       <section class="content">
         @yield('content')
-        <div class="card" style="width: 25rem;">
       </section>
       <!-- /.content -->
     </div>
