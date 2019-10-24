@@ -19,8 +19,6 @@
             </div>
             <div class="box-body">
             <p class="box-subtitle" style="margin : 0;">Durasi {{$p->durasi}} hari</p>
-            <p class="box-subtitle" style="margin : 0;">Durasi {{$p->durasi}} hari</p>
-            <p class="box-subtitle" style="margin : 0;">Durasi {{$p->durasi}} hari</p>
             <p class="box-harga">
               @php
                   echo "Rp ". number_format($p->harga,2,',','.');
