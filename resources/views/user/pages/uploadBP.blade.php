@@ -11,8 +11,8 @@
     <div class="box-body">
         <div class="durasi">{{ $pesanan->paket->nama }}</div>
           <div class="desc">
-              Paket Start {{ \Carbon\Carbon::parse($pesanan->paket->starShow)->format('d-m-Y') }}<br>
-              Paket End {{ \Carbon\Carbon::parse($pesanan->paket->endShow)->format('d-m-Y') }}<br>
+              Paket Start {{ \Carbon\Carbon::parse($pesanan->startShow)->format('d-m-Y') }}<br>
+              Paket End {{ \Carbon\Carbon::parse($pesanan->endShow)->format('d-m-Y') }}<br>
               Harga Paket {{ $pesanan->paket->harga }}
           </div>
           <form action="{{ route('buktiIndex', $pesanan->id) }}" method="POST" enctype="multipart/form-data">
