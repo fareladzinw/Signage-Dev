@@ -13,19 +13,22 @@
      <div class="card" style="text-align:center;" >
      <div class="box box-info box-paket">
             <div class="box-header">
+                <div class="paket">Paket</div>
                 <h3 style="margin : 0;">
                     {{ $p->nama }}
                 </h3>
             </div>
             <div class="box-body">
-            <p class="box-subtitle" style="margin : 0;">Durasi {{$p->durasi}} hari</p>
-            <p class="box-harga">
+            <p class="box-subtitle" style="margin : 0;"><b>{{$p->jumlahFile}}</b> Content Gambar Slideshow</p>
+            <p class="box-subtitle" style="margin : 0;"><b>{{$p->jumlahPlayer}}</b> Player</p>
+            <p class="box-subtitle" style="margin : 0;">Durasi <b>{{$p->durasi}}</b> hari</p>
+            <div class="box-harga">
               @php
-                  echo "Rp ". number_format($p->harga,2,',','.');
+                  echo "Rp ". number_format($p->harga,0,',','.');
               @endphp
-            </p>
+            </div>
           </div>
-          <a href="{{ route('pesan', $p->id) }}"><button class="btn btn-pesan">Pesan</button></a>
+          <a href="{{ route('pesan', $p->id) }}"><button class="btn btn-pesan">Pesan Sekarang</button></a>
           </div>
         </div>
      @endif

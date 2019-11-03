@@ -8,26 +8,40 @@
     padding: 0;
     padding-top: 15px;
 }
+.paket{
+    color: #51C6B2;
+    font-size: 20px;
+}
 .box-paket{
     background-color: #ECF0FB;
+    border-radius: 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 .box-paket .box-header h3{
     color: #51C6B2;
     font-weight: bold;
 }
+.box-paket .box-header h4{
+    color: #51C6B2;
+    font-weight: bold;
+}
 .box-paket .box-body{
     background-color: #ffffff;
 }
+.box-body p{
+    color: #51C6B2;
+}
 .btn-pesan{
     width: 100%;
-    font-size: 20px;
+    font-size: 17px;
     color: #C4AB4E;
     background-color: #ECF0FB;
     font-weight: bold;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
 .btn-pesan:hover{
-    color: #C4AB4E;
+    color: rgb(247, 207, 64);
 }
 .box-harga{
     color: #C4AB4E;
