@@ -21,7 +21,7 @@ Route::get('/activation/{afiliasi}', 'AuthController@indexActivationWithAfiliasi
 Route::post('/activation', 'AuthController@checkActivation')->name('checkActivation');
 Route::get('/logout', 'AuthController@logout')->name('logout');
 
-Route::prefix('admin')->middleware('auth')->group(function() {
+Route::prefix('admin')->middleware(['auth','revalidate'])->group(function() {
     Route::get('/', 'pageController@indexAdmin')->name('adminHomepage');
 
     //ROUTE PLAYER
@@ -103,7 +103,7 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 
 });
 
-Route::prefix('user')->middleware('auth')->group(function() {
+Route::prefix('user')->middleware(['auth','revalidate'])->group(function() {
     Route::get('/', 'UserController@homepage')->name('homepage');
     Route::get('/paket-aktif', 'UserController@paketAktif')->name('paket');
     Route::get('/afiliasi/list-afiliasi', 'UserController@listAfiliasi');
