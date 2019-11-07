@@ -36,6 +36,7 @@ class Payment extends Mailable
                 'email'    => $this->data->user['email'],
                 'paket'     => $this->data->paket['nama'],
                 'total'     => $this->data['total'],
+                'kode'     => $this->data->pesanan_id,
             ]);
     }
 }
