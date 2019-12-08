@@ -22,7 +22,7 @@
             <thead>
             <tr>
               <th>Nama Paket</th>
-              <th>Tanggal Pesan</th>
+              <th>Tanggal Pemesanan</th>
               <th>Tanggal Mulai</th>
               <th>Tanggal Selesai</th>
               <th>Region Siaran</th>

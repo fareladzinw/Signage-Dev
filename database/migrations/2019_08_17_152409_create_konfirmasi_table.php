@@ -16,7 +16,7 @@ class CreateKonfirmasiTable extends Migration
         Schema::create('konfirmasi', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaksi_id');
-            $table->enum('type', ['lorem', 'ipsum', 'dolor'])->nullable();
+            $table->enum('type', ['transfer bank'])->nullable();
             $table->string('konfirmasiDari')->nullable();
             $table->date('tanggal');
             $table->string('namaBank');

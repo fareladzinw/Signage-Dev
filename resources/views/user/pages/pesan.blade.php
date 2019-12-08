@@ -1,24 +1,17 @@
 @extends('user.master')
 @section('content')
-  <div class="col-md-3"></div>
-  <div class=" col-md-6 col-xs-12">
+  <div class="col-md-2"></div>
+  <div class=" col-md-8 col-xs-12">
     <div class="box box-info">
-    <div class="box-header">
-      <h3  class="box-title">{{ $paket->nama }}</h3>
-      @if (\Session::has('alert-danger'))
-      <div class="alert alert-danger">
-        <a href="{{ route('pesan') }}"><button type="button" class="close" data-dismiss="alert">&times;</button></a>
-        <div>{{Session::get('alert-danger')}}</div>
-      </div>
-      @endif
-    </div>
-    <!-- /.box-header -->
+    <h1 style="text-align: center;">Pemesanan Paket</h1>
     <div class="box-body">
-            <div class="durasi">{{ $paket->durasi }} hari</div>
-            <div class="desc">
-                Harga Paket {{ "Rp. ". number_format($paket->harga,2,',','.') }} <br><br>
-            </div>
             <form action="{{ route('pesanStore', $paket->id) }}" method="post">
+            <label for="">Nama Paket</label>
+            <input type="text" class="form-control" value="{{ $paket->nama }}" readonly>
+            <label for="">Durasi Paket</label>
+            <input type="text" class="form-control" value="{{ $paket->durasi }} hari" readonly>
+            <label for="">Harga Paket</label>
+            <input type="text" class="form-control" value="Rp. {{ number_format($paket->harga,2,',','.') }}" readonly>
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <input type="hidden" name="harga" value="{{ $paket->harga }}">
@@ -34,7 +27,7 @@
                 </div>
                 </div>
                 <!-- /.form group -->
-                <button type="submit" class="btn btn-info btn-block">Pesan</button>
+                <button type="submit" class="btn btn-info btn-block">Klik Untuk Lakukan Pemesanan</button>
             </form>
             </div>
     </div>

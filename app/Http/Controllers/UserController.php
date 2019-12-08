@@ -285,7 +285,7 @@ class UserController extends Controller
             $transaksi->tanggal         = Carbon::now();
             $transaksi->nominal         = $request->harga;
             $transaksi->discount        = 0;
-            $transaksi->total           = $request->harga;
+            $transaksi->total           = substr($transaksi->nominal, 0, -3) . rand(1, 9) . rand(1, 9) . rand(1, 9);
             $transaksi->statusUpload    = 0;
             $transaksi->statusTayang    = 0;
             $transaksi->save();
@@ -304,7 +304,7 @@ class UserController extends Controller
 
             Mail::to(Auth::user()->email)->send(new Payment($transaksi)); 
 
-            return redirect()->route('paket')->with('alert-success', 'Mohon konfirmasi pembayaran');
+            return redirect()->route('paket')->with('alert-success', 'Masukan bukti transfer anda untuk melakukan konfirmasi pembayaran');
         
     }
 
@@ -363,7 +363,8 @@ class UserController extends Controller
     public function buktiIndex($id) 
     {   
         $pesanan = Pesanan::find($id);
-        return view('user.pages.uploadBP')->with(['pesanan' => $pesanan]);
+        $transaksi = Transaksi::where('pesanan_id', $id)->first();
+        return view('user.pages.uploadBP')->with(['pesanan' => $pesanan, 'transaksi' => $transaksi]);
     }
 
     /**
@@ -373,16 +374,20 @@ class UserController extends Controller
     public function buktiStore(Request $request, $id) 
     {
         $pembayaran = Pembayaran::where('pesanan_id', $id)->first();
-
         $pembayaran->urlFile = $request->buktiPembayaran->getClientOriginalName();
-        $pembayaran->save();
 
         $transaksi = Transaksi::where('pesanan_id', $id)->first();
 
         $konfirmasi = Konfirmasi::where('transaksi_id', $transaksi->id)->first();
-
+        $konfirmasi->konfirmasiDari = $request->norek;
+        $konfirmasi->type = 1;
+        $konfirmasi->tanggal = Carbon::now();
+        $konfirmasi->namaBank = $request->bank;
+        $konfirmasi->namaRekening = $request->nama_pengirim;
         $konfirmasi->dataBulb = $request->buktiPembayaran->getClientOriginalName();
+        
         $konfirmasi->save();
+        $pembayaran->save();
 
         $image = $request->file('buktiPembayaran');
         $target = '/public/images';
